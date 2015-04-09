@@ -1,0 +1,4 @@
+Ignore specific Cython .c-files
+helloA.c
+helloB.c
+userB.c
