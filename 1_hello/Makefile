@@ -18,11 +18,14 @@ cleanA:
 # Target B - two files
 B: out.B.txt
 
-out.B.txt: helloB.so mainB.py
+out.B.txt: mainB.py helloB.so userB.so
 	python3 mainB.py > out.B.txt
 
-helloB.so: setupB.py
-	python3 setupB.py build_ext --inplace
+helloB.so: setupB_hello.py
+	python3 setupB_hello.py build_ext --inplace
+
+userB.so: setupB_user.py
+	python3 setupB_user.py build_ext --inplace
 
 cleanB:
 	rm -rf build helloB.c helloB.so out.B.txt userB.c userB.so
