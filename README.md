@@ -9,6 +9,12 @@ Author: Jakob Rørsted Mosumgaard
 --------------------------------
 Installation of Cython compiler using python-setuptools:
 
-> pip install cython
+>
+pip install cython
+>
+
 or
-> easy_install cython
+
+>
+easy_install cython
+>
