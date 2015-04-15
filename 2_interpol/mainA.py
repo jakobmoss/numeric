@@ -8,8 +8,6 @@ import auxA as intpol
 def testdata(N):
     """
     Generates N points of (x, y)-data to test the different routines
-    Arguments:
-    - `N`:
     """
     from math import cos, sin
     x = [i + 0.5 * sin(i) for i in range(N)]
