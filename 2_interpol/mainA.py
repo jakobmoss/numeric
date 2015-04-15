@@ -3,11 +3,26 @@ import auxA as intpol
 
 
 #
+# Function to generate test data
+#
+def testdata(N):
+    """
+    Generates N points of (x, y)-data to test the different routines
+    Arguments:
+    - `N`:
+    """
+    from math import cos, sin
+    x = [i + 0.5 * sin(i) for i in range(N)]
+    y = [i + cos(i*i) for i in range(N)]
+    return x, y
+
+
+#
 # Main
 #
 
 # Generate test data
-x, y = intpol.testdata(10)
+x, y = testdata(10)
 
 # Print test data for plotting
 for i in range(len(x)):
