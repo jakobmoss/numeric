@@ -12,7 +12,8 @@ out.A.plt:
 	@echo set term pdfcairo > $@
 	@echo set out \"out.A.pdf\" >> $@
 	@echo plot \"out.A.txt\" index 0 title \"data\" \\ >> $@
-	@echo , \"out.A.txt\" index 1 title \"lin\" with lines >> $@
+	@echo , \"out.A.txt\" index 1 title \"lin\" with lines \\ >> $@
+	@echo , \"out.A.txt\" index 2 title \"quad\" with lines >> $@
 
 out.A.txt: mainA.py
 	python3 $< > out.A.txt
