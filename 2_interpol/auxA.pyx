@@ -2,6 +2,25 @@
 
 
 #
+# Function to generate test data
+#
+def testdata(unsigned int N):
+    """
+    Generates N points of (x, y)-data to test the different routines
+    """
+    # Import math functions
+    from math import cos, sin
+
+    # Fill the lists with data
+    cdef unsigned int i
+    cdef list x = [i + 0.5 * sin(i) for i in range(N)]
+    cdef list y = [i + cos(i*i) for i in range(N)]
+
+    # Return the data
+    return x, y
+
+
+#
 # Linear interpolation
 #
 def lspline(x, y, z):
