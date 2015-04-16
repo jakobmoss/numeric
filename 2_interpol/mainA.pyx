@@ -1,18 +1,19 @@
 # cython: language_level=3
 
 import auxA as intpol
+from auxA cimport testdata
+
 
 #
 # Main function
 #
-
 def mainA():
     """
     Test of the interpolation routines
     """
     
     # Generate test data
-    x, y = intpol.testdata(10)
+    x, y = testdata(10)
 
     # Print test data for plotting
     for i in range(len(x)):
@@ -21,7 +22,7 @@ def mainA():
     print('\n')
 
     # Initialize useful variables
-    n = 50
+    n = 500
     step = (x[-1] - x[0]) / n
 
     # Linear interpolation

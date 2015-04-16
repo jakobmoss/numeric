@@ -4,7 +4,7 @@
 #
 # Function to generate test data
 #
-def testdata(unsigned int N):
+cdef tuple testdata(unsigned int N):
     """
     Generates N points of (x, y)-data to test the different routines
     """

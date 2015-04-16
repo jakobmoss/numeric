@@ -19,11 +19,9 @@ A.plt:
 A.txt: runA.py mainA.so
 	python3 $< > $@
 
-mainA.so: auxA.so
-
-auxA.so: setupA.py
+mainA.so: setupA.py mainA.pyx auxA.pyx
 	python3 setupA.py build_ext --inplace
 
 cleanA:
-	rm -rf A.txt out.A.pdf A.plt build auxA.c auxA.so
+	rm -rf A.txt out.A.pdf A.plt build auxA.c auxA.so mainA.so mainA.c
 
