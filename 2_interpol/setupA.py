@@ -8,3 +8,4 @@ os.environ['CC'] = 'gcc-4.9'
 
 # Do the build
 setup(ext_modules=cythonize('auxA.pyx'))
+setup(ext_modules=cythonize('mainA.pyx'))

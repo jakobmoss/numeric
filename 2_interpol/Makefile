@@ -16,8 +16,10 @@ A.plt:
 	@echo , \"A.txt\" index 1 title \"lin\" with lines \\ >> $@
 	@echo , \"A.txt\" index 2 title \"quad\" with lines >> $@
 
-A.txt: mainA.py auxA.so
+A.txt: runA.py mainA.so
 	python3 $< > $@
+
+mainA.so: auxA.so
 
 auxA.so: setupA.py
 	python3 setupA.py build_ext --inplace
