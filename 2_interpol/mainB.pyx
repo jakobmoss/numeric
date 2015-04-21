@@ -33,7 +33,7 @@ def mainB():
     step = (x[-1] - x[0]) / n
 
     # Build quadratic spline
-    qspline, deriv_qspline = intpol.qspline(x, y)
+    qspline, deriv_qspline, integ_qspline = intpol.qspline(x, y)
 
     # Evaluate spline
     z = x[0]
@@ -49,4 +49,12 @@ def mainB():
         print(zz, end='\t')
         print(deriv_qspline(zz))
         zz += step
+    print('\n')
+
+    # Evaluate integral
+    zzz = x[0]
+    while zzz < x[-1]:
+        print(zzz, end='\t')
+        print(integ_qspline(zzz))
+        zzz += step
     print('\n')

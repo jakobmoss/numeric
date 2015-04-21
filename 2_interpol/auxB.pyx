@@ -82,6 +82,29 @@ def qspline(x, y):
         # Return evaluation
         return b[i] + 2*c[i]*(z - x[i])
 
-    
-    # Return the spline function
-    return spline, deriv_spline
+
+    # Function to estimate the integral from x0 to z of the spline
+    def integral_spline(z):
+        i = 0
+        j = n - 1
+        while j-i > 1:
+            m = int((i+j)/2)
+            if z > x[m]:
+                i = m
+            else:
+                j = m
+
+        # Integration up till the interval found by binary search
+        sum_int = 0
+        for k in range(i):
+            dz = x[k+1] - x[k]  # Shorthand notation
+            sum_int += dz * (y[k] + dz * (b[k]/2.0 + dz*c[k]/3.0)) # Clever way to express it
+
+        # Calculate final step and return evaluation
+        dz = z - x[i]
+        sum_int += dz * (y[i] + dz * (b[i]/2.0 + dz*c[i]/3.0))
+        return sum_int
+
+
+    # Return the spline functions
+    return spline, deriv_spline, integral_spline
