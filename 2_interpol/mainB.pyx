@@ -29,7 +29,7 @@ def mainB():
     print('\n')
 
     # Initialize useful variables
-    n = 500
+    n = 100
     step = (x[-1] - x[0]) / n
 
     # Build quadratic spline
@@ -57,4 +57,20 @@ def mainB():
         print(zzz, end='\t')
         print(integ_qspline(zzz))
         zzz += step
+    print('\n')
+
+    # Analytic integral
+    zzzz = x[0]
+    while zzzz < x[-1]:
+        print(zzzz, end='\t')
+        print(intpol.analytic_integ(zzzz))
+        zzzz += step
+    print('\n')
+
+    # Analytic derivative
+    zzzzz = x[0]
+    while zzzzz < x[-1]:
+        print(zzzzz, end='\t')
+        print(intpol.analytic_deriv(zzzzz))
+        zzzzz += step
     print('\n')
