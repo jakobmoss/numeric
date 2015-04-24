@@ -70,3 +70,25 @@ def solve(Q, R, b):
     # Store into original vector
     for i in range(len(b)):
         b[i] = QTb[i]
+
+
+#
+# Function to calculate the absolute value of a QR-determinant
+#
+def absdet(R):
+    """
+    Calculates the absolute value of the determinant of a QR-decomposed matrix 
+    using just R (since det(Q)^2 = 1).
+
+    Arguments:
+    - `R`: From QR-decomposition (upper-triangular)
+    """
+    # To store determinant
+    value = 1
+
+    # Loop over dimension (quadratic)
+    for i in range(len(R)):
+        value *= R[i, i]
+
+    # Return value
+    return value

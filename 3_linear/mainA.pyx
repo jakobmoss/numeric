@@ -3,7 +3,6 @@
 import numpy as np
 import auxA as qr
 
-
 #
 # Main function
 #
@@ -45,3 +44,7 @@ def mainA():
     print(b)
     print('A x =')
     print(np.dot(np.dot(A, R), b))
+
+    # Calculate absolute value of A's determinant
+    det = qr.absdet(R)
+    print('|det(A)| =', det)
