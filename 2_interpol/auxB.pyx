@@ -9,15 +9,31 @@ cdef tuple testdata(unsigned int N):
     Generates N points of (x, y)-data to test the different routines
     """
     # Import math functions
-    from math import cos, sin
+    from math import cos, sin, exp
 
     # Fill the lists with data
     cdef unsigned int i
-    cdef list x = [i + 0.5 * sin(i) for i in range(N)]
-    cdef list y = [i + cos(i*i) for i in range(N)]
+    cdef list x = [i for i in range(N)]
+    cdef list y = [sin(i)*sin(i) for i in range(N)]
 
     # Return the data
     return x, y
+
+
+def analytic_integ(x):
+    """
+    Analytic integral of sin^2(x)for comparison
+    """
+    from math import sin, cos
+    return 0.5*(x - sin(x)*cos(x))
+
+
+def analytic_deriv(x):
+    """
+    Analytic derivative of sin^2(x)for comparison
+    """
+    from math import sin, cos
+    return sin(2.0*x)
 
 
 #
