@@ -92,3 +92,24 @@ def absdet(R):
 
     # Return value
     return value
+
+
+#
+# Function to calculate the inverse
+#
+def inverse(Q, R, Ainv):
+    """
+    Calculates the inverse of the matrix A using the decomposition A = QR
+
+    Arguments:
+    - `Q`:
+    - `R`:
+    - `Ainv`:
+    """
+    # Initialize A^{-1} as the identity matrix
+    for i in range(len(Ainv)):
+        Ainv[i, i] = 1
+
+    # Solve for each column using back-substitution
+    for i in range(Q.shape[1]):
+        solve(Q, R, Ainv[:, i])
