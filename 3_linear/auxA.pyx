@@ -26,3 +26,47 @@ def decomp(Q, R):
             qj = Q[:, j]  # Pointer to the j'th column
             R[i, j] = np.dot(qi, qj)  # Fill R_ij
             qj -= qi*R[i, j]  # Do the normalization
+
+
+#
+# General function to do back-substitution (used by qr-solve)
+#
+def backsub(U, b):
+    """
+    Solves the upper triangular system Ux = b by in-place back-substitution
+    Arguments:
+    - `U`: Upper triangular matrix
+    - `b`: Vector containing the right-hand side -- the solution is stored here
+    """
+    # Loop backwards through elements
+    for i in reversed(range(U.shape[1])):
+        s = b[i]  # Temporary storage of i'th entry
+
+        # Subtract each higher element
+        for j in range(i+1, U.shape[1]):
+            s -= U[i, j] * b[j]
+
+        # Store in original vector
+        b[i] = s / U[i, i]
+    
+
+#
+# Funtion to solve a QR-decomp. system using back-sub
+#
+def solve(Q, R, b):
+    """
+    Solves the system (QR)x = b by in-place back-substitution
+    Arguments:
+    - `Q`: From QR-decomposition
+    - `R`: From QR-decomposition
+    - `b`: Vector containing the right-hand side -- the solution is stored here
+    """
+    # Calculate the desired right-hand side
+    QTb = np.dot(np.transpose(Q), b)
+
+    # Solve Rx = Q^{T}b by backsubstitution
+    backsub(R, QTb)
+
+    # Store into original vector
+    for i in range(len(b)):
+        b[i] = QTb[i]
