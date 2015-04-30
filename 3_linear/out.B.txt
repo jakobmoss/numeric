@@ -43,3 +43,13 @@ QR =
  [ -1.21202566  11.80395414   6.01493357]
  [ -0.52947034  -0.90285687   5.0319553 ]
  [ -0.38400234  -0.12213238   0.61703245]]
+
+
+ Speed of Gram-Schmidt on 300 x 300 matrix:
+
+        0.30 real         0.27 user         0.02 sys
+
+
+ Speed of Givens rotation on 300 x 300 matrix:
+
+        7.81 real         7.78 user         0.02 sys

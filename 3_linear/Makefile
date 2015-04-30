@@ -19,7 +19,11 @@ cleanA:
 B: out.B.txt
 
 out.B.txt: runB.py mainB.so
-	python3 $< > $@
+	python3 $< test > $@
+	echo "\n\n Speed of Gram-Schmidt on 300 x 300 matrix:\n" >> $@
+	\time python3 $< gs > /dev/null 2>> $@
+	echo "\n\n Speed of Givens rotation on 300 x 300 matrix:\n" >> $@
+	\time python3 $< givens > /dev/null 2>> $@
 
 mainB.so: setupB.py mainB.pyx auxB.pyx
 	python3 setupB.py build_ext --inplace

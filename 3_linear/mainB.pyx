@@ -2,6 +2,7 @@
 
 import numpy as np
 import auxB as givens
+import auxA as gs
 
 #
 # Function to test the Givens's rotation routines on a square matrix
@@ -71,16 +72,40 @@ def test_long(A):
 #
 # Main function
 #
-def mainB():
+def mainB(flag):
     """
     Test of the routines for solving linear equations
     """
-    # Test 1
-    A = np.array([[-4, -4, 2], [0, 2, 4], [-3, -2, 3]], dtype='float64')
-    b = np.array([9, 22, 25], dtype='float64')
-    test(A, b)
+    # Test the routines
+    if flag == 'test':
+        # Test 1
+        A = np.array([[-4, -4, 2], [0, 2, 4], [-3, -2, 3]], dtype='float64')
+        b = np.array([9, 22, 25], dtype='float64')
+        test(A, b)
 
-    # Test 2
-    print('\n------------\n')
-    AA = np.array([[3, 4, 5], [-8, 10, 7], [-5, -6, 0], [-4, 0, 4]], dtype='float64')
-    test_long(AA)
+        # Test 2
+        print('\n------------\n')
+        AA = np.array([[3, 4, 5], [-8, 10, 7], [-5, -6, 0], [-4, 0, 4]], dtype='float64')
+        test_long(AA)
+
+    elif flag == 'gs':
+        # Generate random 300 x 300 matrix
+        A = np.random.random((300, 300))
+        R = np.zeros(A.shape, dtype= 'float64')
+        b = np.random.random(300)
+
+        # Decompose and solve
+        gs.decomp(A, R)
+        gs.solve(A, R, b)
+
+    elif flag == 'givens':
+        # Generate random 300 x 300 matrix
+        A = np.random.random((300, 300))
+        b = np.random.random(300)
+
+        # Decompose and solve
+        givens.decomp(A)
+        givens.solve(A, b)
+
+    else:
+        print('Error! Wrong flag!')

@@ -1,8 +1,9 @@
 from __future__ import print_function
 from mainB import mainB
+import sys
+
 
 #
-# Main
+# Main (different cases)
 #
-
-mainB()
+mainB(sys.argv[1].lower())
