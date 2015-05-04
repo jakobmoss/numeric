@@ -25,7 +25,7 @@ out.B.txt: runB.py mainB.so
 	echo "\n\n Speed of Givens rotation on 300 x 300 matrix:\n" >> $@
 	\time python3 $< givens > /dev/null 2>> $@
 
-mainB.so: setupB.py mainB.pyx auxB.pyx
+mainB.so: setupB.py mainB.pyx auxB.pyx mainA.so
 	python3 setupB.py build_ext --inplace
 
 cleanB:

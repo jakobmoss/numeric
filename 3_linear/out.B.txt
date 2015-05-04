@@ -1,4 +1,4 @@
- -- Testing on --
+ -- Testing on square matrix --
 A =
 [[-4. -4.  2.]
  [ 0.  2.  4.]
@@ -52,4 +52,4 @@ QR =
 
  Speed of Givens rotation on 300 x 300 matrix:
 
-        7.81 real         7.78 user         0.02 sys
+        7.86 real         7.84 user         0.02 sys

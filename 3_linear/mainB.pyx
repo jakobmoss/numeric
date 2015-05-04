@@ -12,7 +12,7 @@ def test(A, b):
     R = np.zeros((A.shape[1], A.shape[1]), dtype='float64')
     Ainv = np.zeros(A.shape, dtype='float64')
 
-    print(' -- Testing on --')
+    print(' -- Testing on square matrix --')
     print('A =')
     print(A)
     print('b =')
