@@ -20,7 +20,7 @@ B: out.B.txt
 
 out.B.txt: runB.py mainB.so
 	python3 $< test > $@
-	echo "\n\n Speed of Gram-Schmidt on 300 x 300 matrix:\n" >> $@
+	echo "\n Speed of Gram-Schmidt on 300 x 300 matrix:\n" >> $@
 	\time python3 $< gs > /dev/null 2>> $@
 	echo "\n\n Speed of Givens rotation on 300 x 300 matrix:\n" >> $@
 	\time python3 $< givens > /dev/null 2>> $@

@@ -82,11 +82,12 @@ def mainB(flag):
         A = np.array([[-4, -4, 2], [0, 2, 4], [-3, -2, 3]], dtype='float64')
         b = np.array([9, 22, 25], dtype='float64')
         test(A, b)
+        print('\n------------\n')
 
         # Test 2
-        print('\n------------\n')
         AA = np.array([[3, 4, 5], [-8, 10, 7], [-5, -6, 0], [-4, 0, 4]], dtype='float64')
         test_long(AA)
+        print('\n------------\n')        
 
     elif flag == 'gs':
         # Generate random 300 x 300 matrix
