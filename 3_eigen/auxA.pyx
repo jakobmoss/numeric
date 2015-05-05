@@ -1,115 +1,87 @@
 # cython: language_level=3
 
 import numpy as np
+import math
 
 
 #
-# Function to calculate the QR-decomposition
+# Function to diagonalize with cyclic sweeps
 #
-def decomp(Q, R):
+def diag(A, d, V):
     """
-    Calculates the QR-decomposition in-place (i.e. the original matrix is 
-    replaced) using stabilized Gram-Schmidt.
+    Performs matrix diagonalization (on a real and symmetric matrix) using the 
+    Jacobi eigenvalue method with cyclic sweeps. Returns the number of rotations
+    used.
 
     Arguments:
-    - `Q`: Matrix of dimension (n x m) to be transformed <type: double>
-    - `R`: Empty matrix of dimension (m x m) <type: double>
+    - `A`: Real, symmetric input matrix to diagonalize. Upper triangle is destroyed.
+    - `d`: Empty target vector. The eigenvalues are stored here.
+    - `V`: Empty target matrix. The corresponding eigenvectors are stored here.
     """
-    # Loop over number of columns
-    for i in range(Q.shape[1]):
-        qi = Q[:, i]  # Pointer to the i'th column
-        R[i, i] = np.sqrt(np.dot(qi, qi))  # Fill R_ii
-        qi /= R[i, i]  # Scale by 1/R_ii
+    # Initializations
+    eps_abs = 1e-14
+    n = A.shape[0]
+    rotations = 0
+    changed = False
 
-        # Normalize to all columns to the right
-        for j in range(i+1, Q.shape[1]):
-            qj = Q[:, j]  # Pointer to the j'th column
-            R[i, j] = np.dot(qi, qj)  # Fill R_ij
-            qj -= qi*R[i, j]  # Do the normalization
+    # Store all diagonal elements in d and initialize V as the identity matrix
+    for i in range(n):
+        d[i] = A[i, i]
+        V[i, i] = 1
 
+    # Iterate until convergence
+    while not changed:
+        changed = False
 
-#
-# General function to do back-substitution (used by qr-solve)
-#
-def backsub(U, b):
-    """
-    Solves the upper triangular system Ux = b by in-place back-substitution
-    Arguments:
-    - `U`: Upper triangular matrix
-    - `b`: Vector containing the right-hand side -- the solution is stored here
-    """
-    # Loop backwards through elements
-    for i in reversed(range(U.shape[1])):
-        s = b[i]  # Temporary storage of i'th entry
+        # BEGIN CYCLIC SWEEP  -->  Loop over columns to the right of diagonal
+        for p in range(n):
+            for q in range(p+1, n):
 
-        # Subtract each higher element
-        for j in range(i+1, U.shape[1]):
-            s -= U[i, j] * b[j]
+                # Get different entries
+                app = d[p]
+                aqq = d[q]
+                apq = A[p, q]
 
-        # Store in original vector
-        b[i] = s / U[i, i]
-    
+                # Calculate different coefficients to zero out A_pq
+                phi = 0.5 * math.atan2(2*apq, aqq-app)
+                c = math.cos(phi)
+                s = math.sin(phi)
 
-#
-# Funtion to solve a QR-decomp. system using back-sub
-#
-def solve(Q, R, b):
-    """
-    Solves the system (QR)x = b by in-place back-substitution
-    Arguments:
-    - `Q`: From QR-decomposition
-    - `R`: From QR-decomposition
-    - `b`: Vector containing the right-hand side -- the solution is stored here
-    """
-    # Calculate the desired right-hand side
-    QTb = np.dot(np.transpose(Q), b)
+                # Calculate the new diagonal elements and compare with the old
+                app_new = c*c*app - 2*s*c*apq + s*s*aqq
+                aqq_new = s*s*app + 2*s*c*apq + c*c*aqq
+                
+                if not (abs(app_new - app) < eps_abs) and \
+                   not (abs(aqq_new - aqq) < eps_abs):
+                    changed = True
+                    rotations += 1
 
-    # Solve Rx = Q^{T}b by backsubstitution
-    backsub(R, QTb)
+                    # Update the diagonal-element vector and A_pq
+                    d[p] = app_new
+                    d[q] = aqq_new
+                    A[p, q] = 0
 
-    # Store into original vector
-    for i in range(len(b)):
-        b[i] = QTb[i]
+                    # Loop over all elements with i != p,q
+                    for i in range(p):
+                        aip = A[i, p]
+                        aiq = A[i, q]
+                        A[i, p] = c*aip - s*aiq
+                        A[i, q] = c*aiq + s*aip
+                    for i in range(p+1, q):
+                        apix = A[p, i]  # api is a reserved keyword
+                        aiq = A[i, q]
+                        A[p, i] = c*apix - s*aiq
+                        A[i, q] = c*aiq + s*apix
+                    for i in range(q+1, n):
+                        apix = A[p, i]
+                        aqi = A[q, i]
+                        A[p, i] = c*apix - s*aqi
+                        A[q, i] = c*aqi + s*apix
+                    for i in range(n):
+                        vip = V[i, p]
+                        viq = V[i, q]
+                        V[i, p] = c*vip - s*viq
+                        V[i, q] = c*viq + s*vip
 
-
-#
-# Function to calculate the absolute value of a QR-determinant
-#
-def absdet(R):
-    """
-    Calculates the absolute value of the determinant of a QR-decomposed matrix 
-    using just R (since det(Q)^2 = 1).
-
-    Arguments:
-    - `R`: From QR-decomposition (upper-triangular)
-    """
-    # To store determinant
-    value = 1
-
-    # Loop over dimension (quadratic)
-    for i in range(len(R)):
-        value *= R[i, i]
-
-    # Return value
-    return value
-
-
-#
-# Function to calculate the inverse
-#
-def inverse(Q, R, Ainv):
-    """
-    Calculates the inverse of the matrix A using the decomposition A = QR
-
-    Arguments:
-    - `Q`:
-    - `R`:
-    - `Ainv`:
-    """
-    # Initialize A^{-1} as the identity matrix
-    for i in range(len(Ainv)):
-        Ainv[i, i] = 1
-
-    # Solve for each column using back-substitution
-    for i in range(Q.shape[1]):
-        solve(Q, R, Ainv[:, i])
+    # Return the number of rotations used
+    return rotations
