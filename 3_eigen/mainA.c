@@ -603,12 +603,16 @@ static char __pyx_k_zeros[] = "zeros";
 static char __pyx_k_import[] = "__import__";
 static char __pyx_k_jacobi[] = "jacobi";
 static char __pyx_k_float64[] = "float64";
-static char __pyx_k_Number_of_rotations[] = "Number of rotations = \n";
+static char __pyx_k_Eigenvalues_of_A_d[] = "Eigenvalues of A :  d = \n";
+static char __pyx_k_Eigenvectors_of_A_V[] = "Eigenvectors of A:  V = \n";
+static char __pyx_k_Number_of_rotations_used[] = "Number of rotations used = ";
 static char __pyx_k_Testing_Jacobi_diagonalization[] = " -- Testing Jacobi diagonalization -- ";
 static char __pyx_k_Users_moss_numeric_3_eigen_main[] = "/Users/moss/numeric/3_eigen/mainA.pyx";
 static PyObject *__pyx_kp_u_A;
 static PyObject *__pyx_n_s_A_2;
-static PyObject *__pyx_kp_u_Number_of_rotations;
+static PyObject *__pyx_kp_u_Eigenvalues_of_A_d;
+static PyObject *__pyx_kp_u_Eigenvectors_of_A_V;
+static PyObject *__pyx_kp_u_Number_of_rotations_used;
 static PyObject *__pyx_kp_u_Testing_Jacobi_diagonalization;
 static PyObject *__pyx_kp_s_Users_moss_numeric_3_eigen_main;
 static PyObject *__pyx_n_s_V;
@@ -849,7 +853,7 @@ static PyObject *__pyx_pf_5mainA_mainA(CYTHON_UNUSED PyObject *__pyx_self) {
  *     print('A = \n', A)
  *     rot = jacobi.diag(A, d, V)             # <<<<<<<<<<<<<<
  * 
- *     print('Number of rotations = \n', rot)
+ *     print('Number of rotations used = ', rot)
  */
   __pyx_t_5 = __Pyx_GetModuleGlobalName(__pyx_n_s_jacobi); if (unlikely(!__pyx_t_5)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 22; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_5);
@@ -892,17 +896,56 @@ static PyObject *__pyx_pf_5mainA_mainA(CYTHON_UNUSED PyObject *__pyx_self) {
   /* "mainA.pyx":24
  *     rot = jacobi.diag(A, d, V)
  * 
- *     print('Number of rotations = \n', rot)             # <<<<<<<<<<<<<<
+ *     print('Number of rotations used = ', rot)             # <<<<<<<<<<<<<<
+ *     print('Eigenvalues of A :  d = \n', d)
+ *     print('Eigenvectors of A:  V = \n', V)
  */
   __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 24; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_INCREF(__pyx_kp_u_Number_of_rotations);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_kp_u_Number_of_rotations);
-  __Pyx_GIVEREF(__pyx_kp_u_Number_of_rotations);
+  __Pyx_INCREF(__pyx_kp_u_Number_of_rotations_used);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_kp_u_Number_of_rotations_used);
+  __Pyx_GIVEREF(__pyx_kp_u_Number_of_rotations_used);
   __Pyx_INCREF(__pyx_v_rot);
   PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_v_rot);
   __Pyx_GIVEREF(__pyx_v_rot);
   __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 24; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "mainA.pyx":25
+ * 
+ *     print('Number of rotations used = ', rot)
+ *     print('Eigenvalues of A :  d = \n', d)             # <<<<<<<<<<<<<<
+ *     print('Eigenvectors of A:  V = \n', V)
+ */
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_INCREF(__pyx_kp_u_Eigenvalues_of_A_d);
+  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_kp_u_Eigenvalues_of_A_d);
+  __Pyx_GIVEREF(__pyx_kp_u_Eigenvalues_of_A_d);
+  __Pyx_INCREF(__pyx_v_d);
+  PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_d);
+  __Pyx_GIVEREF(__pyx_v_d);
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 25; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "mainA.pyx":26
+ *     print('Number of rotations used = ', rot)
+ *     print('Eigenvalues of A :  d = \n', d)
+ *     print('Eigenvectors of A:  V = \n', V)             # <<<<<<<<<<<<<<
+ */
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 26; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_INCREF(__pyx_kp_u_Eigenvectors_of_A_V);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_kp_u_Eigenvectors_of_A_V);
+  __Pyx_GIVEREF(__pyx_kp_u_Eigenvectors_of_A_V);
+  __Pyx_INCREF(__pyx_v_V);
+  PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_v_V);
+  __Pyx_GIVEREF(__pyx_v_V);
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_t_2, NULL); if (unlikely(!__pyx_t_3)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 26; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -961,7 +1004,9 @@ static struct PyModuleDef __pyx_moduledef = {
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_kp_u_A, __pyx_k_A, sizeof(__pyx_k_A), 0, 1, 0, 0},
   {&__pyx_n_s_A_2, __pyx_k_A_2, sizeof(__pyx_k_A_2), 0, 0, 1, 1},
-  {&__pyx_kp_u_Number_of_rotations, __pyx_k_Number_of_rotations, sizeof(__pyx_k_Number_of_rotations), 0, 1, 0, 0},
+  {&__pyx_kp_u_Eigenvalues_of_A_d, __pyx_k_Eigenvalues_of_A_d, sizeof(__pyx_k_Eigenvalues_of_A_d), 0, 1, 0, 0},
+  {&__pyx_kp_u_Eigenvectors_of_A_V, __pyx_k_Eigenvectors_of_A_V, sizeof(__pyx_k_Eigenvectors_of_A_V), 0, 1, 0, 0},
+  {&__pyx_kp_u_Number_of_rotations_used, __pyx_k_Number_of_rotations_used, sizeof(__pyx_k_Number_of_rotations_used), 0, 1, 0, 0},
   {&__pyx_kp_u_Testing_Jacobi_diagonalization, __pyx_k_Testing_Jacobi_diagonalization, sizeof(__pyx_k_Testing_Jacobi_diagonalization), 0, 1, 0, 0},
   {&__pyx_kp_s_Users_moss_numeric_3_eigen_main, __pyx_k_Users_moss_numeric_3_eigen_main, sizeof(__pyx_k_Users_moss_numeric_3_eigen_main), 0, 0, 1, 0},
   {&__pyx_n_s_V, __pyx_k_V, sizeof(__pyx_k_V), 0, 0, 1, 1},

@@ -21,4 +21,6 @@ def mainA():
     print('A = \n', A)
     rot = jacobi.diag(A, d, V)
 
-    print('Number of rotations = \n', rot)
+    print('Number of rotations used = ', rot)
+    print('Eigenvalues of A :  d = \n', d)
+    print('Eigenvectors of A:  V = \n', V)
