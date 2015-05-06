@@ -1,6 +1,6 @@
 # Make all targets
-all: A
-clean: cleanA
+all: A B
+clean: cleanA cleanB
 
 # Target A
 A: out.A.txt
@@ -13,3 +13,15 @@ mainA.so: setupA.py mainA.pyx auxA.pyx
 
 cleanA:
 	rm -rf out.A.txt A.plt build auxA.c auxA.so mainA.so mainA.c
+
+# Target B
+B: out.B.txt
+
+out.B.txt: runB.py mainB.so
+	python3 $< > $@
+
+mainB.so: setupB.py mainB.pyx auxB.pyx
+	python3 setupB.py build_ext --inplace
+
+cleanB:
+	rm -rf out.B.txt B.plt build auxB.c auxB.so mainB.so mainB.c
