@@ -19,10 +19,10 @@ def diag(A, d, V):
     - `V`: Empty target matrix. The corresponding eigenvectors are stored here.
     """
     # Initializations
-    eps_abs = 1e-14
+    eps_abs = 1e-20
     n = A.shape[0]
     rotations = 0
-    changed = False
+    changed = True
 
     # Store all diagonal elements in d and initialize V as the identity matrix
     for i in range(n):
@@ -30,7 +30,7 @@ def diag(A, d, V):
         V[i, i] = 1
 
     # Iterate until convergence
-    while not changed:
+    while changed:
         changed = False
 
         # BEGIN CYCLIC SWEEP  -->  Loop over columns to the right of diagonal
@@ -51,8 +51,7 @@ def diag(A, d, V):
                 app_new = c*c*app - 2*s*c*apq + s*s*aqq
                 aqq_new = s*s*app + 2*s*c*apq + c*c*aqq
                 
-                if not (abs(app_new - app) < eps_abs) and \
-                   not (abs(aqq_new - aqq) < eps_abs):
+                if (app_new != app) or (aqq_new != aqq) :
                     changed = True
                     rotations += 1
 
