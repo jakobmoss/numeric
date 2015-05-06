@@ -65,7 +65,6 @@ def diag_eig(A, d, V):
     # Initializations
     n = A.shape[0]
     rotations = 0
-    changed = True
 
     # Store all diagonal elements in d and initialize V as the identity matrix
     for i in range(n):
@@ -74,6 +73,7 @@ def diag_eig(A, d, V):
 
     # BEGIN SWEEPING  -->  Row-by-row
     for p in range(n):
+        changed = True
 
         # Iterate until convergence
         while changed:
