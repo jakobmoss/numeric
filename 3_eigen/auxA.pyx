@@ -82,6 +82,7 @@ def diag(A, d, V):
                         viq = V[i, q]
                         V[i, p] = c*vip - s*viq
                         V[i, q] = c*viq + s*vip
+                    # END CYCLIC SWEEP
 
     # Return the number of rotations used
     return rotations

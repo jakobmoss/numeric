@@ -2044,7 +2044,7 @@ static PyObject *__pyx_pf_4auxA_diag(CYTHON_UNUSED PyObject *__pyx_self, PyObjec
  *                         viq = V[i, q]
  *                         V[i, p] = c*vip - s*viq             # <<<<<<<<<<<<<<
  *                         V[i, q] = c*viq + s*vip
- * 
+ *                     # END CYCLIC SWEEP
  */
             __pyx_t_9 = PyNumber_Multiply(__pyx_v_c, __pyx_v_vip); if (unlikely(!__pyx_t_9)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 83; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_9);
@@ -2070,8 +2070,8 @@ static PyObject *__pyx_pf_4auxA_diag(CYTHON_UNUSED PyObject *__pyx_self, PyObjec
  *                         viq = V[i, q]
  *                         V[i, p] = c*vip - s*viq
  *                         V[i, q] = c*viq + s*vip             # <<<<<<<<<<<<<<
+ *                     # END CYCLIC SWEEP
  * 
- *     # Return the number of rotations used
  */
             __pyx_t_14 = PyNumber_Multiply(__pyx_v_c, __pyx_v_viq); if (unlikely(!__pyx_t_14)) {__pyx_filename = __pyx_f[0]; __pyx_lineno = 84; __pyx_clineno = __LINE__; goto __pyx_L1_error;}
             __Pyx_GOTREF(__pyx_t_14);
@@ -2127,7 +2127,7 @@ static PyObject *__pyx_pf_4auxA_diag(CYTHON_UNUSED PyObject *__pyx_self, PyObjec
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
 
-  /* "auxA.pyx":87
+  /* "auxA.pyx":88
  * 
  *     # Return the number of rotations used
  *     return rotations             # <<<<<<<<<<<<<<
