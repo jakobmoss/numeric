@@ -39,7 +39,7 @@ def diag_cyclic(A, d, V):
                 # Perform the rotation
                 changed, rotations = rotation(A, d, V, n, p, q,
                                               changed, rotations,
-                                              prev_rows=False)
+                                              False)
                 
         # END CYCLIC SWEEP
 
@@ -81,7 +81,22 @@ def diag_eig(A, d, V):
 
             # Loop over columns to the right of diagonal
             for q in range(p+1, n):
-                print('hej')
+
+                # Perform the rotation
+                changed, rotations = rotation(A, d, V, n, p, q,
+                                              changed, rotations,
+                                              True)
+
+    # END SWEEPING
+    
+    # Return the number of rotations used
+    return rotations
+
+
+
+
+
+
 
 #
 # Function used by the different Jacobi algorithms to perform the rotation
@@ -117,8 +132,9 @@ def rotation(A, d, V, n, p, q, changed, rotations, prev_rows):
         d[q] = aqq_new
         A[p, q] = 0
 
-        # Loop over all elements with i != p,q
-        # 
+        # Loop over all elements with i != p,q.
+        # First part doesn't affect the matrix if eliminating eigenvalue
+        # by eigenvalue (i.e. no reason to do it!)
         if not prev_rows:
             for i in range(p):
                 aip = A[i, p]
