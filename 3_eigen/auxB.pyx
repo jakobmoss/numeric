@@ -7,7 +7,7 @@ import math
 #
 # Function to diagonalize with cyclic sweeps
 #
-def cyclic(A, d, V):
+def diag_cyclic(A, d, V):
     """
     Performs matrix diagonalization (on a real and symmetric matrix) using the 
     Jacobi eigenvalue method with cyclic sweeps. Returns the number of rotations
@@ -37,7 +37,9 @@ def cyclic(A, d, V):
             for q in range(p+1, n):
 
                 # Perform the rotation
-                changed, rotations = rotation(A, d, V, n, p, q, changed, rotations)
+                changed, rotations = rotation(A, d, V, n, p, q,
+                                              changed, rotations,
+                                              prev_rows=False)
                 
         # END CYCLIC SWEEP
 
@@ -45,9 +47,52 @@ def cyclic(A, d, V):
     return rotations
 
 
-def rotation(A, d, V, n, p, q, changed, rotations):
+#
+# Function to diagonalize eigenvalue by eigenvalue
+#
+def diag_eig(A, d, V):
+    """
+    Performs matrix diagonalization (on a real and symmetric matrix) using the 
+    Jacobi eigenvalue method; solving for one eigenvalue at a time 
+    (elimination of one row at a time). Returns the number of rotations
+    used.
+
+    Arguments:
+    - `A`: Real, symmetric input matrix to diagonalize. Upper triangle is destroyed.
+    - `d`: Empty target vector. The eigenvalues are stored here.
+    - `V`: Empty target matrix. The corresponding eigenvectors are stored here.
+    """
+    # Initializations
+    n = A.shape[0]
+    rotations = 0
+    changed = True
+
+    # Store all diagonal elements in d and initialize V as the identity matrix
+    for i in range(n):
+        d[i] = A[i, i]
+        V[i, i] = 1
+
+    # BEGIN SWEEPING  -->  Row-by-row
+    for p in range(n):
+
+        # Iterate until convergence
+        while changed:
+            changed = False
+
+            # Loop over columns to the right of diagonal
+            for q in range(p+1, n):
+                print('hej')
+
+#
+# Function used by the different Jacobi algorithms to perform the rotation
+#
+def rotation(A, d, V, n, p, q, changed, rotations, prev_rows):
     """
     Perform a Jacobi rotation - to be used in the different algorithms
+
+    Specific arguments:
+    - `prev_rows`: Whether previous rows are assumed to have been
+                   eliminated or not.
     """
     # Get different entries
     app = d[p]
@@ -73,11 +118,13 @@ def rotation(A, d, V, n, p, q, changed, rotations):
         A[p, q] = 0
 
         # Loop over all elements with i != p,q
-        for i in range(p):
-            aip = A[i, p]
-            aiq = A[i, q]
-            A[i, p] = c*aip - s*aiq
-            A[i, q] = c*aiq + s*aip
+        # 
+        if not prev_rows:
+            for i in range(p):
+                aip = A[i, p]
+                aiq = A[i, q]
+                A[i, p] = c*aip - s*aiq
+                A[i, q] = c*aiq + s*aip
         for i in range(p+1, q):
             apix = A[p, i]  # api is a reserved keyword
             aiq = A[i, q]
