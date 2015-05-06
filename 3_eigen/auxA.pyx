@@ -19,7 +19,6 @@ def diag(A, d, V):
     - `V`: Empty target matrix. The corresponding eigenvectors are stored here.
     """
     # Initializations
-    eps_abs = 1e-20
     n = A.shape[0]
     rotations = 0
     changed = True
