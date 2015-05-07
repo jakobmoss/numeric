@@ -177,7 +177,8 @@ def rotation(A, d, V, n, p, q, changed, rotations, prev_rows):
     apq = A[p, q]
 
     # Calculate different coefficients to zero out A_pq
-    phi = 0.5 * math.atan2(2*apq, aqq-app)
+#    phi = 0.5 * math.atan2(2*apq, aqq-app)  # Smallest eigenvalues first
+    phi = 0.5 * (math.pi + math.atan2(2*apq, aqq-app))  # Largest eigenvalues first
     c = math.cos(phi)
     s = math.sin(phi)
 
