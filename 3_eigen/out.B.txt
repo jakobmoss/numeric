@@ -1,3 +1,29 @@
+ -- Speed test of the Jacobi routines --
+
+Testing on sym. rand. 6 x 6 matrix:
+A =
+ [[ 4.21661367  3.31892109  3.88118324  1.78651721  7.54714786  7.90093062]
+ [ 3.31892109  9.19824135  2.20205751  1.73398538  5.48931575  8.99089179]
+ [ 3.88118324  2.20205751  8.87544326  3.63802696  4.35308883  2.74802712]
+ [ 1.78651721  1.73398538  3.63802696  2.10130592  5.09885836  3.58010227]
+ [ 7.54714786  5.48931575  4.35308883  5.09885836  1.90508485  3.24029624]
+ [ 7.90093062  8.99089179  2.74802712  3.58010227  3.24029624  6.48928714]]
+
+ * Cyclic method:
+Number of rotations used =  78
+Running time: 0.0975 ms
+
+ * Row-by-row method:
+Number of rotations used =  458
+Running time: 0.4488 ms
+
+ * Greatest-element method:
+Number of rotations used =  220
+Running time: 0.2386 ms
+
+----------------------------------------
+
+
  -- Testing cyclic Jacobi diagonalization -- 
 A = 
  [[ -5.   9.  -4.  10.]
@@ -6,6 +32,7 @@ A =
  [ 10.   9.   2.   3.]]
 
 Number of rotations used =  20
+Running time: 0.0231 ms
 
 Eigenvalues of A :
 d = 
@@ -70,6 +97,7 @@ A =
  [ 10.   9.   2.   3.]]
 
 Number of rotations used =  112
+Running time: 0.1399 ms
 
 Eigenvalues of A :
 d = 
@@ -134,6 +162,7 @@ A =
  [ 10.   9.   2.   3.]]
 
 Number of rotations used =  56
+Running time: 0.0501 ms
 
 Eigenvalues of A :
 d = 
