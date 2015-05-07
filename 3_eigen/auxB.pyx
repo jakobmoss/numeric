@@ -9,14 +9,17 @@ import math
 #
 def diag_cyclic(A, d, V):
     """
-    Performs matrix diagonalization (on a real and symmetric matrix) using the 
-    Jacobi eigenvalue method with cyclic sweeps. Returns the number of rotations
-    used.
+    Performs matrix diagonalization (on a real and symmetric matrix) 
+    using the Jacobi eigenvalue method with cyclic sweeps. 
+
+    Returns the number of rotations used.
 
     Arguments:
-    - `A`: Real, symmetric input matrix to diagonalize. Upper triangle is destroyed.
+    - `A`: Real, symmetric input matrix to diagonalize. Upper triangle
+           is destroyed.
     - `d`: Empty target vector. The eigenvalues are stored here.
-    - `V`: Empty target matrix. The corresponding eigenvectors are stored here.
+    - `V`: Empty target matrix. The corresponding eigenvectors are
+           stored here.
     """
     # Initializations
     n = A.shape[0]
@@ -33,7 +36,7 @@ def diag_cyclic(A, d, V):
         changed = False
 
         # BEGIN CYCLIC SWEEP  -->  Loop over columns to the right of diagonal
-        for p in range(n):
+        for p in range(n-1):
             for q in range(p+1, n):
 
                 # Perform the rotation
@@ -52,15 +55,18 @@ def diag_cyclic(A, d, V):
 #
 def diag_eig(A, d, V):
     """
-    Performs matrix diagonalization (on a real and symmetric matrix) using the 
-    Jacobi eigenvalue method; solving for one eigenvalue at a time 
-    (elimination of one row at a time). Returns the number of rotations
-    used.
+    Performs matrix diagonalization (on a real and symmetric matrix) 
+    using the Jacobi eigenvalue method; solving for one eigenvalue at 
+    a time (elimination of one row at a time). 
+
+    Returns the number of rotations used.
 
     Arguments:
-    - `A`: Real, symmetric input matrix to diagonalize. Upper triangle is destroyed.
+    - `A`: Real, symmetric input matrix to diagonalize. Upper triangle 
+           is destroyed.
     - `d`: Empty target vector. The eigenvalues are stored here.
-    - `V`: Empty target matrix. The corresponding eigenvectors are stored here.
+    - `V`: Empty target matrix. The corresponding eigenvectors are 
+           stored here.
     """
     # Initializations
     n = A.shape[0]
@@ -72,7 +78,7 @@ def diag_eig(A, d, V):
         V[i, i] = 1
 
     # BEGIN SWEEPING  -->  Row-by-row
-    for p in range(n):
+    for p in range(n-1):
         changed = True
 
         # Iterate until convergence
@@ -93,7 +99,62 @@ def diag_eig(A, d, V):
     return rotations
 
 
+#
+# Function to diagonalize eigenvalue by eigenvalue eliminating the
+# greatest element first.
+#
+def diag_eig2(A, d, V):
+    """
+    Performs matrix diagonalization (on a real and symmetric matrix) 
+    using the Jacobi eigenvalue method; solving for one eigenvalue at 
+    a time. This algorithm zeros out one row at a time, always 
+    eliminating the greatest off-diagonal element.
+    
+    Returns the number of rotations used.
 
+    Arguments:
+    - `A`: Real, symmetric input matrix to diagonalize. Upper triangle 
+           is destroyed.
+    - `d`: Empty target vector. The eigenvalues are stored here.
+    - `V`: Empty target matrix. The corresponding eigenvectors are 
+           stored here.
+    """
+    # Initializations
+    n = A.shape[0]
+    rotations = 0
+
+    # Store all diagonal elements in d and initialize V as the identity matrix
+    for i in range(n):
+        d[i] = A[i, i]
+        V[i, i] = 1
+
+    # BEGIN SWEEPING  -->  Row-by-row
+    for p in range(n-1):
+        changed = True
+
+        # Iterate until convergence
+        while changed:
+            changed = False
+
+            # Locate largest element in row  --> Start with first element
+            q = p + 1
+            apq = abs(A[p, q])
+
+            # Compare with element to the right and store if greater
+            for i in range(p+2, n):
+                apix = abs(A[p, i])  # api is a reserved keyword
+                if apix > apq:
+                    q = i
+                    apq = apix
+            
+            # Perform the rotation with greatest element as target
+            changed, rotations = rotation(A, d, V, n, p, q, changed,
+                                        rotations, True)
+
+    # END SWEEPING
+    
+    # Return the number of rotations used
+    return rotations
 
 
 
@@ -107,7 +168,8 @@ def rotation(A, d, V, n, p, q, changed, rotations, prev_rows):
 
     Specific arguments:
     - `prev_rows`: Whether previous rows are assumed to have been
-                   eliminated or not.
+                   eliminated or not. This can reduce the number of
+                   operations required for the non-cyclic methods.
     """
     # Get different entries
     app = d[p]

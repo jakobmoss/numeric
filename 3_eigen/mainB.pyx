@@ -22,7 +22,7 @@ def mainB():
     # Run the test
     print(' -- Testing Jacobi diagonalization -- ')
     print('A = \n', A)
-    rot = jacobi.diag_eig(A, d, V)
+    rot = jacobi.diag_cyclic(A, d, V)
 
     print('\nNumber of rotations used = ', rot)
     print('\nEigenvalues of A :\nd = \n', d)
