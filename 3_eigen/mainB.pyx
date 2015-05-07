@@ -123,11 +123,11 @@ def mainB():
                   [10, 9, 2, 3]], dtype='float64')
     d2 = np.zeros(A2.shape[0], dtype='float64')
     V2 = np.zeros(A2.shape, dtype='float64')
-    test_cyclic(A2, d2, V2)
+    test_row(A2, d2, V2)
 
     # Test the greatest element algorithm
     A3 = np.array([[-5, 9, -4, 10], [9, -1, 3, 9], [-4, 3, -6, 2],
                   [10, 9, 2, 3]], dtype='float64')
     d3 = np.zeros(A3.shape[0], dtype='float64')
     V3 = np.zeros(A3.shape, dtype='float64')
-    test_cyclic(A3, d3, V3)
+    test_great(A3, d3, V3)
