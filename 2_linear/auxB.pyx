@@ -148,3 +148,54 @@ def inverse(QR, Ainv):
     # Solve for each column using back-substitution
     for i in range(QR.shape[1]):
         solve(QR, Ainv[:, i])
+
+
+#
+# Function to explictly build the matrix R
+#
+def build_r(QR):
+    """
+    Builds and returns the matrix R from the Given's decomposition
+
+    Arguments:
+    - `QR`: From Given's decomposition
+    """
+    # Initialization
+    n = QR.shape[1]
+    R = np.zeros((n, n), dtype='float64')
+
+    # Build!
+    for i in range(n):
+        for j in range(i+1):
+            R[j, i] = QR[j, i]
+
+    # Return
+    return R
+
+
+#
+# Function to explictly build the matrix Q
+#
+def build_q(QR):
+    """
+    Builds and returns the matrix Q from the Given's decomposition
+
+    Arguments:
+    - `QR`: From Given's decomposition
+    """
+    # Initialization
+    Q = np.zeros(QR.shape, dtype='float64')
+
+    # Build!
+    for i in range(QR.shape[0]):
+
+        # Unit vector is created and the Given's rotation applied
+        ei = np.zeros(QR.shape[0], dtype='float64')
+        ei[i] = 1
+        rotate_vec(QR, ei)
+
+        for j in range(QR.shape[1]):
+            Q[i, j] = ei[j]
+            
+    # Return
+    return Q

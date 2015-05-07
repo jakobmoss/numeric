@@ -171,3 +171,31 @@ def build_r(QR):
 
     # Return
     return R
+
+
+#
+# Function to explictly build the matrix Q
+#
+def build_q(QR):
+    """
+    Builds and returns the matrix Q from the Given's decomposition
+
+    Arguments:
+    - `QR`: From Given's decomposition
+    """
+    # Initialization
+    Q = np.zeros(QR.shape, dtype='float64')
+
+    # Build!
+    for i in range(QR.shape[0]):
+
+        # Unit vector is created and the Given's rotation applied
+        ei = np.zeros(QR.shape[0], dtype='float64')
+        ei[i] = 1
+        rotate_vec(QR, ei)
+
+        for j in range(QR.shape[1]):
+            Q[i, j] = ei[j]
+            
+    # Return
+    return Q

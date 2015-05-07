@@ -2,8 +2,7 @@
 
 import numpy as np
 import auxA as leastsq
-
-
+    
 #
 # Main function
 #

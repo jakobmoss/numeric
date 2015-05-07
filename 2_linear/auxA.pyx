@@ -102,9 +102,9 @@ def inverse(Q, R, Ainv):
     Calculates the inverse of the matrix A using the decomposition A = QR
 
     Arguments:
-    - `Q`:
-    - `R`:
-    - `Ainv`:
+    - `Q`: From QR-decomposition
+    - `R`: From QR-decomposition
+    - `Ainv`: Empty matrix for storage of the inverse
     """
     # Initialize A^{-1} as the identity matrix
     for i in range(len(Ainv)):

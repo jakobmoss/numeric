@@ -33,3 +33,6 @@ def qrfit(flist, x, y, dy):
         # Loop over fitting functions
         for j in range(m):
             A[i, j] = flist[j](x[i]) / dy[i]
+
+    # Decompose using Given's rotation
+    qr.decomp(A)
