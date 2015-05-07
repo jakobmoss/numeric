@@ -9,14 +9,17 @@ import math
 #
 def diag(A, d, V):
     """
-    Performs matrix diagonalization (on a real and symmetric matrix) using the 
-    Jacobi eigenvalue method with cyclic sweeps. Returns the number of rotations
-    used.
+    Performs matrix diagonalization (on a real and symmetric matrix) 
+    using the Jacobi eigenvalue method with cyclic sweeps. 
+
+    Returns the number of rotations used.
 
     Arguments:
-    - `A`: Real, symmetric input matrix to diagonalize. Upper triangle is destroyed.
+    - `A`: Real, symmetric input matrix to diagonalize. Upper triangle
+           is destroyed.
     - `d`: Empty target vector. The eigenvalues are stored here.
-    - `V`: Empty target matrix. The corresponding eigenvectors are stored here.
+    - `V`: Empty target matrix. The corresponding eigenvectors are
+           stored here.
     """
     # Initializations
     n = A.shape[0]
@@ -33,7 +36,7 @@ def diag(A, d, V):
         changed = False
 
         # BEGIN CYCLIC SWEEP  -->  Loop over columns to the right of diagonal
-        for p in range(n):
+        for p in range(n-1):
             for q in range(p+1, n):
 
                 # Perform the rotation
