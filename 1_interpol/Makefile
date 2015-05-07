@@ -20,7 +20,7 @@ out.A.txt: runA.py mainA.so
 	python3 $< > $@
 
 mainA.so: setupA.py mainA.pyx auxA.pyx
-	python3 setupA.py build_ext --inplace
+	python3 $< build_ext --inplace
 
 cleanA:
 	rm -rf out.A.txt plot.A.pdf A.plt build auxA.c auxA.so mainA.so mainA.c
@@ -48,7 +48,7 @@ out.B.txt: runB.py mainB.so
 	python3 $< > $@
 
 mainB.so: setupB.py mainB.pyx auxB.pyx
-	python3 setupB.py build_ext --inplace
+	python3 $< build_ext --inplace
 
 cleanB:
 	rm -rf out.B.txt plot.B.pdf B.plt build auxB.c auxB.so mainB.so mainB.c
