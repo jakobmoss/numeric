@@ -167,7 +167,7 @@ def build_r(QR):
     # Build!
     for i in range(n):
         for j in range(i+1):
-            R[j, i] = QR[r, c]
+            R[j, i] = QR[j, i]
 
     # Return
     return R
