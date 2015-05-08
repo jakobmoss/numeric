@@ -31,9 +31,9 @@ def mainA():
     Test of the least squares fitting
     """
     # Make test-data and write for plot
-    n = 10
-    a = -0.9
-    b = 0.9
+    n = 12
+    a = -1.4
+    b = 1.4
     x, y, dy = makedata(n, a, b)
 
     # Do the fitting
@@ -42,7 +42,7 @@ def mainA():
 
     # Write the fit to plot
     print('\n')
-    nx = 100
+    nx = 120
     for i in range(nx):
         xx = a + (b-a)*i / nx
         print(xx, leastsq.evalfit(fitfunc, c, xx), sep='\t')
@@ -68,18 +68,18 @@ def makedata(n, a, b):
     """
     # Function to generate data
     def data(x):
-        return 1 + 2*x + 3*math.pow(x, 2)
+        return 1 + 0.6*x - 1.3*math.pow(x, 2)
 
     # Initialize
-    x = np.zeros(10, dtype='float64')
-    y = np.zeros(10, dtype='float64')
-    dy = np.zeros(10, dtype='float64')
+    x = np.zeros(n, dtype='float64')
+    y = np.zeros(n, dtype='float64')
+    dy = np.zeros(n, dtype='float64')
 
     # Fill the test-data and print for plot
-    for i in range(10):
+    for i in range(n):
         x[i] = a + (b-a)*i / (n-1)
-        y[i] = data(x[i]) + (random.random()-0.5)
-        dy[i] = 0.1 + random.random()
+        y[i] = data(x[i]) + (0.7*random.random() - 0.2)
+        dy[i] = 0.2 + 0.8*random.random()
         print(x[i], y[i], dy[i], sep='\t')
 
     # Return the data
