@@ -1,6 +1,7 @@
 # Ignore specific Cython .c-files
 auxA.c
 mainA.c
-givens.c
 auxB.c
 mainB.c
+givens.c
+jacobi.c

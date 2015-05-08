@@ -1,7 +1,7 @@
 # Make all targets
 all: A B
 clean: cleanA cleanB
-clean-deep: clean clean-givens
+clean-deep: clean clean-ext
 
 # Target A
 A: plot.A.pdf
@@ -43,7 +43,7 @@ B.plt:
 out.B.txt: runB.py mainB.so
 	python3 $< > $@
 
-mainB.so: setupB.py mainB.pyx auxB.pyx
+mainB.so: setupB.py mainB.pyx auxB.pyx jacobi.so
 	python3 $< build_ext --inplace
 
 cleanB:
@@ -51,10 +51,13 @@ cleanB:
 
 
 
-# Build module containing the routines for Given's rotation
+# Build module containing the routines for Givens and Jacobi algorithms
 # No need to build every time; it is assumes static!
-givens.so: setup_givens.py givens.pyx
+givens.so: setup_ext.py givens.pyx
 	python3 $< build_ext --inplace
 
-clean-givens:
-	rm -rf givens.c givens.so
+jacobi.so: setup_ext.py jacobi.pyx
+	python3 $< build_ext --inplace
+
+clean-ext:
+	rm -rf givens.c givens.so jacobi.c jacobi.so
