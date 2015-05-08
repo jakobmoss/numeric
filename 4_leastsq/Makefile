@@ -1,7 +1,7 @@
 # Make all targets
-all: A
-clean: cleanA
-clean-deep: cleanA clean-givens
+all: A B
+clean: cleanA cleanB
+clean-deep: clean clean-givens
 
 # Target A
 A: plot.A.pdf
@@ -25,7 +25,29 @@ mainA.so: setupA.py mainA.pyx auxA.pyx givens.so
 	python3 $< build_ext --inplace
 
 cleanA:
-	rm -rf out.A.txt A.plt build auxA.c auxA.so mainA.so mainA.c
+	rm -rf out.A.txt A.plt build auxA.c auxA.so mainA.so mainA.c plot.A.pdf
+
+
+# Target B
+B: plot.B.pdf
+
+plot.B.pdf: B.plt out.B.txt
+	gnuplot $<
+
+B.plt:
+	@echo set term pdfcairo > $@
+	@echo set out \"plot.B.pdf\" >> $@
+	@echo set key left >> $@
+	@echo plot \"out.B.txt\" index 0 with errorbars title \"data\" >> $@
+
+out.B.txt: runB.py mainB.so
+	python3 $< > $@
+
+mainB.so: setupB.py mainB.pyx auxB.pyx
+	python3 $< build_ext --inplace
+
+cleanB:
+	rm -rf out.B.txt B.plt build auxB.c auxB.so mainB.so mainB.c plot.B.pdf
 
 
 
