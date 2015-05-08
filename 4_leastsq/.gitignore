@@ -3,5 +3,6 @@ auxA.c
 mainA.c
 auxB.c
 mainB.c
+mainC.c
 givens.c
 jacobi.c

@@ -1,6 +1,6 @@
 # Make all targets
-all: A B
-clean: cleanA cleanB
+all: A B C
+clean: cleanA cleanB cleanC
 clean-deep: clean clean-ext
 
 # Target A
@@ -52,6 +52,30 @@ mainB.so: setupB.py mainB.pyx auxB.pyx jacobi.so
 cleanB:
 	rm -rf out.B.txt B.plt build auxB.c auxB.so mainB.so mainB.c plot.B.pdf
 
+
+# Target B
+C: plot.C.pdf
+
+plot.C.pdf: C.plt out.C.txt
+	gnuplot $<
+
+C.plt:
+	@echo set term pdfcairo > $@
+	@echo set out \"plot.C.pdf\" >> $@
+	@echo set key left >> $@
+#	@echo plot \"out.C.txt\" index 0 with errorbars title \"data\" \\ >> $@
+#	@echo , \"out.C.txt\" index 1 with lines title \"fit\" \\ >> $@
+#	@echo , \"out.C.txt\" index 2 with lines title \"fit + err\" \\ >> $@
+#	@echo , \"out.C.txt\" index 3 with lines title \"fit - err\" >> $@
+
+out.C.txt: runC.py mainC.so
+	python3 $< > $@
+
+mainC.so: setupC.py mainC.pyx auxA.pyx givens.so
+	python3 $< build_ext --inplace
+
+cleanC:
+	rm -rf out.C.txt C.plt build mainC.so mainC.c plot.C.pdf
 
 
 # Build module containing the routines for Givens and Jacobi algorithms
