@@ -64,9 +64,9 @@ C.plt:
 	@echo set out \"plot.C.pdf\" >> $@
 	@echo set key left >> $@
 	@echo plot \"out.C.txt\" index 0 with errorbars title \"data\" \\ >> $@
-	@echo , \"out.C.txt\" index 1 with lines title \"Linear fit\" \\ >> $@
-#	@echo , \"out.C.txt\" index 2 with lines title \"fit + err\" \\ >> $@
-#	@echo , \"out.C.txt\" index 3 with lines title \"fit - err\" >> $@
+	@echo , \"out.C.txt\" index 1 using 1:2 w l title \"Linear: y\(x\)\" \\ >> $@
+	@echo , \"out.C.txt\" index 1 using 1:3 w lines title \"y\(x\) + dy\" \\ >> $@
+	@echo , \"out.C.txt\" index 1 using 1:4 w lines title \"y\(x\) - dy\" >> $@
 
 out.C.txt: runC.py mainC.so
 	python3 $< > $@

@@ -40,14 +40,21 @@ def mainC():
     fitfunc = [f0, f1]
     c, dc, S = leastsq.qrfit(fitfunc, x, y, dy)
 
-    # Write the fit to plot
+    # Get stuff from covariance matrix
+    var_c1 = S[0, 0]
+    var_c2 = S[1, 1]
+    covar = S[0, 1]
+
+    # Write the fit and calculated bounds to plot
     print('\n')
     nx = 20
-    grid = np.linspace(a-0.3, b+0.3, nx)
+    grid = np.linspace(a-0.4, b+0.4, nx)
     for i in range(nx):
-        xx = grid[i]
-        print(xx, leastsq.evalfit(fitfunc, c, xx), sep='\t')
-
+        xi = grid[i]
+        yi = leastsq.evalfit(fitfunc, c, xi)
+        dyi = math.sqrt(var_c1 + var_c2*xi*xi + 2*covar*xi)
+        print(xi, yi, yi+dyi, yi-dyi, sep='\t')
+        
 
 #
 # Function to produce the data to fit and write for plot
@@ -69,7 +76,7 @@ def makedata(n, a, b):
     for i in range(n):
         x[i] = a + (b-a)*i / (n-1)
         y[i] = data(x[i]) + (0.7*random.random() - 0.2)
-        dy[i] = 0.1 + 0.6*random.random()
+        dy[i] = 0.1 + 0.8*random.random()
         print(x[i], y[i], dy[i], sep='\t')
 
     # Return the data
