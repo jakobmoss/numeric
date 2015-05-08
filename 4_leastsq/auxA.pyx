@@ -3,6 +3,7 @@
 # General modules
 import numpy as np
 import math
+import sys
 
 # QR-decomposition routines using Given's rotation
 import givens as qr
@@ -30,12 +31,13 @@ def qrfit(flist, x, y, dy):
     n = len(x)
     m = len(flist)
     A = np.zeros((n, m), dtype='float64')
-    c = np.zeros(n, dtype='float64')
-    dc = np.zeros(n, dtype='float64')
+    b = np.zeros(n, dtype='float64')
+    c = np.zeros(m, dtype='float64')
+    dc = np.zeros(m, dtype='float64')
 
     # Fill A and c  -->  Loop over all data points
     for i in range(n):
-        c[i] = y[i] / dy[i]  # Weighting by error
+        b[i] = y[i] / dy[i]  # Weighting by error
 
         # Loop over fitting functions
         for j in range(m):
@@ -43,7 +45,11 @@ def qrfit(flist, x, y, dy):
 
     # Decompose using Given's rotation and solve by in-place backsub
     qr.decomp(A)
-    qr.solve(A, c)
+    qr.solve(A, b)
+
+    # Retrieve c
+    for i in range(A.shape[1]):
+        c[i] = b[i]
 
     # Explictly build the R-matrix and find the inverse
     Rinv = np.zeros((m, m), dtype='float64')
