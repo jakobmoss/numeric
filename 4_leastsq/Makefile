@@ -38,7 +38,10 @@ B.plt:
 	@echo set term pdfcairo > $@
 	@echo set out \"plot.B.pdf\" >> $@
 	@echo set key left >> $@
-	@echo plot \"out.B.txt\" index 0 with errorbars title \"data\" >> $@
+	@echo plot \"out.B.txt\" index 0 with errorbars title \"data\" \\ >> $@
+	@echo , \"out.B.txt\" index 1 with lines title \"fit\" \\ >> $@
+	@echo , \"out.B.txt\" index 2 with lines title \"fit + err\" \\ >> $@
+	@echo , \"out.B.txt\" index 3 with lines title \"fit - err\" >> $@
 
 out.B.txt: runB.py mainB.so
 	python3 $< > $@

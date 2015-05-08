@@ -36,6 +36,28 @@ def mainB():
     b = 1.4
     x, y, dy = makedata(n, a, b)
 
+    # Do the fitting
+    fitfunc = [f0, f1, f2]
+    c, dc, S = leastsq.singular_fit(fitfunc, x, y, dy)
+
+    # Write the fit to plot
+    print('\n')
+    nx = 120
+    for i in range(nx):
+        xx = a + (b-a)*i / nx
+        print(xx, leastsq.evalfit(fitfunc, c, xx), sep='\t')
+
+    # Errors on the fit to plot
+    print('\n')
+    for i in range(nx):
+        xx = a + (b-a)*i / nx
+        print(xx, leastsq.evalfit(fitfunc, c+dc, xx), sep='\t')
+
+    print('\n')
+    for i in range(nx):
+        xx = a + (b-a)*i / nx
+        print(xx, leastsq.evalfit(fitfunc, c-dc, xx), sep='\t')
+
 
 
 #
