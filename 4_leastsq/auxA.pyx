@@ -46,7 +46,7 @@ def qrfit(flist, x, y, dy):
     qr.solve(A, c)
 
     # Explictly build the R-matrix and find the inverse
-    Rinv = np.zeros((n, n), dtype='float64')
+    Rinv = np.zeros((m, m), dtype='float64')
     qr.inverse(qr.build_r(A), Rinv)
 
     # Calculate the covariance matrix S
