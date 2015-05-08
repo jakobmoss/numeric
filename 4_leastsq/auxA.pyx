@@ -31,6 +31,7 @@ def qrfit(flist, x, y, dy):
     m = len(flist)
     A = np.zeros((n, m), dtype='float64')
     c = np.zeros(n, dtype='float64')
+    dc = np.zeros(n, dtype='float64')
 
     # Fill A and c  -->  Loop over all data points
     for i in range(n):
@@ -46,22 +47,26 @@ def qrfit(flist, x, y, dy):
 
     # Explictly build the R-matrix and find the inverse
     Rinv = np.zeros((n, n), dtype='float64')
-    qr.inverse(qr.build_R(A), Rinv)
+    qr.inverse(qr.build_r(A), Rinv)
 
     # Calculate the covariance matrix S
     S = np.dot(Rinv, np.transpose(Rinv))
 
+    # Convert S into uncertainties on the coefficients
+    for i in range(m):
+        dc[i] = math.sqrt(S[i,i])
+
     # Return the fitting coefficients and the covariance matrix
-    return c, S
+    return c, dc, S
 
 #
 # Function to evaluate a fit
 #
-def eval_fit(flist, c, x):
+def evalfit(flist, c, x):
     """
     Evaluates a fit of the form \sum{c_i * f_i(x)} at point x.
 
     Arguments: See qrfit
     """
-    return sum([c[i] * flist[i](x) for i in range(len(c))])
+    return sum([c[i] * flist[i](x) for i in range(len(flist))])
     
