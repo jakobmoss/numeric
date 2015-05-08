@@ -3,6 +3,7 @@
 # General modules
 import numpy as np
 import math
+import sys
 
 # Module with Jacobi diagonalization
 import jacobi
@@ -37,7 +38,7 @@ def singular_fit(flist, x, y, dy):
     # Decompose and solve using singular value decomposition  -->  c
     U, s, V = decomp(A)
     c = solve(U, s, V, b)
-
+    
     # Build the covariance matrix S
     VDinv = np.zeros((m, m), dtype='float64')
     for j in range(m):
