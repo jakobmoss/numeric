@@ -85,7 +85,7 @@ def decomp(A):
     U = np.dot(A, V)
     for i in range(m):
         s[i] = math.sqrt(s[i])
-        U[i] /= s[i]
+        U[:, i] /= s[i]
 
     # Return the decomposition
     return U, s, V

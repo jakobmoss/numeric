@@ -3,6 +3,7 @@
 import numpy as np
 import auxB as leastsq
 import math, random
+import sys
 
 #
 # Fitting functions
