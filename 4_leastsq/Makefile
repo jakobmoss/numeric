@@ -63,8 +63,8 @@ C.plt:
 	@echo set term pdfcairo > $@
 	@echo set out \"plot.C.pdf\" >> $@
 	@echo set key left >> $@
-#	@echo plot \"out.C.txt\" index 0 with errorbars title \"data\" \\ >> $@
-#	@echo , \"out.C.txt\" index 1 with lines title \"fit\" \\ >> $@
+	@echo plot \"out.C.txt\" index 0 with errorbars title \"data\" \\ >> $@
+	@echo , \"out.C.txt\" index 1 with lines title \"Linear fit\" \\ >> $@
 #	@echo , \"out.C.txt\" index 2 with lines title \"fit + err\" \\ >> $@
 #	@echo , \"out.C.txt\" index 3 with lines title \"fit - err\" >> $@
 

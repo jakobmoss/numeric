@@ -28,9 +28,25 @@ def f4(x):
 #
 def mainC():
     """
-    Test of the least squares fitting
+    Analysis of the straight line fit to two points
     """
+    # Make the test points and write them for plot
+    n = 2
+    a = -1.1
+    b = 1.1
+    x, y, dy = makedata(n, a, b)
 
+    # Make a linear fit
+    fitfunc = [f0, f1]
+    c, dc, S = leastsq.qrfit(fitfunc, x, y, dy)
+
+    # Write the fit to plot
+    print('\n')
+    nx = 20
+    grid = np.linspace(a-0.3, b+0.3, nx)
+    for i in range(nx):
+        xx = grid[i]
+        print(xx, leastsq.evalfit(fitfunc, c, xx), sep='\t')
 
 
 #
@@ -53,7 +69,7 @@ def makedata(n, a, b):
     for i in range(n):
         x[i] = a + (b-a)*i / (n-1)
         y[i] = data(x[i]) + (0.7*random.random() - 0.2)
-        dy[i] = 0.2 + 0.8*random.random()
+        dy[i] = 0.1 + 0.6*random.random()
         print(x[i], y[i], dy[i], sep='\t')
 
     # Return the data
