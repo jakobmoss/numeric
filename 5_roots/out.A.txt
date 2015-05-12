@@ -1,0 +1,10 @@
+
+ -- Root search of the Rosenbrock valley function --
+
+Starting point:
+x0 = [  5.  10.] 
+f(x0) = [ 30008.  -3000.]
+
+Solution:
+x = [ 1.  1.] 
+f(x) = [  1.80135196e-08  -8.55928661e-09]
