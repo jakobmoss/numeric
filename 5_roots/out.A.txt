@@ -8,14 +8,16 @@ x0 = [ 3. -1.]
 f(x0) = [ -3.00010000e+04   1.76796890e+00]
 
 Solution:
-x = [  9.10614667e+00   1.09815934e-05] 
-f(x) = [ -1.49515667e-09   7.46557269e-12]
+x = [  9.10614674e+00   1.09815933e-05] 
+f(x) = [  0.00000000e+00   2.87556166e-15]
 
 Number of calls to the function:
-n = 61
+n = 65
 
 
  -- Root search of the Rosenbrock valley function --
+
+Function: f(x,y) = (1 - x)^2 - 100*(y - x^2)^2
 
 Starting point:
 x0 = [-1.  5.] 
@@ -27,3 +29,35 @@ f(x) = [ -6.70419276e-12  -6.10622664e-12]
 
 Number of calls to the function:
 n = 5369
+
+
+ -- Root search of the Himmelblau function --
+
+Function: f(x,y) = (x^2 + y - 11)^2 + (x + y^2 - 7)^2
+
+Starting point:
+x0 = [ 1. -1.] 
+f(x0) = [-54.  -2.]
+
+Solution:
+x = [-0.27084459 -0.92303856] 
+f(x) = [ 0.  0.]
+
+Number of calls to the function:
+n = 26
+
+
+ -- Root search of the Matyas function --
+
+Function: f(x,y) = 0.26*(x^2 + y^2) - 0.48*xy
+
+Starting point:
+x0 = [ 2. -7.] 
+f(x0) = [ 4.4 -4.6]
+
+Solution:
+x = [ -2.45083689e-19  -2.22134390e-19] 
+f(x) = [ -2.08190111e-20   2.13028786e-21]
+
+Number of calls to the function:
+n = 10
