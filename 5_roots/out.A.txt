@@ -1,13 +1,29 @@
 
+ -- Solve system of equations by root search --
+
+System: Axy=1 ;  exp(-x)+exp(-y)=1 + 1/A
+
+Starting point:
+x0 = [ 3. -1.] 
+f(x0) = [ -3.00010000e+04   1.76796890e+00]
+
+Solution:
+x = [  9.10614667e+00   1.09815934e-05] 
+f(x) = [ -1.49515667e-09   7.46557269e-12]
+
+Number of calls to the function:
+n = 61
+
+
  -- Root search of the Rosenbrock valley function --
 
 Starting point:
-x0 = [  5.  10.] 
-f(x0) = [ 30008.  -3000.]
+x0 = [-1.  5.] 
+f(x0) = [ 1596.   800.]
 
 Solution:
 x = [ 1.  1.] 
-f(x) = [  1.80135196e-08  -8.55928661e-09]
+f(x) = [ -6.70419276e-12  -6.10622664e-12]
 
 Number of calls to the function:
-n = 82368
+n = 5369
