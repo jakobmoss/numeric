@@ -31,14 +31,17 @@ Function: f(x,y) = (1 - x)^2 - 100*(y - x^2)^2
 
 Starting point:
 x0 = [-1.  5.] 
-f(x0) = [ 1596.   800.]
+f(x0) = [ -5.00010000e+04   1.72491978e+00]
 
-Solution:
+Solution (numerical):
 x = [ 1.  1.] 
 f(x) = [ -6.70419276e-12  -6.10622664e-12]
+Calls to the function:  5368
 
-Number of calls to the function:
-n = 5369
+Solution (user-sup):
+x = [ 1.  1.] 
+f(x) = [ 0.  0.]
+Calls to the function:  4416
 
 
  -- Root search of the Himmelblau function --
@@ -47,14 +50,17 @@ Function: f(x,y) = (x^2 + y - 11)^2 + (x + y^2 - 7)^2
 
 Starting point:
 x0 = [ 1. -1.] 
-f(x0) = [-54.  -2.]
+f(x0) = [ -1.00010000e+04   2.08606127e+00]
 
-Solution:
+Solution (numerical):
 x = [-0.27084459 -0.92303856] 
 f(x) = [ 0.  0.]
+Calls to the function:  25
 
-Number of calls to the function:
-n = 26
+Solution (user-sup):
+x = [-0.27084459 -0.92303856] 
+f(x) = [  1.77635684e-15   0.00000000e+00]
+Calls to the function:  13
 
 
  -- Root search of the Matyas function --
@@ -63,11 +69,14 @@ Function: f(x,y) = 0.26*(x^2 + y^2) - 0.48*xy
 
 Starting point:
 x0 = [ 2. -7.] 
-f(x0) = [ 4.4 -4.6]
+f(x0) = [-140001.            1095.76839371]
 
-Solution:
+Solution (numerical):
 x = [ -2.45083689e-19  -2.22134390e-19] 
 f(x) = [ -2.08190111e-20   2.13028786e-21]
+Calls to the function:  9
 
-Number of calls to the function:
-n = 10
+Solution (user-sup):
+x = [ -1.33226763e-14  -1.24344979e-14] 
+f(x) = [ -9.59232693e-16  -7.10542736e-17]
+Calls to the function:  3
