@@ -3,6 +3,7 @@ auxA.c
 mainA.c
 auxB.c
 mainB.c
+auxC.c
 mainC.c
 givens.c
 datafun.c

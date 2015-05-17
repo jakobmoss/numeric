@@ -1,6 +1,6 @@
 # Make all targets
-all: A B
-clean: cleanA cleanB
+all: A B C
+clean: cleanA cleanB cleanC
 clean-deep: clean clean-ext
 
 # Target A
@@ -27,6 +27,19 @@ mainB.so: setupB.py mainB.pyx auxB.pyx givens.so datafun.so globvar.so
 
 cleanB:
 	rm -rf out.B.txt B.plt build auxB.c auxB.so mainB.so mainB.c
+
+
+# Target C
+C: out.C.txt
+
+out.C.txt: runC.py mainC.so
+	python3 $< > $@
+
+mainC.so: setupC.py mainC.pyx auxC.pyx givens.so datafun.so globvar.so
+	python3 $< build_ext --inplace
+
+cleanC:
+	rm -rf out.C.txt C.plt build auxC.c auxC.so mainC.so mainC.c
 
 
 # Build module containing the routines for Givens rotation
