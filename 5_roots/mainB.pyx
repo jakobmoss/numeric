@@ -18,21 +18,34 @@ def mainB():
     """
     Test of the root finding methods
     """
+    ## PART ZERO  --> Pretty print!
+    print('\n*****************************************')
+    print('* Comparison of Newton\'s method with    *')
+    print('*  - Numerical estimate of the Jacobian *')
+    print('*  - User-supplied Jacobian             *')
+    print('*****************************************\n')
+    
     ## PART ONE  -->  Solving a system of equations by root search with
     ##                Newton's method
     print('\n -- Solve system of equations by root search --')
     print('\nSystem: Axy=1 ;  exp(-x)+exp(-y)=1 + 1/A')
 
     # Initialization
-    globvar.ncalls = 0
     x0 = np.array([3, -1], dtype='float64')
-    dx = np.array([1e-9, 1e-9], dtype='float64')
     print('\nStarting point:\nx0 =', x0, '\nf(x0) =', eqsys(x0))
 
-    # Run the root search
+    # Run the root search with numerical derivatives
+    globvar.ncalls = 0
+    dx = np.array([1e-9, 1e-9], dtype='float64')
     roots1 = root.newton(eqsys, x0, dx, 1e-12)
-    print('\nSolution:\nx =', roots1, '\nf(x) =', eqsys(roots1))
-    print('\nNumber of calls to the function:\nn =', globvar.ncalls)
+    print('\nSolution (numerical):\nx =', roots1, '\nf(x) =', eqsys(roots1))
+    print('Calls to the function: ', globvar.ncalls)
+
+    # Run the root search with user-supplied derivatives
+    globvar.ncalls = 0
+    roots2 = root.newton_deriv(eqsys, x0, diff_eqsys, 1e-12)
+    print('\nSolution (user-sup):\nx =', roots2, '\nf(x) =', eqsys(roots2))
+    print('Calls to the function: ', globvar.ncalls)
 
     
     ## PART TWO  -->  Root search of the Rosenbrock valley function by running

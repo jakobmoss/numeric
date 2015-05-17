@@ -1,4 +1,11 @@
 
+*****************************************
+* Comparison of Newton's method with    *
+*  - Numerical estimate of the Jacobian *
+*  - User-supplied Jacobian             *
+*****************************************
+
+
  -- Solve system of equations by root search --
 
 System: Axy=1 ;  exp(-x)+exp(-y)=1 + 1/A
@@ -7,12 +14,15 @@ Starting point:
 x0 = [ 3. -1.] 
 f(x0) = [ -3.00010000e+04   1.76796890e+00]
 
-Solution:
+Solution (numerical):
 x = [  9.10614674e+00   1.09815933e-05] 
 f(x) = [  0.00000000e+00   2.87556166e-15]
+Calls to the function:  64
 
-Number of calls to the function:
-n = 65
+Solution (user-sup):
+x = [  9.10614674e+00   1.09815933e-05] 
+f(x) = [ -1.11022302e-16  -1.10182046e-17]
+Calls to the function:  34
 
 
  -- Root search of the Rosenbrock valley function --
