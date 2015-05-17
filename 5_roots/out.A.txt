@@ -12,7 +12,7 @@ x = [  9.10614674e+00   1.09815933e-05]
 f(x) = [  0.00000000e+00   2.87556166e-15]
 
 Number of calls to the function:
-n = 65
+n = 64
 
 
  -- Root search of the Rosenbrock valley function --
@@ -28,7 +28,7 @@ x = [ 1.  1.]
 f(x) = [ -6.70419276e-12  -6.10622664e-12]
 
 Number of calls to the function:
-n = 5369
+n = 5368
 
 
  -- Root search of the Himmelblau function --
@@ -44,7 +44,7 @@ x = [-0.27084459 -0.92303856]
 f(x) = [ 0.  0.]
 
 Number of calls to the function:
-n = 26
+n = 25
 
 
  -- Root search of the Matyas function --
@@ -60,4 +60,4 @@ x = [ -2.45083689e-19  -2.22134390e-19]
 f(x) = [ -2.08190111e-20   2.13028786e-21]
 
 Number of calls to the function:
-n = 10
+n = 9
