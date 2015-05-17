@@ -6,3 +6,4 @@ mainB.c
 mainC.c
 givens.c
 datafun.c
+globvar.c

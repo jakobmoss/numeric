@@ -9,3 +9,4 @@ os.environ['CC'] = 'gcc-4.9'
 # Do the build
 setup(ext_modules=cythonize('givens.pyx'))
 setup(ext_modules=cythonize('datafun.pyx'))
+setup(ext_modules=cythonize('globvar.pyx'))

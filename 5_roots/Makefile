@@ -9,7 +9,7 @@ A: out.A.txt
 out.A.txt: runA.py mainA.so
 	python3 $< > $@
 
-mainA.so: setupA.py mainA.pyx auxA.pyx givens.so datafun.so
+mainA.so: setupA.py mainA.pyx auxA.pyx givens.so datafun.so globvar.so
 	python3 $< build_ext --inplace
 
 cleanA:
@@ -22,7 +22,7 @@ B: out.B.txt
 out.B.txt: runB.py mainB.so
 	python3 $< > $@
 
-mainB.so: setupB.py mainB.pyx auxB.pyx givens.so datafun.so
+mainB.so: setupB.py mainB.pyx auxB.pyx givens.so datafun.so globvar.so
 	python3 $< build_ext --inplace
 
 cleanB:
@@ -37,5 +37,8 @@ givens.so: setup_ext.py givens.pyx
 datafun.so: setup_ext.py datafun.pyx
 	python3 $< build_ext --inplace
 
+globvar.so: setup_ext.py globvar.pyx
+	python3 $< build_ext --inplace
+
 clean-ext:
-	rm -rf givens.c givens.so datafun.c datafun.so
+	rm -rf givens.c givens.so datafun.c datafun.so globvar.c globvar.so
