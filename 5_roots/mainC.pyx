@@ -21,8 +21,8 @@ def mainC():
     ## PART ZERO  --> Pretty print!
     print('\n*****************************************')
     print('* Comparison of Newton\'s method with    *')
-    print('*  - Numerical estimate of the Jacobian *')
-    print('*  - User-supplied Jacobian             *')
+    print('*  - Simple linesearch                  *')
+    print('*  - Quadratic linesearch               *')
     print('*****************************************\n')
     
     ## PART ONE  -->  Solving a system of equations by root search with
@@ -32,19 +32,19 @@ def mainC():
 
     # Initialization
     x0 = np.array([3, -1], dtype='float64')
+    dx = np.array([1e-9, 1e-9], dtype='float64')
     print('\nStarting point:\nx0 =', x0, '\nf(x0) =', eqsys(x0))
 
-    # Run the root search with numerical derivatives
+    # Run the root search with simple linesarch
     globvar.ncalls = 0
-    dx = np.array([1e-9, 1e-9], dtype='float64')
     roots1 = root.newton(eqsys, x0, dx, 1e-12)
-    print('\nSolution (numerical):\nx =', roots1, '\nf(x) =', eqsys(roots1))
+    print('\nSolution (simple):\nx =', roots1, '\nf(x) =', eqsys(roots1))
     print('Calls to the function: ', globvar.ncalls)
 
-    # Run the root search with user-supplied derivatives
+    # Run the root search with quad linesearch
     globvar.ncalls = 0
-    roots2 = root.newton_deriv(eqsys, x0, diff_eqsys, 1e-12)
-    print('\nSolution (user-sup):\nx =', roots2, '\nf(x) =', eqsys(roots2))
+    roots2 = root.newton_quad(eqsys, x0, dx, 1e-12)
+    print('\nSolution (quad):\nx =', roots2, '\nf(x) =', eqsys(roots2))
     print('Calls to the function: ', globvar.ncalls)
 
     
@@ -62,13 +62,13 @@ def mainC():
     globvar.ncalls = 0
     dx = np.array([1e-7, 1e-7], dtype='float64')
     roots1 = root.newton(rosen, x0, dx, 1e-8)
-    print('\nSolution (numerical):\nx =', roots1, '\nf(x) =', rosen(roots1))
+    print('\nSolution (simple):\nx =', roots1, '\nf(x) =', rosen(roots1))
     print('Calls to the function: ', globvar.ncalls)
 
     # Run the root search with user-supplied derivatives
     globvar.ncalls = 0
-    roots2 = root.newton_deriv(rosen, x0, diff_rosen, 1e-12)
-    print('\nSolution (user-sup):\nx =', roots2, '\nf(x) =', rosen(roots2))
+    roots2 = root.newton_quad(rosen, x0, dx, 1e-12)
+    print('\nSolution (quad):\nx =', roots2, '\nf(x) =', rosen(roots2))
     print('Calls to the function: ', globvar.ncalls)
     
 

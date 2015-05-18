@@ -1,8 +1,8 @@
 
 *****************************************
 * Comparison of Newton's method with    *
-*  - Numerical estimate of the Jacobian *
-*  - User-supplied Jacobian             *
+*  - Simple linesearch                  *
+*  - Quadratic linesearch               *
 *****************************************
 
 
@@ -14,15 +14,15 @@ Starting point:
 x0 = [ 3. -1.] 
 f(x0) = [ -3.00010000e+04   1.76796890e+00]
 
-Solution (numerical):
+Solution (simple):
 x = [  9.10614674e+00   1.09815933e-05] 
 f(x) = [  0.00000000e+00   2.87556166e-15]
 Calls to the function:  64
 
-Solution (user-sup):
+Solution (quad):
 x = [  9.10614674e+00   1.09815933e-05] 
-f(x) = [ -1.11022302e-16  -1.10182046e-17]
-Calls to the function:  34
+f(x) = [  0.00000000e+00   1.98738324e-15]
+Calls to the function:  64
 
 
  -- Root search of the Rosenbrock valley function --
@@ -33,15 +33,15 @@ Starting point:
 x0 = [-1.  5.] 
 f(x0) = [ -5.00010000e+04   1.72491978e+00]
 
-Solution (numerical):
+Solution (simple):
 x = [ 1.  1.] 
 f(x) = [ -6.70419276e-12  -6.10622664e-12]
 Calls to the function:  5368
 
-Solution (user-sup):
+Solution (quad):
 x = [ 1.  1.] 
-f(x) = [ 0.  0.]
-Calls to the function:  4416
+f(x) = [ -1.02584607e-13   4.44089210e-14]
+Calls to the function:  496507
 
 
  -- Root search of the Himmelblau function --
