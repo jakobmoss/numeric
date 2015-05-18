@@ -11,18 +11,18 @@
 System: Axy=1 ;  exp(-x)+exp(-y)=1 + 1/A
 
 Starting point:
-x0 = [ 3. -1.] 
-f(x0) = [ -3.00010000e+04   1.76796890e+00]
+x0 = [ 3.  2.] 
+f(x0) = [  5.99990000e+04  -8.14977648e-01]
 
 Solution (simple):
 x = [  9.10614674e+00   1.09815933e-05] 
-f(x) = [  0.00000000e+00   2.87556166e-15]
-Calls to the function:  64
+f(x) = [  0.00000000e+00  -1.10182046e-17]
+Calls to the function:  55
 
 Solution (quad):
-x = [  9.10614674e+00   1.09815933e-05] 
-f(x) = [  0.00000000e+00   1.98738324e-15]
-Calls to the function:  64
+x = [  9.10614673e+00   1.09815933e-05] 
+f(x) = [ -2.16493490e-14   8.00237738e-13]
+Calls to the function:  103
 
 
  -- Root search of the Rosenbrock valley function --
@@ -30,18 +30,18 @@ Calls to the function:  64
 Function: f(x,y) = (1 - x)^2 - 100*(y - x^2)^2
 
 Starting point:
-x0 = [-1.  5.] 
-f(x0) = [ -5.00010000e+04   1.72491978e+00]
+x0 = [ 0.  2.] 
+f(x0) = [-1.          0.13523528]
 
 Solution (simple):
 x = [ 1.  1.] 
-f(x) = [ -6.70419276e-12  -6.10622664e-12]
-Calls to the function:  5368
+f(x) = [ -6.92335078e-12  -5.81756865e-12]
+Calls to the function:  1949
 
 Solution (quad):
 x = [ 1.  1.] 
-f(x) = [ -1.02584607e-13   4.44089210e-14]
-Calls to the function:  496507
+f(x) = [  1.32782674e-13  -6.66133815e-14]
+Calls to the function:  125382
 
 
  -- Root search of the Himmelblau function --
@@ -49,18 +49,18 @@ Calls to the function:  496507
 Function: f(x,y) = (x^2 + y - 11)^2 + (x + y^2 - 7)^2
 
 Starting point:
-x0 = [ 1. -1.] 
-f(x0) = [ -1.00010000e+04   2.08606127e+00]
+x0 = [ 4.  3.] 
+f(x0) = [  1.19999000e+05  -9.31997293e-01]
 
-Solution (numerical):
-x = [-0.27084459 -0.92303856] 
+Solution (simple):
+x = [ 3.  2.] 
 f(x) = [ 0.  0.]
 Calls to the function:  25
 
-Solution (user-sup):
-x = [-0.27084459 -0.92303856] 
-f(x) = [  1.77635684e-15   0.00000000e+00]
-Calls to the function:  13
+Solution (quad):
+x = [ 3.  2.] 
+f(x) = [ 0.  0.]
+Calls to the function:  25
 
 
  -- Root search of the Matyas function --
@@ -68,15 +68,15 @@ Calls to the function:  13
 Function: f(x,y) = 0.26*(x^2 + y^2) - 0.48*xy
 
 Starting point:
-x0 = [ 2. -7.] 
-f(x0) = [-140001.            1095.76839371]
+x0 = [-0.5  0.5] 
+f(x0) = [ -2.50100000e+03   1.25515193e+00]
 
-Solution (numerical):
-x = [ -2.45083689e-19  -2.22134390e-19] 
-f(x) = [ -2.08190111e-20   2.13028786e-21]
+Solution (simple):
+x = [  1.81635628e-19   1.82906177e-19] 
+f(x) = [  6.65556138e-21   7.92611080e-21]
 Calls to the function:  9
 
-Solution (user-sup):
-x = [ -1.33226763e-14  -1.24344979e-14] 
-f(x) = [ -9.59232693e-16  -7.10542736e-17]
-Calls to the function:  3
+Solution (quad):
+x = [  1.81635628e-19   1.82906177e-19] 
+f(x) = [  6.65556138e-21   7.92611080e-21]
+Calls to the function:  9
