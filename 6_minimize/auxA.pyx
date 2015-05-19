@@ -12,62 +12,74 @@ import givens as qr
 import globvar
 
 
-# #
-# # Newton's method with user-supplied derivatives
-# #
-# def newton_deriv(f, x0, Jf, eps):
-#     """
-#     Finds the root of a function using Newton's method with simple
-#     backtracking linesearch and a user-supplied Jacobian. Uses Given's rotation
-#     for QR-decomposition.
+#
+# Function to do the Newtons method with known derivatives and backtracking linesearch
+#
+def newton_min(f, grad, hessian, x0, alpha, eps):
+    """
+    Finds the minimum of a function using Newton's method with simple back-
+    tracking linesearch. The derivatives, in the form of the gradient and the
+    Hessian matrix, is supplied by the user. Uses Given's rotation for QR-
+    decomposition.
 
-#     Returns the approximation of the root.
+    Returns the approximation of the minimum.
 
-#     Arguments:
-#     - `f`: Function f(x) to find the root of. Argument x is a vector.
-#     - `x0`: Starting point as a vector
-#     - `Jf`: Function to calculate the Jacobian of the function f(x)
-#     - `eps`: Desired accuracy 
-#     """
-#     # Initializations
-#     x = np.copy(x0)
-#     n = len(x)
-#     J = np.zeros((n, n), dtype='float64')
+    Side-effect: Changes the global variable 'steps' to the number of steps used
 
-#     # BEGIN ROOT SEARCH  -->  Keep going until accuracy reached
-#     while True:
-#         fx = f(x)
+    Arguments:
+    - `f`: Function f(x) to find the root of. Argument x is a vector.
+    - `grad`: Function which calculates the gradient of f
+    - `hessian`: Function which calculates the Hessian matrix of f
+    - `x0`: Starting point as a vector
+    - `alpha`: Scaling factor of the Armijo condition (for the backtracking)
+    - `eps`: Desired accuracy 
+    """
+    # Initializations
+    globvar.steps = 0
+    x = np.copy(x0)
+    n = len(x)
 
-#         # Calculate Jacobian
-#         J = Jf(x)
+    # Initial evaluation of the gradient (updates done in bottom of loop)
+    df = grad(x)
 
-#         # Decompose and solve using Given's rotation
-#         qr.decomp(J)
-#         Dx = -fx
-#         qr.solve(J, Dx)
+    # BEGIN MIN SEARCH  -->  Keep going until accuracy reached
+    while True:
 
-#         # BEGIN BACKTRACKING LINESEARCH
-#         lamb = 2.0  # lambda is a special keyword
-#         while True:
-#             lamb /= 2
-#             y = x + Dx*lamb
-#             fy = f(y)
+        # Increase counter and evaluate function
+        globvar.steps += 1
+        fx = f(x)
 
-#             # Condition to end  --  Note: norm(x) := np.sqrt(np.dot(x,x))
-#             if (np.sqrt(np.dot(fy, fy)) < (1 - lamb/2)*np.sqrt(np.dot(fx, fx))) \
-#                or (lamb < 1/128):
-#                 break
-#         # END BACKTRACK
+        # Evaluate Hessian (gradient is updates in previous iteration)
+        H = hessian(x)
 
-#         # Store latest approximation
-#         x = y
-#         fx = fy
+        # Decompose and solve using Given's rotation
+        qr.decomp(H)
+        Dx = -df
+        qr.solve(H, Dx)
 
-#         # Condition to end
-#         if np.sqrt(np.dot(fx, fx)) < eps:
-#             break
+        # BEGIN BACKTRACKING LINESEARCH
+        dot = np.dot(df, Dx)  # For the Armijo condition
+        lamb = 2.0  # lambda is a special keyword
         
-#     # END ROOT SEARCH
+        while True:
+            lamb /= 2
+            y = x + Dx*lamb
+            fy = f(y)
 
-#     # Return the accepted approximation
-#     return x
+            # Condition to end  --> The Armijo condition
+            if (fy < fx + alpha*lamb*dot) or (lamb < 1/128):
+                break
+        # END BACKTRACK
+
+        # Store latest approximation
+        x = y
+        fx = fy
+        df = grad(x)
+
+        # Condition to end (derivative vanishes)
+        if np.sqrt(np.dot(df, df)) < eps:
+            break
+        
+    # END MIN SEARCH
+
+
