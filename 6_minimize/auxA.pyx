@@ -77,9 +77,14 @@ def newton_min(f, grad, hessian, x0, alpha, eps):
         df = grad(x)
 
         # Condition to end (derivative vanishes)
-        if np.sqrt(np.dot(df, df)) < eps:
+        if (np.sqrt(np.dot(df, df)) < eps) or (globvar.steps > 1000) :
             break
         
     # END MIN SEARCH
 
-
+    # Return the accepted approximation
+    if globvar.steps > 1000:
+        print('\nToo many steps used! Quitting...\n')
+        exit()
+    else:
+        return x
