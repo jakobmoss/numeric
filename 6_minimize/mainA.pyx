@@ -18,4 +18,7 @@ def mainA():
     """
     Test of the minimization methods
     """
-    print('hej')
+    ## PART ZERO  --> Pretty print!
+    print('\n********************************************')
+    print('* Test of Newton\'s method for minimization *')
+    print('********************************************\n')
