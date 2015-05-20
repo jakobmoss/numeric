@@ -56,7 +56,7 @@ def mainC():
 
     # Initialization
     x0 = np.array([0, 2], dtype='float64')
-    print('\nStarting point:\nx0 =', x0, '\nf(x0) =', eqsys(x0))
+    print('\nStarting point:\nx0 =', x0, '\nf(x0) =', rosen(x0))
     dx = np.array([1e-7, 1e-7], dtype='float64')
 
     # Run the root search with numerical derivatives
@@ -80,7 +80,7 @@ def mainC():
 
     # Initialization
     x0 = np.array([4, 3], dtype='float64')
-    print('\nStarting point:\nx0 =', x0, '\nf(x0) =', eqsys(x0))
+    print('\nStarting point:\nx0 =', x0, '\nf(x0) =', himmel(x0))
     dx = np.array([1e-9, 1e-9], dtype='float64')
 
     # Run the root search with numerical derivatives
@@ -104,7 +104,7 @@ def mainC():
 
     # Initialization
     x0 = np.array([-0.5, 0.5], dtype='float64')
-    print('\nStarting point:\nx0 =', x0, '\nf(x0) =', eqsys(x0))
+    print('\nStarting point:\nx0 =', x0, '\nf(x0) =', matya(x0))
     dx = np.array([1e-9, 1e-9], dtype='float64')
 
     # Run the root search with numerical derivatives

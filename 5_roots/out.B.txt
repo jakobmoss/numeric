@@ -31,7 +31,7 @@ Function: f(x,y) = (1 - x)^2 - 100*(y - x^2)^2
 
 Starting point:
 x0 = [-1.  5.] 
-f(x0) = [ -5.00010000e+04   1.72491978e+00]
+f(x0) = [ 1596.   800.]
 
 Solution (numerical):
 x = [ 1.  1.] 
@@ -50,7 +50,7 @@ Function: f(x,y) = (x^2 + y - 11)^2 + (x + y^2 - 7)^2
 
 Starting point:
 x0 = [ 1. -1.] 
-f(x0) = [ -1.00010000e+04   2.08606127e+00]
+f(x0) = [-54.  -2.]
 
 Solution (numerical):
 x = [-0.27084459 -0.92303856] 
@@ -69,7 +69,7 @@ Function: f(x,y) = 0.26*(x^2 + y^2) - 0.48*xy
 
 Starting point:
 x0 = [ 2. -7.] 
-f(x0) = [-140001.            1095.76839371]
+f(x0) = [ 4.4 -4.6]
 
 Solution (numerical):
 x = [ -2.45083689e-19  -2.22134390e-19] 
