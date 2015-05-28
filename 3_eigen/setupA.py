@@ -2,9 +2,11 @@
 from distutils.core import setup
 from Cython.Build import cythonize
 
-# Change to newest gcc
+# Change to newest gcc on Darwin
 import os
-os.environ['CC'] = 'gcc-4.9'
+from sys import platform
+if platform.lower() == 'darwin':
+    os.environ['CC'] = 'gcc-5'
 
 # Do the build
 setup(ext_modules=cythonize('auxA.pyx'))

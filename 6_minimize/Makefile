@@ -1,7 +1,6 @@
 # Make all targets
 all: A B
-clean: cleanA cleanB
-clean-deep: clean clean-ext
+clean: cleanA cleanB clean-ext
 
 # Target A
 A: out.A.txt
@@ -30,7 +29,7 @@ cleanB:
 
 
 # Build module containing the routines for Givens rotation
-# No need to build every time; it is assumes static!
+# No need to build every time; it is assumed static!
 givens.so: setup_ext.py givens.pyx
 	python3 $< build_ext --inplace
 
