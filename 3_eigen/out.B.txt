@@ -2,24 +2,24 @@
 
 Testing on sym. rand. 6 x 6 matrix:
 A =
- [[ 8.75299487  5.01028719  3.37538249  9.48666091  6.21444945  3.67890764]
- [ 5.01028719  9.23731265  6.07438951  1.50032238  8.00844381  4.06772692]
- [ 3.37538249  6.07438951  9.49695365  8.16039881  4.54316097  1.44083659]
- [ 9.48666091  1.50032238  8.16039881  0.36173018  3.90438131  8.82638344]
- [ 6.21444945  8.00844381  4.54316097  3.90438131  0.31023602  4.68925827]
- [ 3.67890764  4.06772692  1.44083659  8.82638344  4.68925827  4.13086057]]
+ [[ 2.75362551  3.18563673  2.75940329  9.04953021  3.78205493  6.74655199]
+ [ 3.18563673  1.3786672   6.23998612  4.01043048  2.20824938  4.85552513]
+ [ 2.75940329  6.23998612  8.63121254  7.18202268  7.25686735  5.95645485]
+ [ 9.04953021  4.01043048  7.18202268  8.41926744  2.78282763  4.5464146 ]
+ [ 3.78205493  2.20824938  7.25686735  2.78282763  1.38534081  7.61156606]
+ [ 6.74655199  4.85552513  5.95645485  4.5464146   7.61156606  4.71045807]]
 
  * Cyclic method:
-Number of rotations used =  60
-Running time: 0.0950 ms
+Number of rotations used =  59
+Running time: 0.0596 ms
 
  * Row-by-row method:
-Number of rotations used =  212
-Running time: 0.2418 ms
+Number of rotations used =  149
+Running time: 0.1163 ms
 
  * Greatest-element method:
-Number of rotations used =  118
-Running time: 0.1335 ms
+Number of rotations used =  136
+Running time: 0.1151 ms
 
 ----------------------------------------
 
@@ -32,7 +32,7 @@ A =
  [ 10.   9.   2.   3.]]
 
 Number of rotations used =  17
-Running time: 0.0194 ms
+Running time: 0.0140 ms
 
 Eigenvalues of A :
 d = 
@@ -97,7 +97,7 @@ A =
  [ 10.   9.   2.   3.]]
 
 Number of rotations used =  32
-Running time: 0.0278 ms
+Running time: 0.0215 ms
 
 Eigenvalues of A :
 d = 
@@ -162,7 +162,7 @@ A =
  [ 10.   9.   2.   3.]]
 
 Number of rotations used =  41
-Running time: 0.0437 ms
+Running time: 0.0267 ms
 
 Eigenvalues of A :
 d = 
