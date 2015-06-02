@@ -18,4 +18,5 @@ Installation of Cython compiler using python-setuptools:
 
 	pip install cython
 or
+
 	easy_install cython
