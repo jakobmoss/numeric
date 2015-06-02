@@ -17,12 +17,12 @@ f(x0) = [  5.99990000e+04  -8.14977648e-01]
 Solution (simple):
 x = [  9.10614674e+00   1.09815933e-05] 
 f(x) = [  0.00000000e+00  -1.10182046e-17]
-Calls to the function:  55
+Calls to the function:  43
 
 Solution (quad):
 x = [  9.10614673e+00   1.09815933e-05] 
 f(x) = [ -2.16493490e-14   8.00237738e-13]
-Calls to the function:  103
+Calls to the function:  82
 
 
  -- Root search of the Rosenbrock valley function --
@@ -36,12 +36,12 @@ f(x0) = [  -2.  400.]
 Solution (simple):
 x = [ 1.  1.] 
 f(x) = [ -6.92335078e-12  -5.81756865e-12]
-Calls to the function:  1949
+Calls to the function:  1740
 
 Solution (quad):
 x = [ 1.  1.] 
 f(x) = [  1.32782674e-13  -6.66133815e-14]
-Calls to the function:  125382
+Calls to the function:  100306
 
 
  -- Root search of the Himmelblau function --
@@ -55,12 +55,12 @@ f(x0) = [ 140.   88.]
 Solution (simple):
 x = [ 3.  2.] 
 f(x) = [ 0.  0.]
-Calls to the function:  25
+Calls to the function:  20
 
 Solution (quad):
 x = [ 3.  2.] 
 f(x) = [ 0.  0.]
-Calls to the function:  25
+Calls to the function:  20
 
 
  -- Root search of the Matyas function --
@@ -74,9 +74,9 @@ f(x0) = [-0.5  0.5]
 Solution (simple):
 x = [  1.81635628e-19   1.82906177e-19] 
 f(x) = [  6.65556138e-21   7.92611080e-21]
-Calls to the function:  9
+Calls to the function:  8
 
 Solution (quad):
 x = [  1.81635628e-19   1.82906177e-19] 
 f(x) = [  6.65556138e-21   7.92611080e-21]
-Calls to the function:  9
+Calls to the function:  8

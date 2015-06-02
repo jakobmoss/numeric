@@ -30,10 +30,10 @@ def newton(f, x0, dx, eps):
     x = np.copy(x0)
     n = len(x)
     J = np.zeros((n, n), dtype='float64')
+    fx = f(x)
 
     # BEGIN ROOT SEARCH  -->  Keep going until accuracy reached
     while True:
-        fx = f(x)
 
         # BEGIN TO FILL JACOBIAN -> J  -->  Numerical estimate
         for j in range(n):
@@ -100,10 +100,10 @@ def newton_quad(f, x0, dx, eps):
     x = np.copy(x0)
     n = len(x)
     J = np.zeros((n, n), dtype='float64')
+    fx = f(x)
 
     # BEGIN ROOT SEARCH  -->  Keep going until accuracy reached
     while True:
-        fx = f(x)
         nfx = np.sqrt(np.dot(fx, fx))   # The norm (used multiple times)
 
         # BEGIN TO FILL JACOBIAN -> J  -->  Numerical estimate

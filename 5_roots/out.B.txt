@@ -17,12 +17,12 @@ f(x0) = [ -3.00010000e+04   1.76796890e+00]
 Solution (numerical):
 x = [  9.10614674e+00   1.09815933e-05] 
 f(x) = [  0.00000000e+00   2.87556166e-15]
-Calls to the function:  64
+Calls to the function:  50
 
 Solution (user-sup):
 x = [  9.10614674e+00   1.09815933e-05] 
 f(x) = [ -1.11022302e-16  -1.10182046e-17]
-Calls to the function:  34
+Calls to the function:  20
 
 
  -- Root search of the Rosenbrock valley function --
@@ -36,12 +36,12 @@ f(x0) = [ 1596.   800.]
 Solution (numerical):
 x = [ 1.  1.] 
 f(x) = [ -6.70419276e-12  -6.10622664e-12]
-Calls to the function:  5368
+Calls to the function:  4892
 
 Solution (user-sup):
 x = [ 1.  1.] 
 f(x) = [ 0.  0.]
-Calls to the function:  4416
+Calls to the function:  3939
 
 
  -- Root search of the Himmelblau function --
@@ -55,12 +55,12 @@ f(x0) = [-54.  -2.]
 Solution (numerical):
 x = [-0.27084459 -0.92303856] 
 f(x) = [ 0.  0.]
-Calls to the function:  25
+Calls to the function:  20
 
 Solution (user-sup):
 x = [-0.27084459 -0.92303856] 
 f(x) = [  1.77635684e-15   0.00000000e+00]
-Calls to the function:  13
+Calls to the function:  8
 
 
  -- Root search of the Matyas function --
@@ -74,7 +74,7 @@ f(x0) = [ 4.4 -4.6]
 Solution (numerical):
 x = [ -2.45083689e-19  -2.22134390e-19] 
 f(x) = [ -2.08190111e-20   2.13028786e-21]
-Calls to the function:  9
+Calls to the function:  8
 
 Solution (user-sup):
 x = [ -1.33226763e-14  -1.24344979e-14] 
