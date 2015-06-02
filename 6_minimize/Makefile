@@ -28,8 +28,7 @@ cleanB:
 	rm -rf out.B.txt B.plt build auxB.c auxB.so mainB.so mainB.c
 
 
-# Build module containing the routines for Givens rotation
-# No need to build every time; it is assumed static!
+# Build modules with different external routines
 givens.so: setup_ext.py givens.pyx
 	python3 $< build_ext --inplace
 
@@ -37,6 +36,9 @@ datafun.so: setup_ext.py datafun.pyx
 	python3 $< build_ext --inplace
 
 globvar.so: setup_ext.py globvar.pyx
+	python3 $< build_ext --inplace
+
+roots.so: setup_ext.py roots.pyx
 	python3 $< build_ext --inplace
 
 clean-ext:

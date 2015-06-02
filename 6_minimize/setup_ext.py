@@ -12,3 +12,4 @@ if platform.lower() == 'darwin':
 setup(ext_modules=cythonize('givens.pyx'))
 setup(ext_modules=cythonize('datafun.pyx'))
 setup(ext_modules=cythonize('globvar.pyx'))
+setup(ext_modules=cythonize('roots.pyx'))

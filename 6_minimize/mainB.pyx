@@ -7,8 +7,11 @@ import math, sys
 # Global variables
 import globvar
 
-# Different functions to root-find
+# Different functions to minimize
 from datafun import *
+
+# Import the root-finding routines from exercise 5
+import roots as root
 
 
 #
@@ -44,11 +47,23 @@ def mainB():
           '\nf\'(x)', grad_rosen(mini))
     print('Steps used: ', globvar.steps)
 
+    # Comparison
+    print('\n* Comparison with other methods...')
+    globvar.steps = 0
+    mini2 = minimize.newton(rosen, grad_rosen, hes_rosen, x0, alpha, eps)
+    print('Steps used (Newtons min.): ', globvar.steps)
+    globvar.steps = 0
+    mini3 = root.newton(grad_rosen, x0, [1e-9, 1e-9], eps)
+    print('Steps used (Root, numeric derivs.): ', globvar.steps)
+    globvar.steps = 0
+    mini4 = root.newton_deriv(grad_rosen, x0, hes_rosen, eps)
+    print('Steps used (Root, analytic derivs.): ', globvar.steps)
+
 
     ##
     ## PART TWO  -->  Minimization of the Himmelblau function by running
     ##                Quasi Newton's method
-    print('\n -- Minimization of the Himmelblau function --')
+    print('\n\n -- Minimization of the Himmelblau function --')
     print('\nFunction: f(x,y) = (x^2 + y - 11)^2 + (x + y^2 - 7)^2')
 
     # Initialization
@@ -61,3 +76,15 @@ def mainB():
     print('\nSolution:\nx =', mini, '\nf(x) =', himmel(mini),
           '\nf\'(x)', grad_himmel(mini))
     print('Steps used: ', globvar.steps)
+
+    # Comparison
+    print('\n* Comparison with other methods...')
+    globvar.steps = 0
+    mini2 = minimize.newton(himmel, grad_himmel, hes_himmel, x0, alpha, eps)
+    print('Steps used (Newtons min.): ', globvar.steps)
+    globvar.steps = 0
+    mini3 = root.newton(grad_himmel, x0, [1e-9, 1e-9], eps)
+    print('Steps used (Root, numeric derivs.): ', globvar.steps)
+    globvar.steps = 0
+    mini4 = root.newton_deriv(grad_himmel, x0, hes_himmel, eps)
+    print('Steps used (Root, analytic derivs.): ', globvar.steps)

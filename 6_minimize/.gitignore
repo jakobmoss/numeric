@@ -1,10 +1,2 @@
 # Ignore specific Cython .c-files
-auxA.c
-mainA.c
-auxB.c
-mainB.c
-auxC.c
-mainC.c
-givens.c
-datafun.c
-globvar.c
+*.c

@@ -18,6 +18,12 @@ f(x) = 5.37411491682e-30
 f'(x) [ -8.74855743e-14   4.44089210e-14]
 Steps used:  69
 
+* Comparison with other methods...
+Steps used (Newtons min.):  21
+Steps used (Root, numeric derivs.):  476
+Steps used (Root, analytic derivs.):  476
+
+
  -- Minimization of the Himmelblau function --
 
 Function: f(x,y) = (x^2 + y - 11)^2 + (x + y^2 - 7)^2
@@ -31,3 +37,8 @@ x = [ 3.58442834 -1.84812653]
 f(x) = 2.145701662201152e-28 
 f'(x) [ -2.25160810e-14  -1.12159258e-13]
 Steps used:  10
+
+* Comparison with other methods...
+Steps used (Newtons min.):  7
+Steps used (Root, numeric derivs.):  7
+Steps used (Root, analytic derivs.):  7
