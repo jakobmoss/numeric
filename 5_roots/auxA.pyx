@@ -61,7 +61,7 @@ def newton(f, x0, dx, eps):
 
             # Condition to end  --  Note: norm(x) := np.sqrt(np.dot(x,x))
             if (np.sqrt(np.dot(fy, fy)) < (1 - lamb/2)*np.sqrt(np.dot(fx, fx))) \
-               or (lamb < 1/128):
+               or (lamb < 1/128.0):
                 break
         # END BACKTRACK
 

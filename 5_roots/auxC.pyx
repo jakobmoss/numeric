@@ -60,7 +60,7 @@ def newton(f, x0, dx, eps):
 
             # Condition to end  --  Note: norm(x) := np.sqrt(np.dot(x,x))
             if (np.sqrt(np.dot(fy, fy)) < (1 - lamb/2)*np.sqrt(np.dot(fx, fx))) \
-               or (lamb < 1/128):
+               or (lamb < 1/128.0):
                 break
         # END BACKTRACK
 
@@ -135,7 +135,7 @@ def newton_quad(f, x0, dx, eps):
         gp0 = (-1)*nfx*nfx    # g'(0)
 
         # Only enter if the step is rejected
-        while (nfy > (1 - lamb/2)*nfx) and (lamb > 1.0/128):
+        while (nfy > (1 - lamb/2)*nfx) and (lamb > 1/128.0):
 
             # Calculate approximation [6.11]
             gl = 0.5*nfy*nfy  # g(\lambda)

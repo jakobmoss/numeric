@@ -25,10 +25,10 @@ f(x0) = [ 1596.   800.]
 
 Solution:
 x = [ 1.  1.] 
-f(x) = [ -6.70419276e-12  -6.10622664e-12]
+f(x) = [ -4.91384711e-12  -8.06021916e-12]
 
 Number of calls to the function:
-n = 5368
+n = 3707
 
 
  -- Root search of the Himmelblau function --
