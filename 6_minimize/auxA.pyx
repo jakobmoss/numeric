@@ -39,7 +39,8 @@ def newton_min(f, grad, hessian, x0, alpha, eps):
     x = np.copy(x0)
     n = len(x)
 
-    # Initial evaluation of the gradient (updates done in bottom of loop)
+    # Initial evaluation of the function and gradient (updates done in bottom of loop)
+    fx = f(x)
     df = grad(x)
 
     # BEGIN MIN SEARCH  -->  Keep going until accuracy reached
@@ -47,7 +48,6 @@ def newton_min(f, grad, hessian, x0, alpha, eps):
 
         # Increase counter and evaluate function
         globvar.steps += 1
-        fx = f(x)
 
         # Evaluate Hessian (gradient is updates in previous iteration)
         H = hessian(x)
