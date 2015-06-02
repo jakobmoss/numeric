@@ -67,7 +67,7 @@ def newton_min(f, grad, hessian, x0, alpha, eps):
             fy = f(y)
 
             # Condition to end  --> The Armijo condition
-            if (fy < fx + alpha*lamb*dot) or (lamb < 1/128):
+            if (fy < fx + alpha*lamb*dot) or (lamb < 1/128.0):
                 break
         # END BACKTRACK
 

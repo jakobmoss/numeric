@@ -20,8 +20,8 @@ Steps used:  69
 
 * Comparison with other methods...
 Steps used (Newtons min.):  21
-Steps used (Root, numeric derivs.):  476
-Steps used (Root, analytic derivs.):  476
+Steps used (Root, numeric derivs.):  365
+Steps used (Root, analytic derivs.):  365
 
 
  -- Minimization of the Himmelblau function --
