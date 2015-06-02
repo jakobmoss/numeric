@@ -1,7 +1,7 @@
 Numerical Methods
 =================
 
-Project directory for the Numerical Methods course at Aarhus University 2015
+Aarhus University 2015
 ----------------
 
 **Language:** Cython (C-extended and compiled Python) and pure Python
@@ -18,10 +18,6 @@ run through the Cython-compiler.
 --------------------------------
 Installation of Cython compiler using python-setuptools:
 
-	     pip install cython
-
+	pip install cython
 or
-
->
-easy_install cython
->
+	easy_install cython
