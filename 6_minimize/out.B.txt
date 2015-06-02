@@ -3,3 +3,31 @@
 * Test of Quasi-Newton's method for minimization *
 **************************************************
 
+
+ -- Minimization of the Rosenbrock valley function --
+
+Function: f(x,y) = (1 - x)^2 - 100*(y - x^2)^2
+
+Starting point:
+x0 = [-1.  2.] 
+f(x0) = 104.0
+
+Solution:
+x = [ 1.  1.] 
+f(x) = 5.37411491682e-30 
+f'(x) [ -8.74855743e-14   4.44089210e-14]
+Steps used:  69
+
+ -- Minimization of the Himmelblau function --
+
+Function: f(x,y) = (x^2 + y - 11)^2 + (x + y^2 - 7)^2
+
+Starting point:
+x0 = [ 2.  5.] 
+f(x0) = 404.0
+
+Solution:
+x = [ 3.58442834 -1.84812653] 
+f(x) = 2.145701662201152e-28 
+f'(x) [ -2.25160810e-14  -1.12159258e-13]
+Steps used:  10

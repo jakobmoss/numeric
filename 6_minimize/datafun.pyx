@@ -12,7 +12,7 @@ def rosen(q):
     """
     x = q[0]
     y = q[1]
-    return math.pow(1-x, 2) + 100*math.pow(y-x*x, 2)
+    return (1-x)*(1-x) + 100*(y-x*x)*(y-x*x)
 
 
 def grad_rosen(q):

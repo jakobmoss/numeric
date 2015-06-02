@@ -11,11 +11,97 @@ import givens as qr
 # Global variables
 import globvar
 
+#
+# Function to do the Quasi-Newtons method with SR1-updates
+#
+def qnewton(f, grad, x0, alpha, eps):
+    """
+    Finds the minimum of a function using Quasi-Newton's method with
+    SR1-updates. The gradient (which can be analytic or numeric), is
+    supplied by the user. 
+
+    Returns the approximation of the minimum.
+
+    Side-effect: Changes the global variable 'steps' to the number of steps used
+
+    Arguments:
+    - `f`: Function f(x) to find the root of. Argument x is a vector.
+    - `grad`: Function which calculates the gradient of f
+    - `x0`: Starting point as a vector
+    - `alpha`: Scaling factor of the Armijo condition (for the backtracking)
+    - `eps`: Desired accuracy
+
+    """
+    # Initializations
+    globvar.steps = 0
+    x = np.copy(x0)
+    n = len(x)
+
+    # Initial evaluation of the function and gradient (updates done in bottom of loop)
+    fx = f(x)
+    df = grad(x)
+
+    # Initialize the inverse (!) Hessian matrix as the unity matrix
+    Hinv = np.eye(n, dtype='float')
+
+    # BEGIN MIN SEARCH  -->  Keep going until accuracy reached
+    while True:
+
+        # Increase counter and evaluate function
+        globvar.steps += 1
+
+        # Put derivatives into the inverse Hessian matrix
+        Dx = np.dot(Hinv, -df)
+        
+        # BEGIN BACKTRACKING LINESEARCH
+        dot = np.dot(df, Dx)  # For the Armijo condition
+        lamb = 2.0  # lambda is a special keyword
+
+        while True:
+            lamb /= 2.0
+            y = x + Dx*lamb  # s = lambda * Dx
+            fy = f(y)
+
+            # Condition to end  --> The Armijo condition
+            if abs(fy) < abs(fx) + alpha*lamb*dot:
+                break
+
+            # Restart if hopeless!
+            if lamb < 1/128.0:
+                Hinv = np.eye(n, dtype='float')
+                break
+
+        # END BACKTRACK
+
+        # Apply the update
+        dfy = grad(y)
+        z = dfy - df
+        u = Dx*lamb - np.dot(Hinv, z)
+        Hinv += np.outer(u, u) / np.dot(u, z)  # SR1-update
+        
+        # Store latest approximation
+        x = y
+        fx = fy
+        df = dfy
+
+        # Condition to end (derivative vanishes)
+        if (np.sqrt(np.dot(df, df)) < eps) or (globvar.steps > 1000) :
+            break
+        
+    # END MIN SEARCH
+
+    # Return the accepted approximation
+    if globvar.steps > 1000:
+        print('\nToo many steps used! Quitting...\n')
+        exit()
+    else:
+        return x
+
 
 #
 # Function to do the Newtons method with known derivatives and backtracking linesearch
 #
-def newton_min(f, grad, hessian, x0, alpha, eps):
+def newton(f, grad, hessian, x0, alpha, eps):
     """
     Finds the minimum of a function using Newton's method with simple back-
     tracking linesearch. The derivatives, in the form of the gradient and the
@@ -39,7 +125,8 @@ def newton_min(f, grad, hessian, x0, alpha, eps):
     x = np.copy(x0)
     n = len(x)
 
-    # Initial evaluation of the gradient (updates done in bottom of loop)
+    # Initial evaluation of the function and gradient (updates done in bottom of loop)
+    fx = f(x)
     df = grad(x)
 
     # BEGIN MIN SEARCH  -->  Keep going until accuracy reached
@@ -47,7 +134,6 @@ def newton_min(f, grad, hessian, x0, alpha, eps):
 
         # Increase counter and evaluate function
         globvar.steps += 1
-        fx = f(x)
 
         # Evaluate Hessian (gradient is updates in previous iteration)
         H = hessian(x)
@@ -62,12 +148,12 @@ def newton_min(f, grad, hessian, x0, alpha, eps):
         lamb = 2.0  # lambda is a special keyword
         
         while True:
-            lamb /= 2
+            lamb /= 2.0
             y = x + Dx*lamb
             fy = f(y)
 
             # Condition to end  --> The Armijo condition
-            if (fy < fx + alpha*lamb*dot) or (lamb < 1/128):
+            if (abs(fy) < abs(fx) + alpha*lamb*dot) or (lamb < 1/128.0):
                 break
         # END BACKTRACK
 
