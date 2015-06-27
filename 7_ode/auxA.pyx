@@ -27,7 +27,7 @@ def rkstep23(F, x, y, h):
     c1 = 0
     c2 = 1/2.0
     c3 = 3/4.0
-    c4 = 0
+    c4 = 1
 
     # The Runge-Kutta matrix
     a21 = 1/2.0
@@ -66,6 +66,25 @@ def rkstep23(F, x, y, h):
     return yh, normerr
 
 
+#
+# Another stepper
+#
+def rkstep12(F, x, y, h):
+    # Coefficients
+    k0  = F(x, y)
+    k12 = F(x + 0.5*h, y + 0.5*h*k0)
+
+    # Approximation of function and step-error
+    yh = y + k12*h
+    err = (k0 - k12)*0.5*h
+    normerr = np.sqrt(np.dot(err, err))
+
+    # Return
+    return yh, normerr
+
+#
+# Driver for solving ODE
+#
 def rkdriver(F, a, b, ya, h, acc, eps, method):
     """
     Evolves a function from a to b using a specified Runge-Kutta stepper and
@@ -86,6 +105,8 @@ def rkdriver(F, a, b, ya, h, acc, eps, method):
     # Which stepper to use
     if method.lower() in ['rkstep23', 'rk23']:
         stepper = rkstep23
+    elif method.lower() in ['rkstep12', 'rk12']:
+        stepper = rkstep12
     else:
         print('Unknown stepper selected!', file=sys.stderr)
         return

@@ -32,7 +32,7 @@ def mainA():
     yinit = np.array([0, 1], dtype='float')
 
     # Evolve the system
-    xf1, yf1 = ode.rkdriver(f1, a, b, yinit, step, acc, eps, 'rkstep23')
+    xf1, yf1 = ode.rkdriver(f1, a, b, yinit, step, acc, eps, 'rkstep12')
 
     # Make output
     print('# Output from f1: y0')
