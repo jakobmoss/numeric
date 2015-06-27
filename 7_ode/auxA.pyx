@@ -3,6 +3,7 @@
 # General modules
 import numpy as np
 import math
+import sys
 
 
 #
@@ -86,7 +87,7 @@ def rkdriver(F, a, b, ya, h, acc, eps, method):
     if method.lower() in ['rkstep23', 'rk23']:
         stepper = rkstep23
     else:
-        print('Unknown stepper selected!')
+        print('Unknown stepper selected!', file=sys.stderr)
         return
         
     # Initializations
@@ -116,8 +117,8 @@ def rkdriver(F, a, b, ya, h, acc, eps, method):
 
         # If local error less than the local tolerance: Accept the step
         if err < tol:
-            xs = np.append(xs, x+h)
-            ys = np.append(ys, yh)
+            xs = np.vstack([xs, x+h])
+            ys = np.vstack([ys, yh])
 
         # If the error is non-zero: decrese the step. Otherwise: double it.
         if err > 0:

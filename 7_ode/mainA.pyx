@@ -2,6 +2,7 @@
 
 import numpy as np
 import auxA as ode
+import sys
 
 
 #
@@ -32,3 +33,5 @@ def mainA():
 
     # Evolve the system
     x1, y1 = ode.rkdriver(f1, a, b, yinit, step, acc, eps, 'rkstep23')
+
+    # Make output
