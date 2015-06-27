@@ -2,6 +2,7 @@
 
 # General modules
 import numpy as np
+import math
 
 
 #
@@ -58,6 +59,73 @@ def rkstep23(F, x, y, h):
     yh = y + h*(b1*k1 + b2*k2 + b3*k3 + b4*k4)
     yhs = y + h*(bs1*k1 + bs2*k2 + bs3*k3 + bs4*k4)
     err = yh - yhs
-
+    normerr = np.sqrt(np.dot(err, err))
+    
     # Return approximation and error
-    return yh, err
+    return yh, normerr
+
+
+def rkdriver(F, a, b, ya, h, acc, eps, method):
+    """
+    Evolves a function from a to b using a specified Runge-Kutta stepper and
+    adaptive step-size
+
+    Returns the list of steps and calculated function values
+
+    Arguments:
+    - `F`: Function to evolve
+    - `a`: Starting point
+    - `b`: End point
+    - `ya`: Function value at starting point
+    - `h`: Initial step-size
+    - `acc`: Absolute precision
+    - `eps`: Relative presision
+    - `method`: Which stepper to use (as a string)
+    """
+    # Which stepper to use
+    if method.lower() in ['rkstep23', 'rk23']:
+        stepper = rkstep23
+    else:
+        print('Unknown stepper selected!')
+        return
+        
+    # Initializations
+    power = 0.25
+    safety = 0.95
+    xs = np.array([a], dtype='float')
+    ys = np.array([ya], dtype='float')
+
+    # BEGIN  -->  EVOLVE TOWARDS B
+    while True:
+        x = np.array(xs[-1], dtype='float')
+        y = np.array(ys[-1], dtype='float')
+
+        # CONDITION TO END: Have we reached the end of the interval?
+        if x >= b:
+            break
+
+        # If the step would end outside the interval: Step to the edge
+        if (x+h) > b:
+            h = b - x
+
+        # Perform the step
+        yh, err = stepper(F, x, y, h)
+
+        # Calculate local tolerance -- Note: norm(x) := np.sqrt(np.dot(x,x))
+        tol = (eps*np.sqrt(np.dot(yh, yh)) + acc) * math.sqrt(h/(b-a))
+
+        # If local error less than the local tolerance: Accept the step
+        if err < tol:
+            xs = np.append(xs, x+h)
+            ys = np.append(ys, yh)
+
+        # If the error is non-zero: decrese the step. Otherwise: double it.
+        if err > 0:
+            h *= math.pow(tol/err, power) * safety
+        else:
+            h *= 2
+
+    # END EVOLUTION
+
+    # Return the stored data
+    return xs, ys
