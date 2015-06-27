@@ -42,4 +42,4 @@ roots.so: setup_ext.py roots.pyx
 	python3 $< build_ext --inplace
 
 clean-ext:
-	rm -rf givens.c givens.so datafun.c datafun.so globvar.c globvar.so
+	rm -rf givens.c givens.so datafun.c datafun.so globvar.c globvar.so roots.c roots.so
