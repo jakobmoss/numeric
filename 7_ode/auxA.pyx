@@ -98,8 +98,8 @@ def rkdriver(F, a, b, ya, h, acc, eps, method):
 
     # BEGIN  -->  EVOLVE TOWARDS B
     while True:
-        x = np.array(xs[-1], dtype='float')
-        y = np.array(ys[-1], dtype='float')
+        x = xs[-1]
+        y = ys[-1]
 
         # CONDITION TO END: Have we reached the end of the interval?
         if x >= b:
@@ -117,7 +117,7 @@ def rkdriver(F, a, b, ya, h, acc, eps, method):
 
         # If local error less than the local tolerance: Accept the step
         if err < tol:
-            xs = np.vstack([xs, x+h])
+            xs = np.append(xs, x+h)
             ys = np.vstack([ys, yh])
 
         # If the error is non-zero: decrese the step. Otherwise: double it.
