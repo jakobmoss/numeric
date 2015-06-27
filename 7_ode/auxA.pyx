@@ -51,14 +51,14 @@ def rkstep23(F, x, y, h):
     # END  -->  BUTCHER'S TABLEAU
 
     # Calculate the k's
-    k1 = F(x + c1*h, y)
-    k2 = F(x + c2*h, y + a21*k1)
-    k3 = F(x + c3*h, y + a31*k1 + a32*k2)
-    k4 = F(x + c4*h, y + a41*k1 + a42*k2 + a43*k3)
+    k1 = h*F(x + c1*h, y)
+    k2 = h*F(x + c2*h, y + a21*k1)
+    k3 = h*F(x + c3*h, y + a31*k1 + a32*k2)
+    k4 = h*F(x + c4*h, y + a41*k1 + a42*k2 + a43*k3)
 
     # Approximate next step and error
-    yh = y + h*(b1*k1 + b2*k2 + b3*k3 + b4*k4)
-    yhs = y + h*(bs1*k1 + bs2*k2 + bs3*k3 + bs4*k4)
+    yh = y + b1*k1 + b2*k2 + b3*k3 + b4*k4
+    yhs = y + bs1*k1 + bs2*k2 + bs3*k3 + bs4*k4
     err = yh - yhs
     normerr = np.sqrt(np.dot(err, err))
     
@@ -67,9 +67,21 @@ def rkstep23(F, x, y, h):
 
 
 #
-# Another stepper
+# Another simple stepper for testing purposes
 #
 def rkstep12(F, x, y, h):
+    """
+    Embedded Runge-Kutta stepper of orders 2 and 1, using the mid-point
+    method.
+
+    Returns etimates of function and error on the step
+
+    Arguments:
+    - `F`: Function containing the right-hand-side
+    - `x`: Current location
+    - `y`: Current value of the function
+    - `h`: Step-size
+    """
     # Coefficients
     k0  = F(x, y)
     k12 = F(x + 0.5*h, y + 0.5*h*k0)
@@ -81,6 +93,7 @@ def rkstep12(F, x, y, h):
 
     # Return
     return yh, normerr
+
 
 #
 # Driver for solving ODE

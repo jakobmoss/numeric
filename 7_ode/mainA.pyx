@@ -28,11 +28,11 @@ def mainA():
 
     # Initial contitions
     a = 0
-    b = 8
+    b = 10
     yinit = np.array([0, 1], dtype='float')
 
     # Evolve the system
-    xf1, yf1 = ode.rkdriver(f1, a, b, yinit, step, acc, eps, 'rkstep12')
+    xf1, yf1 = ode.rkdriver(f1, a, b, yinit, step, acc, eps, 'rkstep23')
 
     # Make output
     print('# Output from f1: y0')
