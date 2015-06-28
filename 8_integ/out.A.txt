@@ -1,0 +1,13 @@
+
+ ** Integrating 2*exp(-x^2)/sqrt(pi) from 0 to 1  ** 
+Exact solution = erf(1) ~ 0.842700792949715
+- Integration with closed quadratures:
+Integrand calls = 22
+Integral        = 0.842696118142810
+Error estimate  = 4.55590e-04
+Actual error    = 4.67481e-06
+- Integration with open quadratures:
+Integrand calls = 12
+Integral        = 0.842729958487199
+Error estimate  = 3.04369e-04
+Actual error    = 2.91655e-05
