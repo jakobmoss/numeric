@@ -36,7 +36,7 @@ def f4(x):
 #
 def mainA():
     """
-    Test of the ODE routines
+    Test of the routines for adaptive integration
     """
     ##############
     # Function 1 #

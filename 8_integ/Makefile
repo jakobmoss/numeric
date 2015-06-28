@@ -1,6 +1,6 @@
 # Make all targets
 all: A
-clean: cleanA
+clean: cleanA clean-ext
 
 # Target A
 A: out.A.txt
