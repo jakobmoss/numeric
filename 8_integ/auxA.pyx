@@ -98,7 +98,7 @@ def rcquad24(F, a, b, f1, f4, acc, eps, nrec):
 #
 # OPEN QUAD  -->  Interface
 #
-def roquad(F, a, b, acc, eps):
+def roquad(F, a, b, acc, eps, fixzero=False):
     """
     Recursive adaptive integration using Open QUADratures. Uses a 4th order
     trapezium rule for evaluation with 2nd order rectangular rule for error 
@@ -112,6 +112,8 @@ def roquad(F, a, b, acc, eps):
     - `b`: End point
     - `acc`: Allowed absolute error
     - `eps`: Allowed relative error
+    - `fixzero`: Flag to fix the extremely rare case when Q == q. Only set if
+                 routine exits prematurely with an error estimate of 0.
     """
     # If the limits are okay: Perform the integration
     if a < b:
@@ -122,7 +124,7 @@ def roquad(F, a, b, acc, eps):
         f3 = F(a + h*x3)
 
         # Call the integrator and return
-        Q, err = roquad24(F, a, b, f2, f3, acc, eps, 0)
+        Q, err = roquad24(F, a, b, f2, f3, acc, eps, 0, fixzero)
         return Q, err
     else:
         print('Check your limits!', file=sys.stderr)
@@ -130,7 +132,7 @@ def roquad(F, a, b, acc, eps):
 #
 # OPEN QUAD  -->  Integrator
 #
-def roquad24(F, a, b, f2, f3, acc, eps, nrec):
+def roquad24(F, a, b, f2, f3, acc, eps, nrec, fixzero):
     """
     The actual integrator. Is called from the interface function rcquad.
 
@@ -168,6 +170,10 @@ def roquad24(F, a, b, f2, f3, acc, eps, nrec):
     err = abs(Q - q)
     tol = acc + eps*abs(Q)
 
+    # Special flag to fix the extremely rare case when Q == q !
+    if fixzero:
+        if err == 0: err = 10*acc
+    
     # If the error is small: Accept the integration; return estimate and error
     if err < tol:
         return Q, err
@@ -176,8 +182,8 @@ def roquad24(F, a, b, f2, f3, acc, eps, nrec):
     # scaled absolute accuracy goal. Appropriate points are re-used.
     else:
         accscale = math.sqrt(2)
-        Ql, errl = roquad24(F, a, a+h/2.0, f1, f2, acc/accscale, eps, nrec+1)
-        Qr, errr = roquad24(F, a+h/2.0, b, f3, f4, acc/accscale, eps, nrec+1)
+        Ql, errl = roquad24(F, a, a+h/2.0, f1, f2, acc/accscale, eps, nrec+1, fixzero)
+        Qr, errr = roquad24(F, a+h/2.0, b, f3, f4, acc/accscale, eps, nrec+1, fixzero)
         Qtot = Ql + Qr
         errtot = math.sqrt(errl*errl + errr*errr)
         return Qtot, errtot

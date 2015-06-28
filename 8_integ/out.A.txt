@@ -11,3 +11,16 @@ Integrand calls = 12
 Integral        = 0.842729958487199
 Error estimate  = 3.04369e-04
 Actual error    = 2.91655e-05
+
+ ** Integrating 1/(2+sin(x)) from 0 to 2*pi ** 
+Exact solution = 2*pi/sqrt(3) ~ 3.627598728468436
+- Integration with closed quadratures:
+Integrand calls = 1636
+Integral        = 3.627598727100504
+Error estimate  = 5.81468e-07
+Actual error    = 1.36793e-09
+- Integration with open quadratures:
+Integrand calls = 952
+Integral        = 3.627598738393309
+Error estimate  = 6.81394e-07
+Actual error    = 9.92487e-09
