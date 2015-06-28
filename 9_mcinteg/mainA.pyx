@@ -49,7 +49,7 @@ def mainA():
     # Error-estimation as a function of N
     #  .. it is almost abusive to use stderr for this..
     print('# Error-estimate from part A', file=sys.stderr)
-    for k in range(1, 6):
+    for k in range(1, 8):
         N = int(math.pow(10, k))
         res, err = mcint.plainmc(f1, a1, b1, N)
         print('{0:12d} {1:16.12f}'.format(N, err), file=sys.stderr)

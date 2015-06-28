@@ -3,8 +3,8 @@
 Exact solution = 4
 - Plain Monte Carlo integration:
 Sampling (N):  = 1000
-Integral       = 3.995045787703318
-Error estimate = 9.03537e-02
-Actual error   = 4.95421e-03
+Integral       = 3.983448294675703
+Error estimate = 8.93893e-02
+Actual error   = 1.65517e-02
 
 A plot of how the error scales with N is shown in plot.A.pdf (the data is kept in Aerr.dat)
