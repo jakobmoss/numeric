@@ -1,0 +1,8 @@
+
+ ** Integrating y*cos(x) from (x,y) = (-pi/2,0) to (pi/2,1) ** 
+Exact solution = 1
+- Plain Monte Carlo integration:
+Sampling (N):  = 1000
+Integral       = 1.026011145591564
+Error estimate = 2.57746e-02
+Actual error   = 2.60111e-02

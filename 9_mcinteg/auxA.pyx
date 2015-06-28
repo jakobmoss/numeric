@@ -29,7 +29,7 @@ def plainmc(F, a, b, N):
 
     # Sample the N points
     for i in range(N):
-        randsamp(a, b, x)
+        x = np.random.uniform(a, b, len(a))  # SEE NOTE 1
         y = F(x)
         s += y
         ss += y*y
@@ -43,12 +43,8 @@ def plainmc(F, a, b, N):
     res = volume * mean
     return res, err
 
-    
-#
-# Random sampling for the Monte Carlo integration
-#
-def randsamp(a, b, x):
-    """
-    Fill vector x with random numbers on the interval [a, b]
-    """
-    x = a + np.random.uniform(0, 1, len(a)) * (b - a)
+
+# NOTE 1
+# This should be equivalent to
+#  >  x = a + np.random.uniform(0, 1, len(a)) * (b - a)
+# which is just a vectorized version of the function in the lecture notes.

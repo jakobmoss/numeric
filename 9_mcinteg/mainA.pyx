@@ -27,6 +27,19 @@ def mainA():
     # Function 1 #
     ##############
     # Initializations
-    a = np.array([-math.pi/2.0, 0])
-    b = np.array([math.pi/2.0, 1])
+    a1 = np.array([-math.pi/2.0, 0])
+    b1 = np.array([math.pi/2.0, 1])
     exact1 = 1
+    N1 = 1000
+
+    # Pretty print!
+    print('\n ** Integrating y*cos(x) from (x,y) = (-pi/2,0) to (pi/2,1) ** ')
+    print('Exact solution = {0:d}'.format(exact1))
+
+    # Perform the integration
+    res1, err1 = mcint.plainmc(f1, a1, b1, N1)
+    print('- Plain Monte Carlo integration:')
+    print('Sampling (N):  = {0:d}'.format(N1))
+    print('Integral       = {0:.15f}'.format(res1))
+    print('Error estimate = {0:.5e}'.format(err1))
+    print('Actual error   = {0:.5e}'.format(abs(res1 -  exact1)))
