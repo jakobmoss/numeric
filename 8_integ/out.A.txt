@@ -24,3 +24,16 @@ Integrand calls = 952
 Integral        = 3.627598738393309
 Error estimate  = 6.81394e-07
 Actual error    = 9.92487e-09
+
+ ** Integrating x^2 / exp(x) from 0 to 1  ** 
+Exact solution = 2 - 10/e^2 ~ 0.646647167633873
+- Integration with closed quadratures:
+Integrand calls = 82
+Integral        = 0.646647566435512
+Error estimate  = 3.30953e-05
+Actual error    = 3.98802e-07
+- Integration with open quadratures:
+Integrand calls = 40
+Integral        = 0.646645550236395
+Error estimate  = 9.17361e-05
+Actual error    = 1.61740e-06

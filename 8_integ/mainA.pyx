@@ -19,6 +19,10 @@ def f2(x):
     globvar.calls += 1
     return 1 / (2 + math.sin(x))
 
+def f3(x):
+    globvar.calls += 1
+    return math.pow(x, 2) / math.exp(x)
+
 #
 # Main function
 #
@@ -93,3 +97,36 @@ def mainA():
     print('Integral        = {0:.15f}'.format(Qo2))
     print('Error estimate  = {0:.5e}'.format(erro2))
     print('Actual error    = {0:.5e}'.format(abs(Qo2 -  exact2)))
+
+
+    ##############
+    # Function 3 #
+    ##############
+    # Conditions
+    acc = 1e-4
+    eps = 1e-4
+    a3 = 0
+    b3 = 2
+    exact3 = 2 - 10/math.exp(2)
+    
+    # Pretty print!
+    print('\n ** Integrating x^2 / exp(x) from', a1, 'to', b1, ' ** ')
+    print('Exact solution = 2 - 10/e^2 ~ {0:.15f}'.format(exact3))
+
+    # Closed quadratures
+    globvar.calls = 0
+    Qc3, errc3 = adapt.rcquad(f3, a3, b3, acc, eps)
+    print('- Integration with closed quadratures:')
+    print('Integrand calls =', globvar.calls)
+    print('Integral        = {0:.15f}'.format(Qc3))
+    print('Error estimate  = {0:.5e}'.format(errc3))
+    print('Actual error    = {0:.5e}'.format(abs(Qc3 -  exact3)))
+
+    # Open quadratures
+    globvar.calls = 0
+    Qo3, erro3 = adapt.roquad(f3, a3, b3, acc, eps)
+    print('- Integration with open quadratures:')
+    print('Integrand calls =', globvar.calls)
+    print('Integral        = {0:.15f}'.format(Qo3))
+    print('Error estimate  = {0:.5e}'.format(erro3))
+    print('Actual error    = {0:.5e}'.format(abs(Qo3 -  exact3)))
