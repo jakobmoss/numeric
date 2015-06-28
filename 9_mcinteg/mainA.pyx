@@ -15,7 +15,15 @@ def f1(q):
     """
     return math.cos(q[0]) * math.sin(q[1])
 
+def f2(q):
+    """
+    [1 - cos(x)cos(y)cos(z)]^-1
+    """
+    val = 1 / ((1 - math.cos(q[0])*math.cos(q[1])*math.cos(q[2])) \
+               * math.pi*math.pi*math.pi)
+    return val
 
+    
 #
 # Main function
 #
@@ -53,3 +61,28 @@ def mainA():
         N = int(math.pow(10, k))
         res, err = mcint.plainmc(f1, a1, b1, N)
         print('{0:12d} {1:16.12f}'.format(N, err), file=sys.stderr)
+
+
+    ###############################
+    # Function 2 (the tricky one) #
+    ###############################
+    # Initializations
+    a2 = np.array([0, 0, 0], dtype='float')
+    b2 = np.array([math.pi, math.pi, math.pi])
+#    exact2 = math.pow(math.gamma(1/4), 4) / (4*math.pow(math.pi, 3))
+    exact2 = 1.3932039296856768591842462603255 # The one above raises
+                                               # math domain error ??
+    N2 = 10000000
+    
+    # Pretty print!
+    print('\n\n\n ** Integrating 1 / ((1 - cos(x)*cos(y)*cos(z))*pi^3)',
+          'from (x,y,z) = (0,0,0) to (pi,pi,pi)')
+    print('Exact solution = {0:.15f}'.format(exact2))
+
+    # Do the integration
+    res2, err2 = mcint.plainmc(f2, a2, b2, N2)
+    print('- Plain Monte Carlo integration:')
+    print('Sampling (N):  = {0:d}'.format(N2))
+    print('Integral       = {0:.15f}'.format(res2))
+    print('Error estimate = {0:.5e}'.format(err2))
+    print('Actual error   = {0:.5e}'.format(abs(res2 -  exact2)))

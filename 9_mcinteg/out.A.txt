@@ -3,8 +3,18 @@
 Exact solution = 4
 - Plain Monte Carlo integration:
 Sampling (N):  = 1000
-Integral       = 3.983448294675703
-Error estimate = 8.93893e-02
-Actual error   = 1.65517e-02
+Integral       = 3.958848216838187
+Error estimate = 9.08485e-02
+Actual error   = 4.11518e-02
 
 A plot of how the error scales with N is shown in plot.A.pdf (the data is kept in Aerr.dat)
+
+
+
+ ** Integrating 1 / ((1 - cos(x)*cos(y)*cos(z))*pi^3) from (x,y,z) = (0,0,0) to (pi,pi,pi)
+Exact solution = 1.393203929685677
+- Plain Monte Carlo integration:
+Sampling (N):  = 10000000
+Integral       = 1.389124789690063
+Error estimate = 3.40310e-03
+Actual error   = 4.07914e-03
