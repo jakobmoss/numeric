@@ -1,8 +1,10 @@
 
- ** Integrating y*cos(x) from (x,y) = (-pi/2,0) to (pi/2,1) ** 
-Exact solution = 1
+ ** Integrating cos(x)*sin(y) from (x,y) = (-pi/2,0) to (pi/2,pi) ** 
+Exact solution = 4
 - Plain Monte Carlo integration:
 Sampling (N):  = 1000
-Integral       = 1.026011145591564
-Error estimate = 2.57746e-02
-Actual error   = 2.60111e-02
+Integral       = 3.995045787703318
+Error estimate = 9.03537e-02
+Actual error   = 4.95421e-03
+
+A plot of how the error scales with N is shown in plot.A.pdf (the data is kept in Aerr.dat)
