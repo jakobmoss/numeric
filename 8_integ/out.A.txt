@@ -25,7 +25,7 @@ Integral        = 3.627598738393309
 Error estimate  = 6.81394e-07
 Actual error    = 9.92487e-09
 
- ** Integrating x^2 / exp(x) from 0 to 1  ** 
+ ** Integrating x^2 / exp(x) from 0 to 2  ** 
 Exact solution = 2 - 10/e^2 ~ 0.646647167633873
 - Integration with closed quadratures:
 Integrand calls = 82
@@ -37,3 +37,21 @@ Integrand calls = 40
 Integral        = 0.646645550236395
 Error estimate  = 9.17361e-05
 Actual error    = 1.61740e-06
+
+ ** Integrating 4*sqrt(1-(1-x^2)) from 0 to 1  ** 
+Exact solution = pi ~ 3.1415926535897931
+- Integration with closed quadratures:
+Integrand calls = 268540
+Integral        = 3.1415926535897931
+Error estimate  = 3.141952755e-13
+Actual error    = 0.000000000e+00
+- Integration with open quadratures:
+Integrand calls = 155756
+Integral        = 3.1415926535897931
+Error estimate  = 6.411547421e-13
+Actual error    = 0.000000000e+00
+- Integration with SciPy routine (from QUADPACK):
+Integrand calls = 315
+Integral        = 3.1415926535897927
+Error estimate  = 5.329070518e-15
+Actual error    = 4.440892099e-16

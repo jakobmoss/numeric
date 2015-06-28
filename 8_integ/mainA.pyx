@@ -1,9 +1,13 @@
 # cython: language_level=3
 
+# General modules
 import numpy as np
 import math
 import auxA as adapt
 import sys
+
+# Library routines for integration
+from scipy import integrate
 
 # Global variable to count number of function calls
 import globvar
@@ -13,7 +17,7 @@ import globvar
 #
 def f1(x):
     globvar.calls += 1
-    return math.exp(-x**2) * 2.0/math.sqrt(math.pi)
+    return math.exp(-math.pow(x, 2)) * 2.0/math.sqrt(math.pi)
 
 def f2(x):
     globvar.calls += 1
@@ -22,6 +26,10 @@ def f2(x):
 def f3(x):
     globvar.calls += 1
     return math.pow(x, 2) / math.exp(x)
+
+def f4(x):
+    globvar.calls +=1
+    return 4 * math.sqrt(1 - math.pow(1-x, 2))
 
 #
 # Main function
@@ -110,7 +118,7 @@ def mainA():
     exact3 = 2 - 10/math.exp(2)
     
     # Pretty print!
-    print('\n ** Integrating x^2 / exp(x) from', a1, 'to', b1, ' ** ')
+    print('\n ** Integrating x^2 / exp(x) from', a3, 'to', b3, ' ** ')
     print('Exact solution = 2 - 10/e^2 ~ {0:.15f}'.format(exact3))
 
     # Closed quadratures
@@ -130,3 +138,45 @@ def mainA():
     print('Integral        = {0:.15f}'.format(Qo3))
     print('Error estimate  = {0:.5e}'.format(erro3))
     print('Actual error    = {0:.5e}'.format(abs(Qo3 -  exact3)))
+
+    
+    ##############
+    # Function 4 #
+    ##############
+    # Conditions
+    acc = 1e-12
+    eps = 1e-12
+    a4= 0
+    b4 = 1
+    exact4 = math.pi
+    
+    # Pretty print!
+    print('\n ** Integrating 4*sqrt(1-(1-x^2)) from', a4, 'to', b4, ' ** ')
+    print('Exact solution = pi ~ {0:.16f}'.format(exact4))
+
+    # Closed quadratures
+    globvar.calls = 0
+    Qc4, errc4 = adapt.rcquad(f4, a4, b4, acc, eps)
+    print('- Integration with closed quadratures:')
+    print('Integrand calls =', globvar.calls)
+    print('Integral        = {0:.16f}'.format(Qc4))
+    print('Error estimate  = {0:.9e}'.format(errc4))
+    print('Actual error    = {0:.9e}'.format(abs(Qc4 -  exact4)))
+
+    # Open quadratures
+    globvar.calls = 0
+    Qo4, erro4 = adapt.roquad(f4, a4, b4, acc, eps)
+    print('- Integration with open quadratures:')
+    print('Integrand calls =', globvar.calls)
+    print('Integral        = {0:.16f}'.format(Qo4))
+    print('Error estimate  = {0:.9e}'.format(erro4))
+    print('Actual error    = {0:.9e}'.format(abs(Qo4 -  exact4)))
+
+    # SciPy integration routine (from QUADPACK)
+    globvar.calls = 0
+    Qsp, errsp = integrate.quad(f4, a4, b4, epsabs=acc, epsrel=eps)
+    print('- Integration with SciPy routine (from QUADPACK):')
+    print('Integrand calls =', globvar.calls)
+    print('Integral        = {0:.16f}'.format(Qsp))
+    print('Error estimate  = {0:.9e}'.format(errsp))
+    print('Actual error    = {0:.9e}'.format(abs(Qsp -  exact4)))
