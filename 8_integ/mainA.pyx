@@ -1,7 +1,7 @@
 # cython: language_level=3
 
 import numpy as np
-import auxA as adint
+import auxA as adapt
 import sys
 
 
