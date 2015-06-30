@@ -1,2 +1,3 @@
 # Ignore specific Cython .c-files
 *.c
+materials
