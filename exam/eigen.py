@@ -1,25 +1,43 @@
+###########################################
+# Numerical Methods 2015
+# Examination assignment
+# Jakob Rørsted Mosumgaard
+#
+# Time-stamp: <2015-06-30 16:13:22 moss>
+#
+# Implementation of the routines
+############################################
+
+#
 # Modules
+#
 import numpy as np
 import numpy.linalg as la
 import givens as qr
 
 
 #
-# Functions
+# Inverse (power) iteration method
 #
-def inviter(A0, shift=0):
+def inviter(A0, N=10, shift=0):
     """
-    Inverse iteration algorithm to determine eigenvalues and -vectors
+    Inverse iteration algorithm to determine an eigenvalue and with
+    corresponding eigenvector.
+
+    Returns the approximation of the eigenvalue and -vector.
 
     Arguments:
     - `A0`: Matrix
+    - `N`: Number of iterations (default 10)
+    - `shift`: Initial guess on eigenvalue (if not set, the routine will
+               converge towards the one of lowest magnitude)
     """
-    # Work on a copy of the matrix and initialize identity matrix
+    # Work on a copy of the matrix
     A = np.copy(A0)
 
-    # Initialize normalized arbitary vector
-    w = np.random.random(A.shape[0])
-    w /= la.norm(w)
+    # Initialize normalized arbitary vector --> v_0
+    v = np.random.random(A.shape[0])
+    v /= la.norm(v)
 
     # Perform a shift?
     if shift:
@@ -29,33 +47,12 @@ def inviter(A0, shift=0):
     # Make QR-decomposition with Givens's rotation
     qr.decomp(A)
 
-    # Run the loop
+    # BEGIN the iteration
     for k in range(20):
-        v = w             # Update current value
-        w = np.copy(v)    # v contains (k-1)'th
-        qr.solve(A, w)    # Solve Aw = v  <-->  A x_{k} = x_{k-1}
-        w /= la.norm(w)   # w contains k'th
+        qr.solve(A, v)    # Solves A v_{k} = v_{k-1} in-place
+        v /= la.norm(v)   # Normalize v_k
 
     # Estimate eigenvalue using the Rayleigh quotient
-    lamb = np.dot(np.dot(w, A0), w)
+    lamb = np.dot(np.dot(v, A0), v)
 
     return lamb, v
-
-#
-# Run
-#
-
-# Test-matrix
-A = np.array([[-5, 9, -4, 10], [9, -1, 3, 9], [-4, 3, -6, 2], [10, 9, 2, 3]],
-             dtype='float')
-print('Test-matrix: A =\n', A)
-
-# Results from NumPy routine
-npval, npvec = la.eig(A)
-print('\nEigenvalues by NumPy :\n', npval)
-print('Eigenvectors NumPy   :\n', npvec)
-
-# Run own alg
-val, vec = inviter(A, -7)
-print('\nEigenvalue by inverse iteration:', val)
-print('\nEigenvector by inverse iteration:', vec.T)

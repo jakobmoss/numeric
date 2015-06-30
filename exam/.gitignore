@@ -1,3 +1,4 @@
 # Ignore specific Cython .c-files
 *.c
 materials
+notes.txt
