@@ -7,7 +7,7 @@ import givens as qr
 #
 # Functions
 #
-def inviter(A0):
+def inviter(A0, shift=0):
     """
     Inverse iteration algorithm to determine eigenvalues and -vectors
 
@@ -21,11 +21,16 @@ def inviter(A0):
     w = np.random.random(A.shape[0])
     w /= la.norm(w)
 
-    # Decompose A = QR with Givens's rotation
+    # Perform a shift?
+    if shift:
+        I = np.eye(A.shape[0], dtype='float')
+        A -= shift * I
+
+    # Make QR-decomposition with Givens's rotation
     qr.decomp(A)
 
     # Run the loop
-    for k in range(10):
+    for k in range(20):
         v = w             # Update current value
         w = np.copy(v)    # v contains (k-1)'th
         qr.solve(A, w)    # Solve Aw = v  <-->  A x_{k} = x_{k-1}
@@ -51,7 +56,6 @@ print('\nEigenvalues by NumPy :\n', npval)
 print('Eigenvectors NumPy   :\n', npvec)
 
 # Run own alg
-val, vec = inviter(A)
+val, vec = inviter(A, -7)
 print('\nEigenvalue by inverse iteration:', val)
 print('\nEigenvector by inverse iteration:', vec.T)
-print('\nHas it changed?: A =\n', A)
