@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-01 19:32:25 moss>
+# Time-stamp: <2015-07-01 20:33:08 moss>
 #
 # Part A
 ###########################################
@@ -65,7 +65,7 @@ def __basictest(A, iters, guesses):
     # Test if different eigenvalues can be found using a shift
     print('\n\n-- Searching for different eigenvalues by introducing a shift')
     for guess in guesses:
-        val, vec = eigen.inviter(A, iters, guess)
+        val, vec = eigen.inviter(A, N=iters, shift=guess)
         print('\nFinding eigenvalue near', guess, 'using', iters,
               'iterations...')
         print('Eigenvalue by inverse iteration  :', val)
@@ -80,19 +80,19 @@ def __convtest(A, exacteigen, Nmax):
     print('# PartA: Data for convergence test')
 
     # Test the different number of iterations
-    for N in range(Nmax):
-        val, vec = eigen.inviter(A, N)
+    for n in range(Nmax):
+        val, vec = eigen.inviter(A, N=n)
         diff = abs(exacteigen - val)
-        print('{0:3d} {1:17.9e}'.format(N, diff[0]))
+        print('{0:3d} {1:17.9e}'.format(n, diff[0]))
 
     # Test the convergence along the way by keeping the initial vector
     vinit = np.random.random(A.shape[0])
     vinit /= la.norm(vinit)
     print('\n')  # New index in Gnuplot
-    for N in range(Nmax):
-        val, vec = eigen.inviter(A, N, override=True, v0=vinit)
+    for n in range(Nmax):
+        val, vec = eigen.inviter(A, N=n, override=True, v0=vinit)
         diff = abs(exacteigen - val)
-        print('{0:3d} {1:17.9e}'.format(N, diff[0]))
+        print('{0:3d} {1:17.9e}'.format(n, diff[0]))
 
 
 #

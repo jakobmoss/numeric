@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-01 19:34:27 moss>
+# Time-stamp: <2015-07-01 20:34:16 moss>
 #
 # Part B
 ###########################################
@@ -45,8 +45,40 @@ def __initsys(verbose=True):
     return A, npval, npvec
 
 
+def __basictest(A, iters, guesses):
+    """
+    Basic test of the inverse iteration algorithm with and without a shift
+    Prints to stdout.
+    """
+    # Pretty print!
+    print('\n\n*************************************************')
+    print('** Finding eigenvalues using inverse iteration **')
+    print('*************************************************')
+
+    # Eigenvalue of leat magnitude
+    iters = 10
+    print('\nFinding eigenvalue of least magnitude using', iters, 'iterations')
+    valmin, vecmin = eigen.inviter_up(A)
+    print('Estimated eigenvalue  :', valmin)
+    print('Estimated eigenvector :', vecmin.T)
+
+    # Test if different eigenvalues can be found using a shift
+    print('\n\n-- Searching for different eigenvalues by introducing a shift')
+    for guess in guesses:
+        val, vec = eigen.inviter_up(A, N=iters, shift=guess)
+        print('\nFinding eigenvalue near', guess, 'using', iters,
+              'iterations...')
+        print('Eigenvalue by inverse iteration  :', val)
+        print('Eigenvector by inverse iteration :', vec.T)
+
+
 #
 # Main of Part B
 #
 def main(**options):
-    A, npval, npvec = __initsys()  # Testing-matrix and eigens from NumPy
+    # Basic test of the functionality
+    if options['basic']:
+        A, npval, npvec = __initsys()
+        Niter = 10
+        eigenguess = [-13, -7, -1, 12]
+        __basictest(A, Niter, eigenguess)
