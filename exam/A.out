@@ -25,12 +25,12 @@ Estimated eigenvector : [-0.4201111   0.22068228  0.87704351  0.07483762]
 -- Searching for different eigenvalues by introducing a shift
 
 Finding eigenvalue near -13 using 10 iterations...
-Eigenvalue by inverse iteration  : -15.7879589603
-Eigenvector by inverse iteration : [ 0.74330443 -0.39155485  0.4766563  -0.258809  ]
+Eigenvalue by inverse iteration  : -15.7879589639
+Eigenvector by inverse iteration : [-0.74329893  0.39157981 -0.47665783  0.2587842 ]
 
 Finding eigenvalue near -7 using 10 iterations...
 Eigenvalue by inverse iteration  : -8.14737457934
-Eigenvector by inverse iteration : [ 0.15412947  0.70015182 -0.04296812 -0.69583423]
+Eigenvector by inverse iteration : [ 0.15412951  0.7001518  -0.04296822 -0.69583424]
 
 Finding eigenvalue near -1 using 10 iterations...
 Eigenvalue by inverse iteration  : -3.15844599667
@@ -38,4 +38,4 @@ Eigenvector by inverse iteration : [-0.4201111   0.22068228  0.87704351  0.07483
 
 Finding eigenvalue near 12 using 10 iterations...
 Eigenvalue by inverse iteration  : 18.0937795409
-Eigenvector by inverse iteration : [ 0.49724729  0.55475959  0.0417874   0.66576327]
+Eigenvector by inverse iteration : [ 0.4972473   0.55475959  0.04178739  0.66576327]

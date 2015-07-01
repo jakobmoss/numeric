@@ -2,19 +2,20 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-06-30 16:17:48 moss>
+# Time-stamp: <2015-07-01 10:51:40 moss>
 #
 # Makefile
 ###########################################
 
 # Default target
 default: A
+clean: cleanA clean-stuff
 
 # Part A
 A: A.out
 
 A.out: mainA.py eigen.py givens.py
-	python3 $< > A.out
+	python3 $< --basic > A.out
 
 cleanA:
 	$(RM) A.out
@@ -23,6 +24,6 @@ cleanA:
 
 
 # General clean-up
-clean:
+clean-stuff:
 	$(RM) *.pyc
 	rm -rf __pycache__
