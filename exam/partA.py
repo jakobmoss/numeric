@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-01 10:53:00 moss>
+# Time-stamp: <2015-07-01 11:09:31 moss>
 #
 # Part A
 ###########################################
@@ -15,9 +15,6 @@
 import sys
 import numpy as np
 import numpy.linalg as la
-
-# For passing options
-import argparse
 
 # Homemade routines for iterative determination of eigenvalues
 import eigen
@@ -95,24 +92,7 @@ def mainA(**options):
 
 
 #
-# Parsing of arguments to the script
-#
-def main():
-    # Initialize parser
-    parser = argparse.ArgumentParser(description='Inverse iteration method')
-
-    # Add and gather keywords
-    parser.add_argument('--basic', action='store_true',
-                        help='Basic test of the algorithm')
-    parser.add_argument('--convergence', action='store_true',
-                        help='Test of the convergence rate')
-    args = parser.parse_args()
-
-    # Run the real main-function with the parsed options
-    mainA(**vars(args))
-
-#
 # If the file is called directly: Run the main!
 #
 if __name__ == '__main__':
-    main()
+    mainA()
