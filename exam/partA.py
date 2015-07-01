@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-01 11:09:31 moss>
+# Time-stamp: <2015-07-01 11:13:56 moss>
 #
 # Part A
 ###########################################
@@ -21,9 +21,9 @@ import eigen
 
 
 #
-# Auxiliary functions for organizing the testing
+# Internal auxiliary functions for organizing the testing
 #
-def initsys():
+def __initsys():
     """
     Initialize testing matrix and NumPy eigenvalues- and vectors.
     Prints to stdout.
@@ -42,7 +42,7 @@ def initsys():
     return A, npval, npvec
 
 
-def basictest(A, iters, guesses):
+def __basictest(A, iters, guesses):
     """
     Basic test of the inverse iteration algorithm with and without a shift
     Prints to stdout.
@@ -72,15 +72,15 @@ def basictest(A, iters, guesses):
 #
 # Main of Part A
 #
-def mainA(**options):
+def main(**options):
     # Get testing-matrix and eigens determined by NumPy
-    A, npval, npvec = initsys()
+    A, npval, npvec = __initsys()
 
     # Basic test of the algorithm
     if options['basic']:
         Niter = 10
         eigenguess = [-13, -7, -1, 12]
-        basictest(A, Niter, eigenguess)
+        __basictest(A, Niter, eigenguess)
 
     # Test of convergence as a function of iterations
     elif options['convergence']:
@@ -95,4 +95,4 @@ def mainA(**options):
 # If the file is called directly: Run the main!
 #
 if __name__ == '__main__':
-    mainA()
+    main()

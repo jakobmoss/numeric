@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-01 11:08:39 moss>
+# Time-stamp: <2015-07-01 11:10:31 moss>
 #
 # Part A
 ###########################################
@@ -38,7 +38,7 @@ def main():
 
     # Run the correct main-function with the parsed arguments
     if vars(args)['part'].lower() == 'a':
-        partA.mainA(**vars(args))
+        partA.main(**vars(args))
     else:
         print('You have to choose a part to run!', file=sys.stderr)
 
