@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-01 13:47:01 moss>
+# Time-stamp: <2015-07-01 19:32:25 moss>
 #
 # Part A
 ###########################################
@@ -116,10 +116,3 @@ def main(**options):
     # No options given
     else:
         print('No option given!', file=sys.stderr)
-
-
-#
-# If the file is called directly: Run the main!
-#
-if __name__ == '__main__':
-    main()

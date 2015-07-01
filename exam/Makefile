@@ -2,14 +2,15 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-01 13:55:33 moss>
+# Time-stamp: <2015-07-01 19:37:28 moss>
 #
 # Makefile
 ###########################################
 
 # Default target
-default: A
-clean: cleanA clean-stuff
+default: B
+all: A B
+clean: cleanA cleanB clean-stuff
 
 #
 # Part A
@@ -43,6 +44,19 @@ A.dat: main.py partA.py eigen.py givens.py
 cleanA:
 	$(RM) output.A.txt plot.A.pdf A.plt A.dat
 
+
+#
+# Part B
+#
+B: output.B.txt
+
+# Text-output
+output.B.txt: main.py partB.py eigen.py givens.py
+	python3 $< B --basic > $@
+
+# Housekeeping...
+cleanB:
+	$(RM) output.B.txt
 
 #
 # General clean-up of stuff created by Python

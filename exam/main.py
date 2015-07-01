@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-01 11:17:30 moss>
+# Time-stamp: <2015-07-01 19:34:56 moss>
 #
 # General main-file for handling the logistics
 ################################################
@@ -19,6 +19,7 @@ import argparse
 
 # Import the different parts of the exercise
 import partA
+import partB
 
 
 #
@@ -39,6 +40,8 @@ def main():
     # Run the correct main-function with the parsed arguments
     if vars(args)['part'].lower() == 'a':
         partA.main(**vars(args))
+    elif vars(args)['part'].lower() == 'b':
+        partB.main(**vars(args))
     else:
         print('You have to choose a part to run!', file=sys.stderr)
 
