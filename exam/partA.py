@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-01 11:40:03 moss>
+# Time-stamp: <2015-07-01 13:47:01 moss>
 #
 # Part A
 ###########################################
@@ -85,6 +85,15 @@ def __convtest(A, exacteigen, Nmax):
         diff = abs(exacteigen - val)
         print('{0:3d} {1:17.9e}'.format(N, diff[0]))
 
+    # Test the convergence along the way by keeping the initial vector
+    vinit = np.random.random(A.shape[0])
+    vinit /= la.norm(vinit)
+    print('\n')  # New index in Gnuplot
+    for N in range(Nmax):
+        val, vec = eigen.inviter(A, N, override=True, v0=vinit)
+        diff = abs(exacteigen - val)
+        print('{0:3d} {1:17.9e}'.format(N, diff[0]))
+
 
 #
 # Main of Part A
@@ -101,7 +110,8 @@ def main(**options):
     elif options['convergence']:
         A, npval, npvec = __initsys(verbose=False)
         minev = npval[abs(npval) <= min(abs(npval))]  # Eigval of min magnitude
-        __convtest(A, minev, 20)
+        maxiter = 25
+        __convtest(A, minev, maxiter)
 
     # No options given
     else:

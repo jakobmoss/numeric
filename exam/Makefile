@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-01 11:57:22 moss>
+# Time-stamp: <2015-07-01 13:45:50 moss>
 #
 # Makefile
 ###########################################
@@ -23,13 +23,14 @@ plot.A.pdf: A.plt A.dat
 
 A.plt: Makefile
 	@echo set term pdfcairo > $@
-	@echo set out \"plot.A.pdf\" >> $@
-	@echo set title \"Convergence test\" >> $@
+	@echo set out \'plot.A.pdf\' >> $@
+	@echo set title \'Convergence test\' >> $@
 	@echo set logscale y >> $@
-	@echo set format y \"10^{%L}\" >> $@
+	@echo set format y \'10^{%L}\' >> $@
 	@echo set xlabel \'Number of iterations\' >> $@
 	@echo set ylabel \'Error on estimated eigenvalue\' >> $@
-	@echo plot \"A.dat\" title \"Data\" \\>> $@
+	@echo plot \'A.dat\' index 0 title \'Clean start\' \\>> $@
+	@echo , \'A.dat\' index 1 title \'Same v0\' >> $@
 
 A.dat: main.py partA.py eigen.py givens.py
 	python3 $< A --convergence > $@	
