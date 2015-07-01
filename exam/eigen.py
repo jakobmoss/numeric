@@ -3,7 +3,7 @@
 # Examination assignment
 # Jakob Rørsted Mosumgaard
 #
-# Time-stamp: <2015-07-01 09:10:38 moss>
+# Time-stamp: <2015-07-01 09:23:13 moss>
 #
 # Implementation of the routines
 ############################################
@@ -45,15 +45,18 @@ def inviter(A0, N=10, shift=0):
         I = np.eye(A.shape[0], dtype='float')
         A -= shift * I
 
-    # Make QR-decomposition with Givens's rotation
+    # BEGIN  -->  INVERSE ITERATION
+    # Make in-place QR-decomposition using Givens's rotation
     qr.decomp(A)
 
-    # BEGIN the iteration
+    # Do the iteration. Everything done in-place.
     for k in range(20):
         qr.solve(A, v)    # Solves A v_{k} = v_{k-1} in-place
         v /= la.norm(v)   # Normalize v_k
 
     # Estimate eigenvalue using the Rayleigh quotient
     lamb = np.dot(np.dot(v, A0), v)
+    # END  -->  INVERSE ITERATION
 
+    # Return current estimate of eigenvalue and -vector
     return lamb, v

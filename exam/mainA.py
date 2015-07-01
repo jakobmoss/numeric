@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-01 09:06:27 moss>
+# Time-stamp: <2015-07-01 09:40:18 moss>
 #
 # Part A
 ###########################################
@@ -33,10 +33,22 @@ npval, npvec = la.eig(A)
 print('\nEigenvalues by NumPy :\n', npval)
 print('Eigenvectors NumPy   :\n', npvec)
 
-# Run own alg
-guess = -7
-iters = 20
-val, vec = eigen.inviter(A, iters, guess)
-print('\nFinding eigenvalue near', guess, 'using', iters, 'iterations...')
-print('Eigenvalue by inverse iteration:', val)
-print('Eigenvector by inverse iteration:', vec.T)
+# Run own algorithm. Pretty print!
+print('\n\n*************************************************')
+print('** Finding eigenvalues using inverse iteration **')
+print('*************************************************')
+
+# Eigenvalue of leat magnitude
+iters = 10
+print('\nFinding eigenvalue of least magnitude using', iters, 'iterations')
+valmin, vecmin = eigen.inviter(A)
+print('Estimated eigenvalue  :', valmin)
+print('Estimated eigenvector :', vecmin.T)
+
+# Test if different eigenvalues can be found using a shift
+print('\n\n-- Searching for different eigenvalues by introducing a shift')
+for guess in [-13, -7, -1, 12]:
+    val, vec = eigen.inviter(A, iters, guess)
+    print('\nFinding eigenvalue near', guess, 'using', iters, 'iterations...')
+    print('Eigenvalue by inverse iteration  :', val)
+    print('Eigenvector by inverse iteration :', vec.T)
