@@ -1,11 +1,11 @@
-###########################################
+################################################
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-01 11:10:31 moss>
+# Time-stamp: <2015-07-01 11:17:30 moss>
 #
-# Part A
-###########################################
+# General main-file for handling the logistics
+################################################
 
 #
 # Modules

@@ -3,7 +3,7 @@
 # Examination assignment
 # Jakob Rørsted Mosumgaard
 #
-# Time-stamp: <2015-07-01 09:23:13 moss>
+# Time-stamp: <2015-07-01 11:39:03 moss>
 #
 # Implementation of the routines
 ############################################
@@ -50,10 +50,9 @@ def inviter(A0, N=10, shift=0):
     qr.decomp(A)
 
     # Do the iteration. Everything done in-place.
-    for k in range(20):
+    for k in range(N):
         qr.solve(A, v)    # Solves A v_{k} = v_{k-1} in-place
         v /= la.norm(v)   # Normalize v_k
-
     # Estimate eigenvalue using the Rayleigh quotient
     lamb = np.dot(np.dot(v, A0), v)
     # END  -->  INVERSE ITERATION

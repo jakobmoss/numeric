@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-01 11:13:56 moss>
+# Time-stamp: <2015-07-01 11:40:03 moss>
 #
 # Part A
 ###########################################
@@ -23,20 +23,23 @@ import eigen
 #
 # Internal auxiliary functions for organizing the testing
 #
-def __initsys():
+def __initsys(verbose=True):
     """
     Initialize testing matrix and NumPy eigenvalues- and vectors.
-    Prints to stdout.
+    Prints to stdout if verbose flag is not unset
     """
     # Test-matrix
     A = np.array([[-5, 9, -4, 10], [9, -1, 3, 9], [-4, 3, -6, 2],
                   [10, 9, 2, 3]], dtype='float')
-    print('Test-matrix: A =\n', A)
 
     # Results from NumPy routine
     npval, npvec = la.eig(A)
-    print('\nEigenvalues by NumPy :\n', npval)
-    print('Eigenvectors NumPy   :\n', npvec)
+
+    # Verbose output?
+    if verbose:
+            print('Test-matrix: A =\n', A)
+            print('\nEigenvalues by NumPy :\n', npval)
+            print('Eigenvectors NumPy   :\n', npvec)
 
     # Return
     return A, npval, npvec
@@ -69,22 +72,36 @@ def __basictest(A, iters, guesses):
         print('Eigenvector by inverse iteration :', vec.T)
 
 
+def __convtest(A, exacteigen, Nmax):
+    """
+    Test of the convergence as a function of the number of iterations
+    """
+    # Header
+    print('# PartA: Data for convergence test')
+
+    # Test the different number of iterations
+    for N in range(Nmax):
+        val, vec = eigen.inviter(A, N)
+        diff = abs(exacteigen - val)
+        print('{0:3d} {1:17.9e}'.format(N, diff[0]))
+
+
 #
 # Main of Part A
 #
 def main(**options):
-    # Get testing-matrix and eigens determined by NumPy
-    A, npval, npvec = __initsys()
-
     # Basic test of the algorithm
     if options['basic']:
+        A, npval, npvec = __initsys()  # Testing-matrix and eigens from NumPy
         Niter = 10
         eigenguess = [-13, -7, -1, 12]
         __basictest(A, Niter, eigenguess)
 
     # Test of convergence as a function of iterations
     elif options['convergence']:
-        print('Option works', file=sys.stderr)
+        A, npval, npvec = __initsys(verbose=False)
+        minev = npval[abs(npval) <= min(abs(npval))]  # Eigval of min magnitude
+        __convtest(A, minev, 20)
 
     # No options given
     else:
