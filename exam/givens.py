@@ -1,4 +1,13 @@
-# Modules
+########################################################
+# Numerical Methods 2015
+# Examination assignment
+# Jakob Rørsted Mosumgaard
+# Time-stamp: <2015-07-01 09:09:04 moss>
+#
+# Module containing QR-routines using Given's Rotation
+########################################################
+
+# Import general modules
 import numpy as np
 import math
 

@@ -3,16 +3,16 @@
 # Examination assignment
 # Jakob Rørsted Mosumgaard
 #
-# Time-stamp: <2015-06-30 16:13:22 moss>
+# Time-stamp: <2015-07-01 09:10:38 moss>
 #
 # Implementation of the routines
 ############################################
 
-#
-# Modules
-#
+# Import general modules
 import numpy as np
 import numpy.linalg as la
+
+# Import home-made module containing QR-routines using Given's rotation
 import givens as qr
 
 
@@ -22,7 +22,8 @@ import givens as qr
 def inviter(A0, N=10, shift=0):
     """
     Inverse iteration algorithm to determine an eigenvalue and with
-    corresponding eigenvector.
+    corresponding eigenvector. Uses Given's rotation for QR-decomposition and
+    backsubstitution.
 
     Returns the approximation of the eigenvalue and -vector.
 
