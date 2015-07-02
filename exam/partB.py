@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-02 11:54:40 moss>
+# Time-stamp: <2015-07-02 12:34:01 moss>
 #
 # Part B
 ###########################################
@@ -134,12 +134,18 @@ def __acctest(A, exacteigen):
     print('** Testing convergence criterion of inverse iteration **')
     print('********************************************************')
 
-    # Test
-    val, vec, iters = eigen.inviter_acc(A)
-    diff = abs(exacteigen - val)
-    print('Found eigenvalue of minimum magnitude in', iters, 'iterations')
-    print('Eigenvalue              =', val)
-    print('Error compared to NumPy =', diff[0])
+    # Test the convergence criterion
+    Ntest = 5
+    eps = 1e-14
+    print('Running', Ntest, 'test runs with acc =', eps)
+
+    for N in range(Ntest):
+        val, vec, iters = eigen.inviter_acc(A, Nup=3, acc=eps)
+        diff = abs(exacteigen - val)
+        print('\nTest #', N+1)
+        print('Found eigenvalue of minimum magnitude in', iters, 'iterations')
+        print('Eigenvalue              =', val)
+        print('Error compared to NumPy =', diff[0])
 
 
 #
