@@ -1,0 +1,57 @@
+Test-matrix: A =
+ [[ -5.   9.  -4.  10.]
+ [  9.  -1.   3.   9.]
+ [ -4.   3.  -6.   2.]
+ [ 10.   9.   2.   3.]]
+
+Eigenvalues by NumPy :
+ [ 18.09377954 -15.78795896  -3.158446    -8.14737458]
+Eigenvectors NumPy   :
+ [[ 0.4972473   0.74330067  0.4201111  -0.15412951]
+ [ 0.55475959 -0.39157194 -0.22068228 -0.7001518 ]
+ [ 0.04178739  0.47665734 -0.87704351  0.04296822]
+ [ 0.66576327 -0.25879202 -0.07483762  0.69583424]]
+
+
+*****************************************************
+** Comparing inverse iteration and Jacobian method **
+*****************************************************
+
+--Estimating eigenvalue of least magnitude using inverse iteration with convergence goal of acc =  1e-09 updating the estimate every 3 iterations
+Used 5 iterations
+Estimated eigenvalue  : -3.15844599667
+Estimated eigenvector : [ 0.4201111  -0.22068228 -0.87704351 -0.07483762]
+
+--Estimating all eigenvalues using Jacobian eigenvalue-by-eigenvalue method
+-Finding the largest eigenvalue first used 41 rotations
+Estimated eigenvalues  : [ 18.09377954  -3.158446    -8.14737458 -15.78795896]
+Estimated eigenvectors :
+ [[ 0.4972473   0.4201111  -0.15412952  0.74330066]
+ [ 0.55475959 -0.22068229 -0.7001518  -0.39157194]
+ [ 0.04178739 -0.87704351  0.04296823  0.47665735]
+ [ 0.66576327 -0.07483762  0.69583424 -0.25879202]]
+
+-Finding the smallest eigenvalue first used 56 rotations
+Estimated eigenvalues  : [-15.78795896  -8.14737458  -3.158446    18.09377954]
+Estimated eigenvectors :
+ [[ 0.74330066  0.15412951 -0.4201111   0.4972473 ]
+ [-0.39157194  0.7001518   0.22068228  0.55475959]
+ [ 0.47665734 -0.04296822  0.87704351  0.04178739]
+ [-0.25879202 -0.69583424  0.07483762  0.66576327]]
+
+
+--Estimating the largest eigenvalue using Jacobian eigenvalue-by-eigenvalue method
+Finding only the largest eigenvalue used 18 rotations
+Estimated eigenvalue  : 18.0937795409
+Estimated eigenvector :
+ [ 0.4972473   0.55475959  0.04178739  0.66576327]
+
+-Finding the same eigenvalue with inverse iteration (same settings as above) and a crazy shift =  1000000000.0
+Used 9 iterations
+Estimated eigenvalue  : 18.0937795409
+Estimated eigenvector : [-0.4972473  -0.55475959 -0.04178739 -0.66576327]
+
+-Inverse iter with a more reasonable guess =  25
+Used 5 iterations
+Estimated eigenvalue  : 18.0937795409
+Estimated eigenvector : [-0.4972473  -0.55475959 -0.04178739 -0.66576327]

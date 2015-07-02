@@ -2,15 +2,15 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-02 13:05:49 moss>
+# Time-stamp: <2015-07-02 20:31:45 moss>
 #
 # Makefile
 ###########################################
 
 # Default target
-default: B
-all: A B
-clean: cleanA cleanB clean-stuff
+default: C
+all: A B C
+clean: cleanA cleanB cleanC clean-stuff
 
 #
 # Part A
@@ -42,7 +42,7 @@ A.dat: main.py partA.py eigen.py givens.py
 
 # Housekeeping...
 cleanA:
-	$(RM) output.A.txt plot.A.pdf A.plt A.dat
+	$(RM) output.A.txt plot.A.pdf A.dat
 
 
 #
@@ -74,12 +74,26 @@ B.plt: Makefile
 	@echo , \'B.dat\' index 3 w lp lt 6 title \'Every 2nd iter\' \\ >> $@ 
 	@echo , \'B.dat\' index 4 w lp lt 8 title \'Every iter\' \\ >> $@ 
 
-B.dat: main.py partB.py eigen.py givens.py
+B.dat: main.py partB.py eigen.py givens.py 
 	python3 $< B --convergence > $@
 
 # Housekeeping...
 cleanB:
-	$(RM) output.B.txt
+	$(RM) output.B.txt plot.B.pdf B.dat
+
+
+#
+# Part C
+#
+C: output.C.txt
+
+# Text-output
+output.C.txt: main.py partC.py eigen.py givens.py jacobi.py
+	python3 $< C --basic > $@
+
+# Housekeeping...
+cleanC:
+	$(RM) output.C.txt
 
 
 #
