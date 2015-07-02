@@ -3,7 +3,7 @@
 # Examination assignment
 # Jakob Rørsted Mosumgaard
 #
-# Time-stamp: <2015-07-02 12:49:40 moss>
+# Time-stamp: <2015-07-02 12:58:46 moss>
 #
 # Implementation of the routines
 ############################################
@@ -194,20 +194,20 @@ def inviter_acc(A0, acc=1e-9, shift=0, Nup=2, override=False, v0=0):
         qr.solve(A, v)    # Solves A v_{k} = v_{k-1} in-place
         v /= la.norm(v)   # Normalize v_k
 
-        # Convergence criterion: How much has the Rayleigh estimate changed
-        #  + Minimum one update of the estimate should be performed
-        if (abs(abs(np.dot(np.dot(v, A0), v)) - abs(np.dot(np.dot(w, A0), w)))
-           < acc) and (k > Nup):
-            converged = True
-            iters = k+1
-            break
-
         # Every `Nup` iterations: Update the estimate of the eigenvalue
         # using the Rayleigh quotient
         if (k % Nup) == (Nup - 1):
             rlamb = np.dot(np.dot(v, A0), v)
             A = A0 - rlamb*I
             changed = True
+
+        # Convergence criterion: How much has the Rayleigh estimate changed
+        #  + Minimum one update of the estimate should be performed
+        dv = abs(abs(np.dot(np.dot(v, A0), v)) - abs(np.dot(np.dot(w, A0), w)))
+        if (dv < acc) and (k > Nup):
+            converged = True
+            iters = k+1
+            break
 
     # Make final estimate of the eigenvalue using the Rayleigh quotient
     lamb = np.dot(np.dot(v, A0), v)
@@ -220,4 +220,4 @@ def inviter_acc(A0, acc=1e-9, shift=0, Nup=2, override=False, v0=0):
         iters = -1
 
     # Return current estimate of eigenvalue and -vector
-    return lamb, v, iters
+    return lamb, v, dv, iters

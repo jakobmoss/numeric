@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-02 12:49:25 moss>
+# Time-stamp: <2015-07-02 12:59:13 moss>
 #
 # Part B
 ###########################################
@@ -140,11 +140,12 @@ def __acctest(A, exacteigen):
     print('Running', Ntest, 'test runs with acc =', eps)
 
     for N in range(Ntest):
-        val, vec, iters = eigen.inviter_acc(A, Nup=3, acc=eps)
+        val, vec, dv, iters = eigen.inviter_acc(A, Nup=3, acc=eps)
         diff = abs(exacteigen - val)
         print('\nTest #', N+1)
         print('Found eigenvalue of minimum magnitude in', iters, 'iterations')
         print('Eigenvalue              =', val)
+        print('Estimted error          =', dv)
         print('Error compared to NumPy =', diff[0])
 
 
