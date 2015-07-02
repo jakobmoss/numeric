@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-02 12:34:01 moss>
+# Time-stamp: <2015-07-02 12:49:25 moss>
 #
 # Part B
 ###########################################
@@ -136,7 +136,7 @@ def __acctest(A, exacteigen):
 
     # Test the convergence criterion
     Ntest = 5
-    eps = 1e-14
+    eps = 1e-9
     print('Running', Ntest, 'test runs with acc =', eps)
 
     for N in range(Ntest):

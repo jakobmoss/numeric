@@ -16,29 +16,29 @@ Eigenvectors NumPy   :
 ********************************************************
 ** Testing convergence criterion of inverse iteration **
 ********************************************************
-Running 5 test runs with acc = 1e-14
+Running 5 test runs with acc = 1e-09
 
 Test # 1
 Found eigenvalue of minimum magnitude in 5 iterations
 Eigenvalue              = -3.15844599667
-Error compared to NumPy = 5.22692999994e-13
+Error compared to NumPy = 8.881784197e-16
 
 Test # 2
-Found eigenvalue of minimum magnitude in 5 iterations
+Found eigenvalue of minimum magnitude in 7 iterations
 Eigenvalue              = -3.15844599667
-Error compared to NumPy = 4.4408920985e-16
+Error compared to NumPy = 2.22044604925e-15
 
 Test # 3
-Found eigenvalue of minimum magnitude in 5 iterations
-Eigenvalue              = -3.15844599913
-Error compared to NumPy = 2.46348319521e-09
+Found eigenvalue of minimum magnitude in 6 iterations
+Eigenvalue              = -3.15844599667
+Error compared to NumPy = 8.881784197e-16
 
 Test # 4
-Found eigenvalue of minimum magnitude in 5 iterations
-Eigenvalue              = -3.15844719277
-Error compared to NumPy = 1.19610696148e-06
+Found eigenvalue of minimum magnitude in 6 iterations
+Eigenvalue              = -3.15844599667
+Error compared to NumPy = 1.82076576039e-14
 
 Test # 5
 Found eigenvalue of minimum magnitude in 5 iterations
 Eigenvalue              = -3.15844599667
-Error compared to NumPy = 1.33226762955e-15
+Error compared to NumPy = 8.881784197e-16

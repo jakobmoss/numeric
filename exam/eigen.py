@@ -3,7 +3,7 @@
 # Examination assignment
 # Jakob Rørsted Mosumgaard
 #
-# Time-stamp: <2015-07-02 12:30:56 moss>
+# Time-stamp: <2015-07-02 12:49:40 moss>
 #
 # Implementation of the routines
 ############################################
@@ -139,7 +139,7 @@ def inviter_up(A0, N=10, shift=0, Nup=2, override=False, v0=0):
 #
 # Inverse (power) iteration method with updating estimates and acc. goal
 #
-def inviter_acc(A0, acc=1e-12, shift=0, Nup=2, override=False, v0=0):
+def inviter_acc(A0, acc=1e-9, shift=0, Nup=2, override=False, v0=0):
     """
     Inverse iteration algorithm to determine an eigenvalue and with
     corresponding eigenvector. Uses Given's rotation for QR-decomposition and
@@ -196,8 +196,8 @@ def inviter_acc(A0, acc=1e-12, shift=0, Nup=2, override=False, v0=0):
 
         # Convergence criterion: How much has the Rayleigh estimate changed
         #  + Minimum one update of the estimate should be performed
-        if (abs(np.dot(np.dot(v, A0), v)) - abs(np.dot(np.dot(w, A0), w))
-           <= acc) and (k > Nup):
+        if (abs(abs(np.dot(np.dot(v, A0), v)) - abs(np.dot(np.dot(w, A0), w)))
+           < acc) and (k > Nup):
             converged = True
             iters = k+1
             break
