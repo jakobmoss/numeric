@@ -11,4 +11,11 @@ Eigenvectors NumPy   :
  [ 0.55475959 -0.39157194 -0.22068228 -0.7001518 ]
  [ 0.04178739  0.47665734 -0.87704351  0.04296822]
  [ 0.66576327 -0.25879202 -0.07483762  0.69583424]]
-Hej
+
+
+********************************************************
+** Testing convergence criterion of inverse iteration **
+********************************************************
+Found eigenvalue of minimum magnitude in 2 iterations
+Eigenvalue              = -2.75994048229
+Error compared to NumPy = 0.398505514379

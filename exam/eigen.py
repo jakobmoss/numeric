@@ -3,7 +3,7 @@
 # Examination assignment
 # Jakob Rørsted Mosumgaard
 #
-# Time-stamp: <2015-07-02 11:40:09 moss>
+# Time-stamp: <2015-07-02 12:14:11 moss>
 #
 # Implementation of the routines
 ############################################
@@ -139,7 +139,7 @@ def inviter_up(A0, N=10, shift=0, Nup=2, override=False, v0=0):
 #
 # Inverse (power) iteration method with updating estimates and acc. goal
 #
-def inviter_acc(A0, acc=1e-6, shift=0, Nup=2, override=False, v0=0):
+def inviter_acc(A0, acc=1e-12, shift=0, Nup=2, override=False, v0=0):
     """
     Inverse iteration algorithm to determine an eigenvalue and with
     corresponding eigenvector. Uses Given's rotation for QR-decomposition and
@@ -150,7 +150,7 @@ def inviter_acc(A0, acc=1e-6, shift=0, Nup=2, override=False, v0=0):
 
     Arguments:
     - `A0`: Matrix
-    - `acc`: Desired accuracy (default 1e-6)
+    - `acc`: Desired accuracy (default 1e-12)
     - `shift`: Initial guess on eigenvalue (if not set, the routine will
                converge towards the one of lowest magnitude)
     - `Nup`: The eigenvalue estimate will be updated every Nup iterations
@@ -160,6 +160,7 @@ def inviter_acc(A0, acc=1e-6, shift=0, Nup=2, override=False, v0=0):
     """
     # Maximum number of iterations allowed
     NMAX = 25
+
     # Work on a copy of the matrix and initialize identity matrix
     A = np.copy(A0)
     I = np.eye(A.shape[0], dtype='float')
@@ -181,9 +182,8 @@ def inviter_acc(A0, acc=1e-6, shift=0, Nup=2, override=False, v0=0):
 
     # Do the iteration. Everything done in-place.
     for k in range(NMAX):
-        # For convergence criterion test
-        dv = v[0]
-        w = np.copy(v)    # -->  w = v_{k-1}
+        # For convergence criterion -->  w = v_{k-1}
+        w = np.copy(v)
 
         # If the matrix has changed: Make in-place QR-decomposition
         if changed:
@@ -201,19 +201,22 @@ def inviter_acc(A0, acc=1e-6, shift=0, Nup=2, override=False, v0=0):
             A = A0 - rlamb*I
             changed = True
 
-        # Convergence criterion test
-        lamb = np.dot(np.dot(v, A0), v)
-        print('\nDB: Iter =', k+1)
-        print('DB: |v_{k}[0]| - |v_{k-1}[0]|', abs(v[0]) - abs(dv))
-        print('DB: Convergence check   :', abs(np.dot(np.dot(v, A0), v))
-              - abs(np.dot(np.dot(w, A0), w)))
-        print('DB: Convergence check 2 :', la.norm(np.dot(A0, v) - lamb*v),
-              '--', 1e-6*abs(np.dot(np.dot(w, A0), w)))
-        print('DB: Present guess of eigenvalue =', lamb)
+        # Convergence criterion: How much has the Rayleigh estimate changed
+        if (abs(np.dot(np.dot(v, A0), v)) - abs(np.dot(np.dot(w, A0), w))
+           <= acc) and (k != 0):
+            converged = True
+            iters = k+1
+            break
 
     # Make final estimate of the eigenvalue using the Rayleigh quotient
     lamb = np.dot(np.dot(v, A0), v)
     # END  -->  INVERSE ITERATION
 
+    # Flag a warning if the criterion is not met!
+    if not converged:
+        print('INVITER: Did not converge in', NMAX, 'iterations!',
+              file=sys.stderr)
+        iters = -1
+
     # Return current estimate of eigenvalue and -vector
-    return lamb, v
+    return lamb, v, iters

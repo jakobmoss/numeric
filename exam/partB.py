@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-02 11:45:13 moss>
+# Time-stamp: <2015-07-02 11:54:40 moss>
 #
 # Part B
 ###########################################
@@ -125,11 +125,22 @@ def __convtest(A, exacteigen, Nmax):
         print('{0:3d} {1:17.9e}'.format(n, diff[0]))
 
 
-def __acctest(A):
+def __acctest(A, exacteigen):
     """
     Accurary test of convergence criterion
     """
-    print('Hej')
+    # Pretty print!
+    print('\n\n********************************************************')
+    print('** Testing convergence criterion of inverse iteration **')
+    print('********************************************************')
+
+    # Test
+    val, vec, iters = eigen.inviter_acc(A)
+    diff = abs(exacteigen - val)
+    print('Found eigenvalue of minimum magnitude in', iters, 'iterations')
+    print('Eigenvalue              =', val)
+    print('Error compared to NumPy =', diff[0])
+
 
 #
 # Main of Part B
@@ -152,8 +163,9 @@ def main(**options):
     # Test of the convergence criterion
     elif options['criterion']:
         A, npval, npvec = __initsys()
-        __acctest(A)
+        minev = npval[abs(npval) <= min(abs(npval))]
+        __acctest(A, minev)
 
-        # No options given
+    # No options given
     else:
         print('No option given!', file=sys.stderr)
