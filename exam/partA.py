@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-01 20:33:08 moss>
+# Time-stamp: <2015-07-02 11:43:57 moss>
 #
 # Part A
 ###########################################

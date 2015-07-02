@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-01 20:34:16 moss>
+# Time-stamp: <2015-07-02 11:45:13 moss>
 #
 # Part B
 ###########################################
@@ -72,6 +72,65 @@ def __basictest(A, iters, guesses):
         print('Eigenvector by inverse iteration :', vec.T)
 
 
+def __convtest(A, exacteigen, Nmax):
+    """
+    Test of the convergence as a function of the number of iterations
+    """
+    # Header
+    print('# PartB: Data for convergence test')
+
+    # Test the convergence along the way by keeping the initial vector
+    vinit = np.random.random(A.shape[0])
+    vinit /= la.norm(vinit)
+
+    # Without updating the estimate (making sure the update is never triggered)
+    for n in range(Nmax):
+        val, vec = eigen.inviter_up(A, N=n, Nup=Nmax+1,
+                                    override=True, v0=vinit)
+        diff = abs(exacteigen - val)
+        print('{0:3d} {1:17.9e}'.format(n, diff[0]))
+
+    # New index in Gnuplot
+    print('\n')
+
+    # Updating every 5th time
+    for n in range(Nmax):
+        val, vec = eigen.inviter_up(A, N=n, Nup=5,
+                                    override=True, v0=vinit)
+        diff = abs(exacteigen - val)
+        print('{0:3d} {1:17.9e}'.format(n, diff[0]))
+
+    # Updating every 3rd time
+    print('\n')
+    for n in range(Nmax):
+        val, vec = eigen.inviter_up(A, N=n, Nup=3,
+                                    override=True, v0=vinit)
+        diff = abs(exacteigen - val)
+        print('{0:3d} {1:17.9e}'.format(n, diff[0]))
+
+    # Updating every 2nd time
+    print('\n')
+    for n in range(Nmax):
+        val, vec = eigen.inviter_up(A, N=n, Nup=2,
+                                    override=True, v0=vinit)
+        diff = abs(exacteigen - val)
+        print('{0:3d} {1:17.9e}'.format(n, diff[0]))
+
+    # Updating every time
+    print('\n')
+    for n in range(Nmax):
+        val, vec = eigen.inviter_up(A, N=n, Nup=1,
+                                    override=True, v0=vinit)
+        diff = abs(exacteigen - val)
+        print('{0:3d} {1:17.9e}'.format(n, diff[0]))
+
+
+def __acctest(A):
+    """
+    Accurary test of convergence criterion
+    """
+    print('Hej')
+
 #
 # Main of Part B
 #
@@ -82,3 +141,19 @@ def main(**options):
         Niter = 10
         eigenguess = [-13, -7, -1, 12]
         __basictest(A, Niter, eigenguess)
+
+    # Test of convergence as a function of iterations and Rayleigh updates
+    elif options['convergence']:
+        A, npval, npvec = __initsys(verbose=False)
+        minev = npval[abs(npval) <= min(abs(npval))]
+        maxiter = 25
+        __convtest(A, minev, maxiter)
+
+    # Test of the convergence criterion
+    elif options['criterion']:
+        A, npval, npvec = __initsys()
+        __acctest(A)
+
+        # No options given
+    else:
+        print('No option given!', file=sys.stderr)
