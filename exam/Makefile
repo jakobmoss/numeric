@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-02 11:44:13 moss>
+# Time-stamp: <2015-07-02 13:05:49 moss>
 #
 # Makefile
 ###########################################

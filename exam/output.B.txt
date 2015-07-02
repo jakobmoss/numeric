@@ -16,34 +16,34 @@ Eigenvectors NumPy   :
 ********************************************************
 ** Testing convergence criterion of inverse iteration **
 ********************************************************
-Running 5 test runs with acc = 1e-09
+Running 5 test runs with acc = 1e-09 updating the shift every 3 iterations...
 
 Test # 1
 Found eigenvalue of minimum magnitude in 6 iterations
 Eigenvalue              = -3.15844599667
-Estimted error          = 8.881784197e-16
-Error compared to NumPy = 1.7763568394e-15
-
-Test # 2
-Found eigenvalue of minimum magnitude in 6 iterations
-Eigenvalue              = -3.15844599667
-Estimted error          = 8.54427639752e-13
+Estimted error          = 8.881784197e-14
 Error compared to NumPy = 1.33226762955e-15
 
-Test # 3
+Test # 2
 Found eigenvalue of minimum magnitude in 5 iterations
 Eigenvalue              = -3.15844599667
-Estimted error          = 1.07904796209e-11
-Error compared to NumPy = 4.4408920985e-16
-
-Test # 4
-Found eigenvalue of minimum magnitude in 6 iterations
-Eigenvalue              = -3.15844599667
-Estimted error          = 1.01696429056e-13
+Estimted error          = 3.03490566012e-11
 Error compared to NumPy = 1.7763568394e-15
 
-Test # 5
+Test # 3
+Found eigenvalue of minimum magnitude in 6 iterations
+Eigenvalue              = -3.15844599667
+Estimted error          = 6.04836181139e-10
+Error compared to NumPy = 6.57252030578e-14
+
+Test # 4
 Found eigenvalue of minimum magnitude in 5 iterations
 Eigenvalue              = -3.15844599667
-Estimted error          = 1.52811097109e-12
-Error compared to NumPy = 8.881784197e-16
+Estimted error          = 8.63753513158e-13
+Error compared to NumPy = 2.22044604925e-15
+
+Test # 5
+Found eigenvalue of minimum magnitude in 6 iterations
+Eigenvalue              = -3.15844599667
+Estimted error          = 1.86517468137e-14
+Error compared to NumPy = 1.7763568394e-15

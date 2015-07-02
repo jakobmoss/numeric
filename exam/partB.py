@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-02 12:59:13 moss>
+# Time-stamp: <2015-07-02 13:04:56 moss>
 #
 # Part B
 ###########################################
@@ -51,9 +51,9 @@ def __basictest(A, iters, guesses):
     Prints to stdout.
     """
     # Pretty print!
-    print('\n\n*************************************************')
-    print('** Finding eigenvalues using inverse iteration **')
-    print('*************************************************')
+    print('\n\n***********************************************************')
+    print('** Inverse iteration with ev-update every 2nd iterration **')
+    print('***********************************************************')
 
     # Eigenvalue of leat magnitude
     iters = 10
@@ -137,10 +137,12 @@ def __acctest(A, exacteigen):
     # Test the convergence criterion
     Ntest = 5
     eps = 1e-9
-    print('Running', Ntest, 'test runs with acc =', eps)
+    nup = 3
+    print('Running', Ntest, 'test runs with acc =', eps, 'updating the shift',
+          'every', nup, 'iterations...')
 
     for N in range(Ntest):
-        val, vec, dv, iters = eigen.inviter_acc(A, Nup=3, acc=eps)
+        val, vec, dv, iters = eigen.inviter_acc(A, Nup=nup, acc=eps)
         diff = abs(exacteigen - val)
         print('\nTest #', N+1)
         print('Found eigenvalue of minimum magnitude in', iters, 'iterations')

@@ -3,7 +3,7 @@
 # Examination assignment
 # Jakob Rørsted Mosumgaard
 #
-# Time-stamp: <2015-07-02 12:58:46 moss>
+# Time-stamp: <2015-07-02 13:01:59 moss>
 #
 # Implementation of the routines
 ############################################
@@ -146,7 +146,8 @@ def inviter_acc(A0, acc=1e-9, shift=0, Nup=2, override=False, v0=0):
     backsubstitution. Updates current eigenvalue estimate for (hopefully)
     faster convergence. Stops when desired accuracy is reached.
 
-    Returns the approximation of the eigenvalue and -vector.
+    Returns the approximation of the eigenvalue and -vector, the estimated
+    error from the convergence criterion, and the number of iterations used.
 
     Arguments:
     - `A0`: Matrix
