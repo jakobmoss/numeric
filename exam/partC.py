@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-02 21:17:54 moss>
+# Time-stamp: <2015-07-02 21:39:51 moss>
 #
 # Part B
 ###########################################
@@ -15,6 +15,7 @@
 import sys
 import numpy as np
 import numpy.linalg as la
+import timeit
 
 # Homemade routines for iterative determination of eigenvalues
 import eigen
@@ -66,8 +67,11 @@ def __basictest(A, iters, guesses):
     print('\n--Estimating eigenvalue of least magnitude using inverse',
           'iteration with convergence goal of acc = ', eps,
           'updating the estimate every', nup, 'iterations')
+    t = timeit.default_timer()
     val, vec, dv, iters = eigen.inviter_acc(A, Nup=nup, acc=eps)
+    dt = timeit.default_timer() - t
     print('Used', iters, 'iterations')
+    print('Running time: {0:.4f} ms'.format(100*dt))
     print('Estimated eigenvalue  :', val)
     print('Estimated eigenvector :', vec.T)
 
@@ -76,15 +80,21 @@ def __basictest(A, iters, guesses):
           'eigenvalue-by-eigenvalue method')
     d = np.zeros(A.shape[0], dtype='float')
     V = np.zeros(A.shape, dtype='float')
+    t = timeit.default_timer()
     rot = jacobi.diag_eig2(A, d, V, first='large')
+    dt = timeit.default_timer() - t
     print('-Finding the largest eigenvalue first used', rot, 'rotations')
+    print('Running time: {0:.4f} ms'.format(100*dt))
     print('Estimated eigenvalues  :', d)
     print('Estimated eigenvectors :\n', V)
 
     d = np.zeros(A.shape[0], dtype='float')
     V = np.zeros(A.shape, dtype='float')
+    t = timeit.default_timer()
     rot = jacobi.diag_eig2(A, d, V, first='small')
+    dt = timeit.default_timer() - t
     print('\n-Finding the smallest eigenvalue first used', rot, 'rotations')
+    print('Running time: {0:.4f} ms'.format(100*dt))
     print('Estimated eigenvalues  :', d)
     print('Estimated eigenvectors :\n', V)
 
@@ -93,8 +103,11 @@ def __basictest(A, iters, guesses):
           'eigenvalue-by-eigenvalue method')
     d = np.zeros(A.shape[0], dtype='float')
     V = np.zeros(A.shape, dtype='float')
+    t = timeit.default_timer()
     rot = jacobi.diag_eig2(A, d, V, first='large', halt=True)
+    dt = timeit.default_timer() - t
     print('Finding only the largest eigenvalue used', rot, 'rotations')
+    print('Running time: {0:.4f} ms'.format(100*dt))
     print('Estimated eigenvalue  :', d[0])
     print('Estimated eigenvector :\n', V[:, 0])
 
@@ -102,20 +115,27 @@ def __basictest(A, iters, guesses):
     guess = 1e9
     print('\n-Finding the same eigenvalue with inverse iteration',
           '(same settings as above) and a crazy shift = ', guess)
+    t = timeit.default_timer()
     val, vec, dv, iters = eigen.inviter_acc(A, shift=guess, Nup=nup,
                                             acc=eps)
+    dt = timeit.default_timer() - t
     print('Used', iters, 'iterations')
+    print('Running time: {0:.4f} ms'.format(100*dt))
     print('Estimated eigenvalue  :', val)
     print('Estimated eigenvector :', vec.T)
 
     # Better guess....
     guess = 25
     print('\n-Inverse iter with a more reasonable guess = ', guess)
+    t = timeit.default_timer()
     val, vec, dv, iters = eigen.inviter_acc(A, shift=guess, Nup=nup,
                                             acc=eps)
+    dt = timeit.default_timer() - t
     print('Used', iters, 'iterations')
+    print('Running time: {0:.4f} ms'.format(100*dt))
     print('Estimated eigenvalue  :', val)
     print('Estimated eigenvector :', vec.T)
+
 
 #
 # Main of Part C
