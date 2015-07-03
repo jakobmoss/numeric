@@ -70,3 +70,5 @@ convergence during a iterative run.
 how often the guess is updated using the Rayleigh criterion.
 * _output.C.txt_ contains a comparison of the inverse iteration method and the
 Jacobi method. It also includes a speedtest on a random, symmetric matrix.
+* _X.dat_ with X = {A, B} contains data for the plots and are not interesting in
+themselves.
