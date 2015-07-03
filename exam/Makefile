@@ -2,13 +2,12 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-03 08:27:28 moss>
+# Time-stamp: <2015-07-03 09:35:23 moss>
 #
 # Makefile
 ###########################################
 
 # Default target
-default: C
 all: A B C
 clean: cleanA cleanB cleanC clean-stuff
 
