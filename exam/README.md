@@ -28,3 +28,8 @@ been found.
 * Compare the modified Jacobi with inverse iteration.
 * Compare the running time of the algorithms, compared to the library routine.
 
+
+Implementation
+--------------
+**Overview of the files:**
+* _main.py_: Hep

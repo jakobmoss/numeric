@@ -21,29 +21,29 @@ Running 5 test runs with acc = 1e-09 updating the shift every 3 iterations...
 Test # 1
 Found eigenvalue of minimum magnitude in 6 iterations
 Eigenvalue              = -3.15844599667
-Estimted error          = 5.72875080707e-14
-Error compared to NumPy = 2.22044604925e-15
+Estimted error          = 6.53943565965e-11
+Error compared to NumPy = 4.4408920985e-15
 
 Test # 2
-Found eigenvalue of minimum magnitude in 5 iterations
-Eigenvalue              = -3.15844599667
-Estimted error          = 2.64236188485e-10
-Error compared to NumPy = 8.881784197e-16
-
-Test # 3
 Found eigenvalue of minimum magnitude in 6 iterations
 Eigenvalue              = -3.15844599667
-Estimted error          = 1.15463194561e-13
-Error compared to NumPy = 2.6645352591e-15
+Estimted error          = 3.95239396767e-14
+Error compared to NumPy = 1.33226762955e-15
+
+Test # 3
+Found eigenvalue of minimum magnitude in 5 iterations
+Eigenvalue              = -3.15844599667
+Estimted error          = 4.37294644939e-11
+Error compared to NumPy = 1.7763568394e-15
 
 Test # 4
 Found eigenvalue of minimum magnitude in 5 iterations
 Eigenvalue              = -3.15844599667
-Estimted error          = 6.65423272039e-12
-Error compared to NumPy = 8.881784197e-16
+Estimted error          = 9.18154441365e-12
+Error compared to NumPy = 4.4408920985e-16
 
 Test # 5
-Found eigenvalue of minimum magnitude in 5 iterations
+Found eigenvalue of minimum magnitude in 8 iterations
 Eigenvalue              = -3.15844599667
-Estimted error          = 4.50128823104e-12
-Error compared to NumPy = 1.7763568394e-15
+Estimted error          = 1.33226762955e-15
+Error compared to NumPy = 8.881784197e-16
