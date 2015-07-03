@@ -18,14 +18,14 @@ Eigenvectors NumPy   :
 *****************************************************
 
 --Estimating eigenvalue of least magnitude using inverse iteration with convergence goal of acc =  1e-09 updating the estimate every 3 iterations
-Used 8 iterations
-Running time: 0.0370 ms
+Used 5 iterations
+Running time: 0.0284 ms
 Estimated eigenvalue  : -3.15844599667
-Estimated eigenvector : [ 0.4201111  -0.22068228 -0.87704351 -0.07483762]
+Estimated eigenvector : [ 0.4201111  -0.22068228 -0.87704351 -0.07483763]
 
 --Estimating all eigenvalues using Jacobian eigenvalue-by-eigenvalue method
 -Finding the largest eigenvalue first used 41 rotations
-Running time: 0.0364 ms
+Running time: 0.0375 ms
 Estimated eigenvalues  : [ 18.09377954  -3.158446    -8.14737458 -15.78795896]
 Estimated eigenvectors :
  [[ 0.4972473   0.4201111  -0.15412952  0.74330066]
@@ -34,7 +34,7 @@ Estimated eigenvectors :
  [ 0.66576327 -0.07483762  0.69583424 -0.25879202]]
 
 -Finding the smallest eigenvalue first used 56 rotations
-Running time: 0.0498 ms
+Running time: 0.0547 ms
 Estimated eigenvalues  : [-15.78795896  -8.14737458  -3.158446    18.09377954]
 Estimated eigenvectors :
  [[ 0.74330066  0.15412951 -0.4201111   0.4972473 ]
@@ -45,33 +45,33 @@ Estimated eigenvectors :
 
 --Estimating the largest eigenvalue using Jacobian eigenvalue-by-eigenvalue method
 Finding only the largest eigenvalue used 18 rotations
-Running time: 0.0201 ms
+Running time: 0.0202 ms
 Estimated eigenvalue  : 18.0937795409
 Estimated eigenvector :
  [ 0.4972473   0.55475959  0.04178739  0.66576327]
 
 -Finding the same eigenvalue with inverse iteration (same settings as above) and a crazy shift =  1000000000.0
-Used 9 iterations
-Running time: 0.0352 ms
+Used 12 iterations
+Running time: 0.0481 ms
 Estimated eigenvalue  : -3.15844599667
-Estimated eigenvector : [ 0.42011111 -0.22068223 -0.87704352 -0.07483768]
+Estimated eigenvector : [-0.42011128  0.2206816   0.87704356  0.07483815]
 
 -Inverse iter with a more reasonable guess =  25
 Used 5 iterations
-Running time: 0.0218 ms
+Running time: 0.0231 ms
 Estimated eigenvalue  : 18.0937795409
 Estimated eigenvector : [-0.4972473  -0.55475959 -0.04178739 -0.66576327]
 
 
 ** Comparing execution time **
-Using a symmetric 15 x 15 matrix
+Using a random, symmetric 15 x 15 matrix
 
--NumPy (all eigenvalues) running time  : 0.0122 ms
--Jacobi (all eigenvalues) running time : 4.9518 ms
--Jacobi (only largest ev) running time : 0.2514 ms
+-NumPy (all eigenvalues) running time  : 0.0130 ms
+-Jacobi (all eigenvalues) running time : 5.9187 ms
+-Jacobi (only largest ev) running time : 0.2418 ms
 -Inverse iteration with convergence criterion and update every 2nd
- iter (only min mag) running time      : 0.5322 ms
+ iter (only min mag) running time      : 0.5177 ms
 -Inverse iteration with 5 iterations and update every 2nd iter
- (only min mag) running time           : 0.5055 ms
+ (only min mag) running time           : 0.5110 ms
 -Inverse iteration with convergence criterion and update every 3rd
- iter (with guess) running time        : 0.3710 ms
+ iter (with guess) running time        : 0.3739 ms

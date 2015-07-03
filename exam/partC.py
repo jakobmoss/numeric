@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-03 08:43:54 moss>
+# Time-stamp: <2015-07-03 09:50:45 moss>
 #
 # Part B
 ###########################################
@@ -146,7 +146,7 @@ def __speedtest(N=10):
     print('\n\n** Comparing execution time **')
 
     # Random (real and symmeric) matrix
-    print('Using a symmetric', N, 'x', N, 'matrix')
+    print('Using a random, symmetric', N, 'x', N, 'matrix')
     a = np.random.rand(N, N) * 10
     A = (a + a.T)/2
 

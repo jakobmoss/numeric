@@ -51,3 +51,22 @@ inverse iteration algorithm.
 systems of equations [slightly modified version from exercise 2b].
 * _jacobi.py_ contains the routines for determining eigenvalues and -vectors
 using the Jacobi method [modified in it's original form from exercise 3b].
+
+
+Output
+______
+The output is labelled with the corresponding exercise letter. Some output is
+in text-format, while the visual output is in pdf-format.
+
+**Overview of the files:**
+* _output.A.txt_ contains a basic test of the algorithm and shows that all
+eigenvalues (and -vectors) can be recovered using a shift.
+* _plot.A.pdf_ contains a test of convergence (error compared to NumPy) as a
+function of iterations. The points marked 'clean start' correspond to different
+runs, while 'same v0' is using the same initial vector, hence it is the
+convergence during a iterative run.
+* _output.B.txt_ contains a test of the convergence criterion.
+* _plot.B.pdf_ shows how the convergence (error compared to NumPy) depends on
+how often the guess is updated using the Rayleigh criterion.
+* _output.C.txt_ contains a comparison of the inverse iteration method and the
+Jacobi method. It also includes a speedtest on a random, symmetric matrix.
