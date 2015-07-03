@@ -1,7 +1,12 @@
 Numerical Methods 2015 - Examination Assignment
 =================
 
-#### Jakob Rørsted Mosumgaard
+#### Author: Jakob Rørsted Mosumgaard
 
 Exercise
 ---------
+### A
+* Implement
+* Check
+### B
+### C
