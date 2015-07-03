@@ -31,5 +31,15 @@ been found.
 
 Implementation
 --------------
+The project is implemented in Python3 (version 3.4.3) with Gnuplot
+(version 5.0.1) for plotting. NumPy is used extensively for handling of arrays.
+The NumPy Linear Algebra (numpy.linalg) module is used as the library routine
+for calculating eigenvalues and -vectors [actually this is just implemented
+using LAPACK].
+
 **Overview of the files:**
-* _main.py_: Hep
+* _Makefile_ builds the project. It 
+* _main.py_ is the file invoked by make, and contains an argument parser, which
+calls the different parts.
+* _partX.py_ with X = {A, B, C} contains the testing for the different parts of
+the exercise.
