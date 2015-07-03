@@ -18,5 +18,13 @@ routine) scales with the number of iterations.
 ### B
 * Implement on-the-fly update of the eigenvalue estimate (i.e. the shift) using
 the Rayleigh quotient.
+* Investigate how the convergence depends on how often the guess is updated.
+* Implement a convergence criterion (and hence, error estimate) and test it.
 
 ### C
+* Modify the algorithm from exercise 3.b (Jacobi eigenvalue-by-eigenvalue) to
+make it able to stop after the first eigenvalue (the largest or smalles) have
+been found.
+* Compare the modified Jacobi with inverse iteration.
+* Compare the running time of the algorithms, compared to the library routine.
+
