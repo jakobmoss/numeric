@@ -11,6 +11,12 @@ Exercise
 * Implement the inverse iteration method for determining eigenvalues and -vectors.
 This algorithm should converge towards the eigenvalue of least magnitude.
 * Implement the inverse iteration method with a shift and check that you are
-able to find all eigenvalues of a given matrix (compare with a library routine)
+able to find all eigenvalues of a given matrix (compare with a library routine).
+* Investigate how the error on the determined eigenvalue (compared to the library
+routine) scales with the number of iterations.
+
 ### B
+* Implement on-the-fly update of the eigenvalue estimate (i.e. the shift) using
+the Rayleigh quotient.
+
 ### C
