@@ -1,7 +1,7 @@
 Numerical Methods 2015 - Examination Assignment
 =================
 
-# Jakob Rørsted Mosumgaard
+#### Jakob Rørsted Mosumgaard
 
 Exercise
 ---------
