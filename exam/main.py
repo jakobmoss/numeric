@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-02 20:07:17 moss>
+# Time-stamp: <2015-07-03 08:27:15 moss>
 #
 # General main-file for handling the logistics
 ################################################
@@ -38,6 +38,8 @@ def main():
                         help='Test of the convergence rate')
     parser.add_argument('--criterion', action='store_true',
                         help='Test of the convergence criterion')
+    parser.add_argument('--speed', action='store_true',
+                        help='Speed test')
     args = parser.parse_args()
 
     # Run the correct main-function with the parsed arguments

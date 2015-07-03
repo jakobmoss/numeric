@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-02 21:39:51 moss>
+# Time-stamp: <2015-07-03 08:43:54 moss>
 #
 # Part B
 ###########################################
@@ -49,7 +49,7 @@ def __initsys(verbose=True):
     return A, npval, npvec
 
 
-def __basictest(A, iters, guesses):
+def __basictest(A):
     """
     Basic test of the inverse iteration algorithm with and without a shift
     Prints to stdout.
@@ -63,7 +63,7 @@ def __basictest(A, iters, guesses):
     eps = 1e-9
     nup = 3
 
-    # Eigenvalue of leat magnitude using inverse iteration
+    # Eigenvalue of least magnitude using inverse iteration
     print('\n--Estimating eigenvalue of least magnitude using inverse',
           'iteration with convergence goal of acc = ', eps,
           'updating the estimate every', nup, 'iterations')
@@ -137,6 +137,64 @@ def __basictest(A, iters, guesses):
     print('Estimated eigenvector :', vec.T)
 
 
+def __speedtest(N=10):
+    """
+    Test the running time of the different methods
+    Prints to stdout.
+    """
+    # Pretty print!
+    print('\n\n** Comparing execution time **')
+
+    # Random (real and symmeric) matrix
+    print('Using a symmetric', N, 'x', N, 'matrix')
+    a = np.random.rand(N, N) * 10
+    A = (a + a.T)/2
+
+    # NumPy
+    t = timeit.default_timer()
+    val1, vec1 = la.eig(A)
+    dt = timeit.default_timer() - t
+    print('\n-NumPy (all eigenvalues) running time  : {0:.4f} ms'.format(100*dt))
+
+    # Jacobian (full)
+    d = np.zeros(A.shape[0], dtype='float')
+    V = np.zeros(A.shape, dtype='float')
+    t = timeit.default_timer()
+    rot = jacobi.diag_eig2(A, d, V, first='large')
+    dt = timeit.default_timer() - t
+    print('-Jacobi (all eigenvalues) running time : {0:.4f} ms'.format(100*dt))
+
+    # Jacobian (first)
+    d = np.zeros(A.shape[0], dtype='float')
+    V = np.zeros(A.shape, dtype='float')
+    t = timeit.default_timer()
+    rot = jacobi.diag_eig2(A, d, V, first='large', halt=True)
+    dt = timeit.default_timer() - t
+    print('-Jacobi (only largest ev) running time : {0:.4f} ms'.format(100*dt))
+
+    # Inverse iter (least magnitude)
+    t = timeit.default_timer()
+    val, vec, dv, iters = eigen.inviter_acc(A, Nup=2, acc=1e-9)
+    dt = timeit.default_timer() - t
+    print('-Inverse iteration with convergence criterion and update every 2nd')
+    print(' iter (only min mag) running time      : {0:.4f} ms'.format(100*dt))
+
+    # Inverse iter (least magnitude) without convergence criterion
+    t = timeit.default_timer()
+    val, vec = eigen.inviter_up(A, Nup=2, N=5)
+    dt = timeit.default_timer() - t
+    print('-Inverse iteration with 5 iterations and update every 2nd iter')
+    print(' (only min mag) running time           : {0:.4f} ms'.format(100*dt))
+
+    # Inverse iteration with guess
+    minev = val1[abs(val1) <= min(abs(val1))]
+    t = timeit.default_timer()
+    val, vec, dv, iters = eigen.inviter_acc(A, Nup=3, acc=1e-9, shift=minev-.1)
+    dt = timeit.default_timer() - t
+    print('-Inverse iteration with convergence criterion and update every 3rd')
+    print(' iter (with guess) running time        : {0:.4f} ms'.format(100*dt))
+
+
 #
 # Main of Part C
 #
@@ -144,9 +202,9 @@ def main(**options):
     # Basic test of the functionality
     if options['basic']:
         A, npval, npvec = __initsys()
-        Niter = 10
-        eigenguess = [-13, -7, -1, 12]
-        __basictest(A, Niter, eigenguess)
+        __basictest(A)
+        if options['speed']:
+            __speedtest(15)
 
     # No options given
     else:

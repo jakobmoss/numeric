@@ -2,7 +2,7 @@
 # Numerical Methods 2015
 # Examination assignment
 # Jakob Rørsted Mosumgaard
-# Time-stamp: <2015-07-02 20:31:45 moss>
+# Time-stamp: <2015-07-03 08:27:28 moss>
 #
 # Makefile
 ###########################################
@@ -89,7 +89,7 @@ C: output.C.txt
 
 # Text-output
 output.C.txt: main.py partC.py eigen.py givens.py jacobi.py
-	python3 $< C --basic > $@
+	python3 $< C --basic --speed > $@
 
 # Housekeeping...
 cleanC:

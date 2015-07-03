@@ -18,24 +18,24 @@ Eigenvectors NumPy   :
 *************************************************
 
 Finding eigenvalue of least magnitude using 10 iterations
-Estimated eigenvalue  : -3.15844603016
-Estimated eigenvector : [-0.42012365  0.22062491  0.87704707  0.07489465]
+Estimated eigenvalue  : -3.15844599667
+Estimated eigenvector : [-0.42011095  0.2206827   0.87704352  0.0748372 ]
 
 
 -- Searching for different eigenvalues by introducing a shift
 
 Finding eigenvalue near -13 using 10 iterations...
-Eigenvalue by inverse iteration  : -15.7875966239
-Eigenvector by inverse iteration : [ 0.74434571 -0.38674176  0.47634751 -0.26357793]
+Eigenvalue by inverse iteration  : -15.7862771132
+Eigenvector by inverse iteration : [ 0.74550371 -0.38114008  0.4759713  -0.26908692]
 
 Finding eigenvalue near -7 using 10 iterations...
-Eigenvalue by inverse iteration  : -8.14737457734
-Eigenvector by inverse iteration : [-0.15413792 -0.70014738  0.04298576  0.69583573]
+Eigenvalue by inverse iteration  : -8.14737457918
+Eigenvector by inverse iteration : [-0.15413192 -0.70015054  0.04297323  0.69583466]
 
 Finding eigenvalue near -1 using 10 iterations...
 Eigenvalue by inverse iteration  : -3.15844599667
-Eigenvector by inverse iteration : [-0.42011124  0.22068165  0.87704355  0.07483825]
+Eigenvector by inverse iteration : [-0.42011103  0.22068262  0.87704349  0.07483729]
 
 Finding eigenvalue near 12 using 10 iterations...
-Eigenvalue by inverse iteration  : 18.0937795372
-Eigenvector by inverse iteration : [ 0.49724258  0.55476429  0.04179856  0.66576218]
+Eigenvalue by inverse iteration  : 18.0937791287
+Eigenvector by inverse iteration : [ 0.49718861  0.55478855  0.04190972  0.66577528]
